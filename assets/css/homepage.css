@@ -1,0 +1,20 @@
+#homepage-favorites {
+    text-align: center;
+}
+
+#day1,
+#day2,
+#day3,
+#day4,
+#day5,
+#day6,
+#day7 {
+    margin: 2px;
+    padding: 2px;
+    font-size: small;
+}
+
+#week-day {
+    margin: 2px;
+    text-align: center;
+}
