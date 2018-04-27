@@ -1,0 +1,8 @@
+.profile-page,
+.edit-profile {
+    display: none;
+}
+
+#visible {
+    display: block;
+}

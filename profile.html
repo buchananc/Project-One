@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cross Bite</title>
+    <link rel="stylesheet" href="assets/css/profile.css">
+</head>
+
+<body>
+    <header>
+        <h3>Cross Bite</h3>
+        <a href="#">Username</a>
+    </header>
+
+    <div class="main-content">
+        <h2> Welcome
+            <span>Username</span>!</h2>
+
+        <div class="edit-profile" id="visible">
+            <h4>Choose your diet and dietery restrictions</h4>
+
+            <fieldset>
+                <legend>Diets</legend>
+                    <div>
+                        <input type="checkbox" id="no-diet" name="diet" value="no-diet">
+                        <label for="no-diet">No Diet</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="vegan" name="diet" value="vegan">
+                        <label for="vegan">Vegan</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="vegitarian" name="diet" value="vegitarian">
+                        <label for="vegitarian">Vegitarian</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="lacto" name="diet" value="lacto">
+                        <label for="lacto">Lacto Vegetarian</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="ovo" name="diet" value="ovo">
+                        <label for="ovo">Ovo Vegetarian</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="ketogenic" name="diet" value="ketogenic">
+                        <label for="ketogenic">Ketogenic</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="paleo" name="diet" value="paleo">
+                        <label for="paleo">Paleo</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="primal" name="diet" value="primal">
+                        <label for="primal">Primal</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="pescetarian" name="diet" value="pescetarian">
+                        <label for="pescetarian">Pescetarian</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="whole" name="diet" value="whole">
+                        <label for="whole">Whole 30</label>
+                    </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Dietary Restrictions</legend>
+                <div>
+                    <input type="checkbox" id="no-restriction" name="restriction" value="no-restriction">
+                    <label for="no-restriction">No Dietary Restriction</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="dairy" name="restriction" value="dairy">
+                    <label for="dairy">Dairy</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="egg" name="restriction" value="egg">
+                    <label for="egg">Egg</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="gluten" name="restriction" value="gluten">
+                    <label for="gluten">Gluten</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="peanut" name="restriction" value="peanut">
+                    <label for="peanut">Peanut</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="seafood" name="restriction" value="seafood">
+                    <label for="seafood">Seafood</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="sesame" name="restriction" value="sesame">
+                    <label for="sesame">Sesame</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="shellfish" name="restriction" value="shellfish">
+                    <label for="shellfish">Shellfish</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
+                    <label for="soy">Soy</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree-nut">
+                    <label for="tree-nut">Tree Nut</label>
+                </div>
+            </fieldset>
+
+            <!-- img holder -->
+            <div>
+                <img src="http://via.placeholder.com/100x100" alt="profile-picture">
+            </div>
+
+            <div method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="image_uploads">Choose your profile image</label>
+                    <br>
+                    <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">
+                </div>
+            </div>
+
+            <div>
+                <label for="bio">My cooking story</label>
+                <br>
+
+                <textarea name="textarea" rows="10" cols="50" id="bio">Tell something about yourself and your cooking experience</textarea>
+
+                <div>
+                    <p>Please select your account privacy</p>
+
+                    <input type="radio" id="privat-acc" name="account-privacy">
+                    <label for="privat-acc">privat</label>
+
+                    <input type="radio" id="public-acc" name="account-privacy">
+                    <label for="public-acc">public</label>
+                </div>
+                <diV>
+                    <p>Please select your meal plan privacy</p>
+
+                    <input type="radio" id="privat-meal" name="mealplan-privacy">
+                    <label for="privat-meal">privat</label>
+
+                    <input type="radio" id="public-meal" name="mealplan-privacy">
+                    <label for="public-meal">public</label>
+                </div>
+
+                <button id="save">Save</button>
+            </div>
+        </div>
+        <!-- edit-profile -->
+
+        <div class="profile-page">
+            <h2>My Profile</h2>
+            <img src="http://via.placeholder.com/100x100" alt="profile-picture">
+            <p>User Name</p>
+            <p>Bio</p>
+            <div>
+                <span>Vegitarian/</span>
+                <span>Dairy Intolerant/</span>
+                <span>Egg Intolerant/</span>
+            </div>
+        </div>
+        <!-- profile-page -->
+
+    </div>
+    <!-- main content -->
+
+    <footer>
+        <p>Copyright ©</p>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="profile.js"></script>
+</body>
+
+</html>
