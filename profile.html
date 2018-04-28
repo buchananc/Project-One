@@ -37,11 +37,11 @@
                         <label for="vegitarian">Vegitarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="lacto" name="diet" value="lacto">
+                        <input type="checkbox" class="disable" id="lacto" name="diet" value="lacto vegitarian">
                         <label for="lacto">Lacto Vegetarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="ovo" name="diet" value="ovo">
+                        <input type="checkbox" class="disable" id="ovo" name="diet" value="ovo vegitarian">
                         <label for="ovo">Ovo Vegetarian</label>
                     </div>
                     <div>
@@ -61,7 +61,7 @@
                         <label for="pescetarian">Pescetarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="whole" name="diet" value="whole">
+                        <input type="checkbox" class="disable" id="whole" name="diet" value="whole 30">
                         <label for="whole">Whole 30</label>
                     </div>
             </fieldset>
@@ -111,8 +111,8 @@
             </fieldset>
 
             <!-- img holder -->
-            <div>
-                <img src="http://via.placeholder.com/100x100" alt="profile-picture">
+            <div class="avatar">
+                
             </div>
 
             <div method="post" enctype="multipart/form-data">
@@ -127,17 +127,8 @@
                 <label for="bio">My cooking story</label>
                 <br>
 
-                <textarea name="textarea" rows="10" cols="50" id="bio">Tell something about yourself and your cooking experience</textarea>
+                <textarea name="textarea" rows="10" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
 
-                <div>
-                    <p>Please select your account privacy</p>
-
-                    <input type="radio" id="privat-acc" name="account-privacy">
-                    <label for="privat-acc">privat</label>
-
-                    <input type="radio" id="public-acc" name="account-privacy">
-                    <label for="public-acc">public</label>
-                </div>
                 <diV>
                     <p>Please select your meal plan privacy</p>
 
@@ -175,7 +166,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="profile.js"></script>
+    <script type="text/javascript" src="assets/javascript/profile.js"></script>
 </body>
 
 </html>
