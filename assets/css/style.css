@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Setting page background as well as setting the body to height and width of screen */
+body {
+    height: 100vh;
+    width: 100%;
+    overflow-y: hidden;
+    background: url(../images/log_in_background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*  BEGIN STYLING LOGIN FORM */
+/* ================================================================================ */
+#login_form {
+    padding-top: 120px;
+    text-align: left;
+}
+
+.login_item {
+    margin-top: 10px;
+}
+
+#site_title {
+    font-family: 'Amatic SC', cursive;
+    font-size: 8em;
+    color: beige;
+}
+
+.hidden {
+    display: none;
+}
+/*  END STYLING LOGIN FORM */
+/* ================================================================================ */
+
+#greetings {
+    font-family: 'Amatic SC', cursive;
+    font-size: 3em;
+    color: beige;
+}
