@@ -13,9 +13,6 @@ function dataObj() {
         this.link = ''
 }
 
-//New object
-//var newObject = new newObject();
-
 // --Rating star function, build up a star for each rating increment, return the appropriate html
 function genRating(rating) {
     let html = `Rating: <b id='rating' value=${rating} <span>`;
