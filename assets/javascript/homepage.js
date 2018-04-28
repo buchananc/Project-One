@@ -64,13 +64,23 @@ function createAweekOfEpochKeys() {
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
+function buildDayofMeals(i) {
+
+}
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 function buildDaysOfWeekInDOM () {
 
     var startDay = parseInt(moment(startOfWeekDate).format("DD"));
 
-    for (i=1; i<=7; i++) {
+    for (i=0; i<7; i++) {
+       var epoch = moment(startOfWeekDate).add(i, 'days');
+       var epochStr = moment(epoch).format("X");
        var jq_day = $("#day" + i);
+       jq_day.attr("value",epochStr);
        jq_day.append("<a>" + startDay + "</a>");
+       jq_day.append( buildDayofMeals(i) );
        ++startDay;
     }
 
