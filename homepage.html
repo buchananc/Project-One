@@ -5,8 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/homepage.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="assets/javascript/homepage.js"></script>
 </head>
 <body>
+    <header>
+        <h3>Cross Bite</h3>
+        <a href="#">Username</a>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 jumbotron" id="homepage-favorites">
+                <h2>favorites</h2>
+                <div class="row">
+                    <div class="col-md-4" id="favorite-1"></div>
+                    <div class="col-md-4" id="favorite-2"></div>
+                    <div class="col-md-4" id="favorite-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="meal-plan">
+            <div class="col-md-2" id="week-right-margin"></div>
+            <div class="col-md-1 jumbotron" id="day1">
+                <p>Sunday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day2">
+                <p>Monday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day3">
+                <p>Tuesday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day4">
+                <p>Wednesday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day5">
+                <p>Thursday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day6">
+                <p>Friday</p> 
+            </div>
+            <div class="col-md-1 jumbotron" id="day7">
+                <p>Saturday</p> 
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
