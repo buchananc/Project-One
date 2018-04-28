@@ -45,7 +45,7 @@ function showFood(result, index, array) {
         `<img src=${img}` +
         "><p>" +
         genRating(rating) +
-        `</p></div><div><a href="${link}" target='_blank' class="external_link"><i class="fa fa-external-link" aria-hidden="true"></i> View Recipe </a><i class='fa fa-trash fa-lg' aria-hidden='true' id="search"></i></div>`);
+        `</p></div><div><a href="${link}" target='_blank' class="external_link"><i class="fa fa-external-link" aria-hidden="true"></i> View Recipe </a></div>`);
 }
 
 // --searchAPI to search the Yummly API, return the recipe/food data jsonp object
