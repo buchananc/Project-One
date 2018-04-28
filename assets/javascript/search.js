@@ -35,15 +35,16 @@ function showFood(result, index, array) {
     link += encoded_name;
     let img = result.imageUrlsBySize[90];
 
+
     $('div.column_results').append(
-        `<div class='portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all' id=${foodID}` +
+        `<div class='portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all card' id=${foodID} data-value=${foodID}` +
         `><div class='portlet-header ui-widget-header ui-sortable-handle ui-corner-all'><span class='ui-icon ui-icon-minusthick portlet-toggle'><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}` +
         "</div><div class='portlet-content'>" +
-        `<img src=${img}` +
-        "><p>" +
+        `<img src=${img}` + "><p>" +
         genRating(rating) +
         `</p></div><div><a href="${link}" target='_blank' class="external_link"><i class="fa fa-external-link" aria-hidden="true"></i> View Recipe </a></div>`);
 }
+// var newCard = $('<div>').attr('data-value', result[i].id).addClass('card');
 
 // --searchAPI to search the Yummly API, return the recipe/food data jsonp object
 function searchAPI(recipe_search, food_search) {
@@ -72,6 +73,7 @@ function searchAPI(recipe_search, food_search) {
     }).then(function (result) {
         console.log(result);
         let results_length = result.matches.length; //saves results as a variable
+        
         $('div.column_results').append(`Search Results (${results_length})`);
         result.matches.forEach(showFood);
      }); 
@@ -88,7 +90,6 @@ $(document).ready(function () {
         if (recipe_search && food_search) {
             $('p.search_error').text("Please only choose recipes OR food search. Click the clear button to start over.");
         } else if (recipe_search || food_search) {
-            //Search Yummly, can't have both defined, but API call will determine which one to use
             $('div.column_results').empty();
             searchAPI(recipe_search, food_search);
         } else {
