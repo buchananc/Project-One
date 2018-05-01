@@ -6,24 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cross Bite</title>
+    <!-- linking fonts from Google -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+    <!-- linking Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/profile.css">
+    <!-- Firebase link -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 </head>
 
 <body>
     <header>
-        <h3>Cross Bite</h3>
-        <a href="#">Username</a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <h3>Cross Bite</h3>
+                </div>
+                <p class="navbar-text navbar-right user-p">Signed in as 
+                        <a href="#" class="navbar-link" id="username">Username</a>
+                </p>
+            </div>
+        </nav>
     </header>
 
-    <div class="main-content">
+    <div class="main-content container">
         <h2> Welcome
             <span>Username</span>!</h2>
 
         <div class="edit-profile" id="visible">
-            <h4>Choose your diet and dietery restrictions</h4>
+            <h5>Choose your diet and dietery restrictions</h5>
 
-            <fieldset>
-                <legend>Diets</legend>
+            <div class="row row-one">
+                <div id="diets" class="col-lg-4 col-md-4">
+                    <h4>Diets</h4>
                     <div>
                         <input type="checkbox" id="no-diet" name="diet" value="no-diet">
                         <label for="no-diet">No Diet</label>
@@ -64,89 +82,90 @@
                         <input type="checkbox" class="disable" id="whole" name="diet" value="whole 30">
                         <label for="whole">Whole 30</label>
                     </div>
-            </fieldset>
+                </div>
 
-            <fieldset>
-                <legend>Dietary Restrictions</legend>
-                <div>
-                    <input type="checkbox" id="no-restriction" name="restriction" value="no-restriction">
-                    <label for="no-restriction">No Dietary Restriction</label>
+                <div id="allergies" class="col-lg-4 col-md-4">
+                    <h4>Dietary Restrictions</h4>
+                    <div>
+                        <input type="checkbox" id="no-restriction" name="restriction" value="no-restriction">
+                        <label for="no-restriction">No Dietary Restriction</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="dairy" name="restriction" value="dairy">
+                        <label for="dairy">Dairy</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="egg" name="restriction" value="egg">
+                        <label for="egg">Egg</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="gluten" name="restriction" value="gluten">
+                        <label for="gluten">Gluten</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="peanut" name="restriction" value="peanut">
+                        <label for="peanut">Peanut</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="seafood" name="restriction" value="seafood">
+                        <label for="seafood">Seafood</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="sesame" name="restriction" value="sesame">
+                        <label for="sesame">Sesame</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="shellfish" name="restriction" value="shellfish">
+                        <label for="shellfish">Shellfish</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
+                        <label for="soy">Soy</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree-nut">
+                        <label for="tree-nut">Tree Nut</label>
+                    </div>
                 </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="dairy" name="restriction" value="dairy">
-                    <label for="dairy">Dairy</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="egg" name="restriction" value="egg">
-                    <label for="egg">Egg</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="gluten" name="restriction" value="gluten">
-                    <label for="gluten">Gluten</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="peanut" name="restriction" value="peanut">
-                    <label for="peanut">Peanut</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="seafood" name="restriction" value="seafood">
-                    <label for="seafood">Seafood</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="sesame" name="restriction" value="sesame">
-                    <label for="sesame">Sesame</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="shellfish" name="restriction" value="shellfish">
-                    <label for="shellfish">Shellfish</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
-                    <label for="soy">Soy</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree-nut">
-                    <label for="tree-nut">Tree Nut</label>
-                </div>
-            </fieldset>
 
-            <!-- img holder -->
-            <div class="avatar">
-                
+                <!-- img holder -->
+                <div id="picture" class="col-lg-4 col-md-4">
+                    <p>Choose your profile picture</p>
+                    <div class="avatar">
+                        <img src="https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720-250x250.png" id="pic-placeholder"
+                            alt="placeholder">
+                    </div>
+
+                    <!-- image uploader -->
+                    <div method="post" enctype="multipart/form-data">
+                        <div>
+                            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">
+                        </div>
+                    </div>
+                </div>
+                <!-- closing tag for picture -->
             </div>
+            <!-- closing tag for row -->
 
-            <div method="post" enctype="multipart/form-data">
-                <div>
-                    <label for="image_uploads">Choose your profile image</label>
+            <div class="row second-row">
+                <div id="bio-container" class="col-lg-6 col-md-6">
+                    <label for="bio">My cooking story</label>
                     <br>
-                    <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">
-                </div>
-            </div>
-
-            <div>
-                <label for="bio">My cooking story</label>
-                <br>
-
-                <textarea name="textarea" rows="10" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
-
-                <diV>
-                    <p>Please select your meal plan privacy</p>
-
-                    <input type="radio" id="privat-meal" name="mealplan-privacy">
-                    <label for="privat-meal">privat</label>
-
-                    <input type="radio" id="public-meal" name="mealplan-privacy">
-                    <label for="public-meal">public</label>
+                    <textarea name="textarea" rows="8" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
                 </div>
 
-                <button id="save">Save</button>
+                <div class="button-container col-lg-6 col-md-6">
+                    <button class="btn btn-defoult" id="save">Save</button>
+                </div>
             </div>
+            <!-- closing tag for row -->
         </div>
-        <!-- edit-profile -->
+        <!-- closing tag for edit profile -->
 
+        <!-- PROFILE PAGE -->
         <div class="profile-page">
             <h2>My Profile</h2>
-            <img src="http://via.placeholder.com/100x100" alt="profile-picture">
+            <div id="ava"></div>
             <p>User Name</p>
             <p>Bio</p>
             <div>
@@ -155,15 +174,14 @@
                 <span>Egg Intolerant/</span>
             </div>
         </div>
-        <!-- profile-page -->
+        <!-- closing tag for profile-page -->
 
     </div>
-    <!-- main content -->
+    <!-- closing tag for main content -->
 
     <footer>
         <p>Copyright ©</p>
     </footer>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/profile.js"></script>
