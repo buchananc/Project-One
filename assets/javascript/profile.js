@@ -43,42 +43,31 @@ function selectRestrictions() {
 };
 
 
-
 ///////////////////////////////////////////////////////////////////
 // EVENT LISTENERS
 
 // Event listener for uploading profile picture
 $("#image_uploads").on("change", function () {
-    // Get the avatar from the form
+    // Get the picture from the form
     var avatar = $("#image_uploads").prop("files")[0];
+    // Select a div for preview and assign it to the variable
     var profilePicture = $(".avatar");
+    // Setting up a file reader
     var reader = new FileReader;
 
-
+    // After the read operation is complete put the result into img tag
     reader.addEventListener("load", function () {
         var img = $("<img>");
         img.attr('src', reader.result);
         img.attr('id', "profile-preview");
+        // Append a preview image to the div
         profilePicture.html(img);
     });
 
-    if (avatar && profilePicture) {
+    if (avatar) {
+        // Returns  a result that contains the data as a URL representing the file's data as a base64 encoded string
         reader.readAsDataURL(avatar);
     }
-
-    // Get a reference to the storage service, which is used to create references in your storage bucket
-    var storage = firebase.storage().ref();
-
-    const file = $('#image_uploads').prop("files")[0];
-    console.log(file)
-
-    const name = file.name;
-
-    const fileRef = storage.child('/public/' + name);
-
-    fileRef.put(avatar).then(function(result) {
-        console.log(result);
-    });
 });
 
 // if 'No Diet' is checked other checkboxes are disabled
@@ -161,9 +150,24 @@ $("#save").on("click", function () {
             }
         },
     }
-        // Code for handling the push
-        database.ref().push(user);
+    // Code for handling the push
+    database.ref().push(user);
+
+    // Get a reference to the storage service
+    var storage = firebase.storage().ref();
+
+    const file = $('#image_uploads').prop("files")[0];
+    console.log(file)
+
+    const name = file.name;
+
+    // Path to store an image
+    const fileRef = storage.child('/public/' + name);
+
+    fileRef.put(avatar).then(function (result) {
+        console.log(result);
     });
+});
 
 // Looking for changes in Firebase 
 database.ref().on("child_added", function (childSnapshot, prevChildKey) {
@@ -182,6 +186,6 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(userProfilePicture);
 
     var ava = $("<img>");
-        ava.attr('src', userProfilePicture);
-        $("#ava").html(ava)
+    ava.attr('src', userProfilePicture);
+    $("#ava").html(ava)
 });
