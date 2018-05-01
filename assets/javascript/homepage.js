@@ -45,22 +45,22 @@
 //-------------------------------------------------------------------------------------------
 // Initializing Firebase
 //  
-var config = {
-    apiKey: "AIzaSyCeZJWPPfaCh9IqHcd0SLw6AdKkH46qZRQ",
-    authDomain: "cross-bite.firebaseapp.com",
-    databaseURL: "https://cross-bite.firebaseio.com",
-    projectId: "cross-bite",
-    storageBucket: "cross-bite.appspot.com",
-    messagingSenderId: "789203245949"
-};
 // var config = {
-//     apiKey: "AIzaSyA_EcDkrbKT89eJoD6Sm_Dc6uXD0SYDZcc",
-//     authDomain: "project-dean.firebaseapp.com",
-//     databaseURL: "https://project-dean.firebaseio.com",
-//     projectId: "project-dean",
-//     storageBucket: "project-dean.appspot.com",
-//     messagingSenderId: "894221788473"
+//     apiKey: "AIzaSyCeZJWPPfaCh9IqHcd0SLw6AdKkH46qZRQ",
+//     authDomain: "cross-bite.firebaseapp.com",
+//     databaseURL: "https://cross-bite.firebaseio.com",
+//     projectId: "cross-bite",
+//     storageBucket: "cross-bite.appspot.com",
+//     messagingSenderId: "789203245949"
 // };
+var config = {
+    apiKey: "AIzaSyA_EcDkrbKT89eJoD6Sm_Dc6uXD0SYDZcc",
+    authDomain: "project-dean.firebaseapp.com",
+    databaseURL: "https://project-dean.firebaseio.com",
+    projectId: "project-dean",
+    storageBucket: "project-dean.appspot.com",
+    messagingSenderId: "894221788473"
+};
 
 firebase.initializeApp( config );
 
@@ -113,7 +113,6 @@ var user = {
 //-------------------------------------------------------------------------------------------
 function createAweekOfEpochKeys() {
 
-    var startDay = parseInt(moment(startOfWeekDate).format("DD"));
 
     mealPlanner.child( userID ).once('value',function(snapshot) {
         var userExists = (snapshot.val() !== null);
@@ -128,14 +127,21 @@ function createAweekOfEpochKeys() {
             var dinnerYummlyID = " ";
 
             if (userExists) {
+                console.log("createAweekOfEpochKeys() mealPlanner user EXISTS")
                 var epochExists = (snapshot.child(epochStr).val() !== null);
                 if (epochExists) {
+                  console.log("createAweekOfEpochKeys() mealPlanner epoch EXISTS")
                     breakfastYummlyID = snapshot.child(epochStr).val().breakfast.yummlyID;
                     lunchYummlyID = snapshot.child(epochStr).val().lunch.yummlyID;
                     dinnerYummlyID = snapshot.child(epochStr).val().dinner.yummlyID;
                 }
+                else {
+                  console.log("createAweekOfEpochKeys() mealPlanner epoch NOT EXISTS")
+
+                }
             }
             else {
+                console.log("createAweekOfEpochKeys() mealPlanner user NOT EXISTS")
                 var breakfast = user.mealPlan.breakfast
                 mealPlanner.child(userID+"/"+epochStr).update({
                     breakfast
@@ -149,85 +155,57 @@ function createAweekOfEpochKeys() {
                    dinner 
                 });
             }
-            var jq_day = $("#day" + i);
-            jq_day.attr("value",epochStr);
-            jq_day.append("<a>" + startDay + "</a>");
-            jq_day.append( buildDayOfMeals(epochStr, breakfastYummlyID, lunchYummlyID, dinnerYummlyID) );
+            buildDayOfMeals(i, epoch, breakfastYummlyID, lunchYummlyID, dinnerYummlyID);
 
-            ++startDay;
         }
     });
 }
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
-function buildDayOfMeals( epochStr, breakfastYummlyID, lunchYummlyID, dinnerYummlyID ) {
-    var jq_newDiv = $("<div>");
+function buildDayOfMeals( i, epoch, breakfastYummlyID, lunchYummlyID, dinnerYummlyID ) {
+    var epochStr = moment(epoch).format("X");
+
+    var startDay = parseInt(moment(epoch).format("DD"));
+    var jq_day = $("#day" + i);
+    jq_day.attr("value",epochStr);
+    jq_day.prepend("<a>" + startDay + "</a>");
 
     // Breakfast
-    var jq_newBreakfastDiv = $("<div>");
-    var jq_newBreakfastInput = $( "<input>" );
-    jq_newBreakfastInput.attr( "type","checkbox" );
-    jq_newBreakfastInput.addClass( "meal" );
+    var jq_newBreakfastInput = $("#breakfast" + i );
     jq_newBreakfastInput.attr( "value", "breakfast" );
     jq_newBreakfastInput.attr( "epoch", epochStr );
     jq_newBreakfastInput.attr( "yummyid", breakfastYummlyID );
-    jq_newBreakfastDiv.append( jq_newBreakfastInput );
-    var jq_newBreakfastLabel = $( "<label>" );
-    jq_newBreakfastLabel.attr( "for","breakfast" );
-    jq_newBreakfastLabel.text( "Breakfast" );
-    jq_newBreakfastDiv.append( jq_newBreakfastLabel );
 
     // Lunch
-    var jq_newLunchDiv = $("<div>");
-    var jq_newLunchInput = $( "<input>" );
-    jq_newLunchInput.attr( "type","checkbox" );
-    jq_newLunchInput.addClass( "meal" );
+    var jq_newLunchInput = $( "#lunch" + i );
     jq_newLunchInput.attr( "value", "lunch" );
     jq_newLunchInput.attr( "epoch", epochStr );
-    jq_newBreakfastInput.attr( "yummyid", lunchYummlyID );
-    jq_newLunchDiv.append( jq_newLunchInput );
-    var jq_newLunchLabel = $( "<label>" );
-    jq_newLunchLabel.attr( "for","lunch" );
-    jq_newLunchLabel.text( "Lunch" );
-    jq_newLunchDiv.append( jq_newLunchLabel );
+    jq_newLunchInput.attr( "yummyid", lunchYummlyID );
 
     // Dinner
-    var jq_newDinnerDiv = $("<div>");
-    var jq_newDinnerInput = $( "<input>" );
-    jq_newDinnerInput.attr( "type","checkbox" );
-    jq_newDinnerInput.addClass( "meal" );
+    var jq_newDinnerInput = $( "#dinner" + i );
     jq_newDinnerInput.attr( "value", "dinner" );
     jq_newDinnerInput.attr( "epoch", epochStr );
-    jq_newBreakfastInput.attr( "yummyid", dinnerYummlyID );
-    jq_newDinnerDiv.append( jq_newDinnerInput );
-    var jq_newDinnerLabel = $( "<label>" );
-    jq_newDinnerLabel.attr( "for","dinner" );
-    jq_newDinnerLabel.text( "Dinner" );
-    jq_newDinnerDiv.append( jq_newDinnerLabel );
-
-    jq_newDiv.append( jq_newBreakfastDiv );
-    jq_newDiv.append( jq_newLunchDiv );
-    jq_newDiv.append( jq_newDinnerDiv );
-
-    return jq_newDiv;
+    jq_newDinnerInput.attr( "yummyid", dinnerYummlyID );
 
 }
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 function selectMeal( event ) {
-    var selected = $(this);
-    var selectedMeal = selected.attr("value");
-    var selectedEpoch = selected.attr("epoch");
+   var selected = $(this);
+   var selectedMeal = selected.attr("value");
+   var selectedEpoch = selected.attr("epoch");
 
-    event.preventDefault();
+   event.preventDefault();
+   console.log("selectMeal()");
 
-    console.log( selectedMeal + " " + selectedEpoch );
+   console.log( selectedMeal + " " + selectedEpoch );
 
-    activeSearch.child(userID+"/"+selectedEpoch).update({
-        selectedMeal
-    });
+   activeSearch.child(userID+"/"+selectedEpoch).update({
+       selectedMeal
+   });
     window.location.href="search.html";
 
 }
@@ -237,6 +215,8 @@ function selectMeal( event ) {
 //  and disply if within view
 //-------------------------------------------------------------------------------------------
 function buildFavoriteMealArea( meal ) {
+
+    console.log("buildFavoriteMealArea() -> " + meal); 
 
     favorite.child( userID+"/"+meal ).on('value',function(snapshot) {
         var exists = (snapshot.val() !== null);
@@ -324,28 +304,24 @@ function removeActiveSearchDB () {
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 function homepageControl() {
-    $(document).ready( function() {
     
-        $("#user-name").text("Username: " + userName);
-        for (i=0; i<3; i++) {
-            if (i == 0) meal = "breakfast";
-            if (i == 1) meal = "lunch";
-            if (i == 2) meal = "dinner";
-            buildFavoriteMealArea( meal );
-        }
+    createAweekOfEpochKeys();
+    removeActiveSearchDB();
+    $("#username").text("Username: " + userName);
+    for (i=0; i<3; i++) {
+       if (i == 0) meal = "breakfast";
+       if (i == 1) meal = "lunch";
+       if (i == 2) meal = "dinner";
+       buildFavoriteMealArea( meal );
+    }
+
+    $(".meal").on( "click", selectMeal );
     
-        createAweekOfEpochKeys();
-    
-        $(".meal").on( "click", selectMeal );
-    
-    });
 };
 
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
-removeActiveSearchDB();
-
 var meal = "default";
 for (i=0; i<3; i++) {
     if (i == 0) meal = "breakfast";
@@ -354,22 +330,25 @@ for (i=0; i<3; i++) {
     buildFromRandomMeal( meal );
 }
 
-auth.onAuthStateChanged( function(user) {
-    console.log( "In onAuthStatChange() ");
+$(document).ready( function() {
+    
+    auth.onAuthStateChanged( function(user) {
+        console.log( "In onAuthStatChange() ");
+    
+        if (user) {
+            // User is signed in.
+            console.log( " current UserID -> " + user.uid );
+            console.log( user );
+            usersRef.child(user.uid).once( 'value', function(snapshot) {
+            console.log( 'usersRef userName -> ' + snapshot.val().userName );
+            userID = user.uid;
+            userName = snapshot.val().userName;
+            homepageControl();
+        });
 
-    if (user) {
-        // User is signed in.
-        console.log( " current UserID -> " + user.uid );
-        console.log( user );
-        usersRef.child(user.uid).once( 'value', function(snapshot) {
-        console.log( 'usersRef userName -> ' + snapshot.val().userName );
-        userID = user.uid;
-        userName = snapshot.val().userName;
-        homepageControl();
+        } else {
+           // No user is signed in.
+           alert( " no current User " );
+        }
     });
-
-    } else {
-       // No user is signed in.
-       alert( " no current User " );
-    }
 });

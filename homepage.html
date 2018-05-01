@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <!-- linking fonts from Google -->     
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/homepage.css">
 
@@ -17,8 +20,16 @@
 </head>
 <body>
     <header>
-        <h3>Cross Bite</h3>
-        <a id="user-name"></a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <h3>Cross Bite</h3>
+                </div>
+                <p class="navbar-text navbar-right user-p">Signed in as
+                    <a href="#" class="navbar-link" id="username">Username</a>
+                </p>
+            </div>
+        </nav>
     </header>
 
     <div class="container-fluid">
@@ -36,24 +47,108 @@
             <div class="col-md-2" id="week-right-margin"></div>
             <div class="col-md-1 jumbotron" id="day0">
                 <p>Sunday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast0">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch0">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner0">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day1">
                 <p>Monday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast1">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch1">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner1">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day2">
                 <p>Tuesday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast2">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch2">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner2">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day3">
                 <p>Wednesday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast3">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch3">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner3">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day4">
                 <p>Thursday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast4">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch4">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner4">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day5">
                 <p>Friday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast5">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch5">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner5">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
             <div class="col-md-1 jumbotron" id="day6">
                 <p>Saturday</p> 
+                <div>
+                    <input type="checkbox" class="meal" id="breakfast6">
+                    <label for="breakfast">Breakfast</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="lunch6">
+                    <label for="lunch">Lunch</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="meal" id="dinner6">
+                    <label for="dinner">Dinner</label>
+                </div>
             </div>
         </div>
     </div>
