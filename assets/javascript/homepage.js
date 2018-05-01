@@ -43,24 +43,36 @@
 //
 //
 //-------------------------------------------------------------------------------------------
+// Initializing Firebase
+//  
 var config = {
-    apiKey: "AIzaSyA_EcDkrbKT89eJoD6Sm_Dc6uXD0SYDZcc",
-    authDomain: "project-dean.firebaseapp.com",
-    databaseURL: "https://project-dean.firebaseio.com",
-    projectId: "project-dean",
-    storageBucket: "project-dean.appspot.com",
-    messagingSenderId: "894221788473"
-  };
+    apiKey: "AIzaSyCeZJWPPfaCh9IqHcd0SLw6AdKkH46qZRQ",
+    authDomain: "cross-bite.firebaseapp.com",
+    databaseURL: "https://cross-bite.firebaseio.com",
+    projectId: "cross-bite",
+    storageBucket: "cross-bite.appspot.com",
+    messagingSenderId: "789203245949"
+};
+// var config = {
+//     apiKey: "AIzaSyA_EcDkrbKT89eJoD6Sm_Dc6uXD0SYDZcc",
+//     authDomain: "project-dean.firebaseapp.com",
+//     databaseURL: "https://project-dean.firebaseio.com",
+//     projectId: "project-dean",
+//     storageBucket: "project-dean.appspot.com",
+//     messagingSenderId: "894221788473"
+// };
 
 firebase.initializeApp( config );
 
-var database = firebase.database();
-var mealPlanner = database.ref("/mealPlanner");
-var activeSearch = database.ref("/activeSearch");
-var favorite = database.ref("/favorite");
+const database = firebase.database();
+const auth = firebase.auth();
+const usersRef = database.ref().child('users');
+const mealPlanner = database.ref("/mealPlanner");
+const activeSearch = database.ref("/activeSearch");
+const favorite = database.ref("/favorite");
 
-// ToDo: firebase.auth().currentUser;
-var userID = "3456879bcd4579";
+var userID = "test5456879bcd4579";
+var userName = "test";
 
 //-------------------------------------------------------------------------------------------
 // Global variables
@@ -71,17 +83,17 @@ var ourAPIkey = "1a7e0fea32a0ad94892aaeb51b858b48";
 var startOfWeekDate = moment().startOf('week');
 
 var breakfast = {
-    yummlyID: "",
+    yummlyID: " ",
     random: "false"
 };
 
 var lunch = {
-    yummlyID: "",
+    yummlyID: " ",
     random: "false"
 };
 
 var dinner = {
-    yummlyID: "",
+    yummlyID: " ",
     random: "false"
 };
 
@@ -101,23 +113,55 @@ var user = {
 //-------------------------------------------------------------------------------------------
 function createAweekOfEpochKeys() {
 
-    for (i=0; i<=6; i++) {
-        var epoch = moment(startOfWeekDate).add(i, 'days');
-        var epochStr = moment(epoch).format("X");
+    var startDay = parseInt(moment(startOfWeekDate).format("DD"));
 
-        console.log( epochStr );
-        console.log("    "+ moment(epoch).format("YYYY/MM/DD hh:mm:ss"));
+    mealPlanner.child( userID ).once('value',function(snapshot) {
+        var userExists = (snapshot.val() !== null);
+        for (i=0; i<7; i++) {
+            var epoch = moment(startOfWeekDate).add(i, 'days');
+            var epochStr = moment(epoch).format("X");
+    
+            console.log( epochStr );
+            console.log("    "+ moment(epoch).format("YYYY/MM/DD hh:mm:ss"));
+            var breakfastYummlyID = " ";
+            var lunchYummlyID = " ";
+            var dinnerYummlyID = " ";
 
-        mealPlanner.child(userID+"/"+epochStr).update({
-            user
-        });
-    }
+            if (userExists) {
+                var epochExists = (snapshot.child(epochStr).val() !== null);
+                if (epochExists) {
+                    breakfastYummlyID = snapshot.child(epochStr).val().breakfast.yummlyID;
+                    lunchYummlyID = snapshot.child(epochStr).val().lunch.yummlyID;
+                    dinnerYummlyID = snapshot.child(epochStr).val().dinner.yummlyID;
+                }
+            }
+            else {
+                var breakfast = user.mealPlan.breakfast
+                mealPlanner.child(userID+"/"+epochStr).update({
+                    breakfast
+                });
+                var lunch = user.mealPlan.lunch
+                mealPlanner.child(userID+"/"+epochStr).update({
+                    lunch
+                });
+                var dinner = user.mealPlan.dinner
+                mealPlanner.child(userID+"/"+epochStr).update({
+                   dinner 
+                });
+            }
+            var jq_day = $("#day" + i);
+            jq_day.attr("value",epochStr);
+            jq_day.append("<a>" + startDay + "</a>");
+            jq_day.append( buildDayOfMeals(epochStr, breakfastYummlyID, lunchYummlyID, dinnerYummlyID) );
+
+            ++startDay;
+        }
+    });
 }
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
-function buildDayofMeals( epochStr ) {
-    // ToDo:  pull data from db on any existing planned meals
+function buildDayOfMeals( epochStr, breakfastYummlyID, lunchYummlyID, dinnerYummlyID ) {
     var jq_newDiv = $("<div>");
 
     // Breakfast
@@ -127,6 +171,7 @@ function buildDayofMeals( epochStr ) {
     jq_newBreakfastInput.addClass( "meal" );
     jq_newBreakfastInput.attr( "value", "breakfast" );
     jq_newBreakfastInput.attr( "epoch", epochStr );
+    jq_newBreakfastInput.attr( "yummyid", breakfastYummlyID );
     jq_newBreakfastDiv.append( jq_newBreakfastInput );
     var jq_newBreakfastLabel = $( "<label>" );
     jq_newBreakfastLabel.attr( "for","breakfast" );
@@ -140,6 +185,7 @@ function buildDayofMeals( epochStr ) {
     jq_newLunchInput.addClass( "meal" );
     jq_newLunchInput.attr( "value", "lunch" );
     jq_newLunchInput.attr( "epoch", epochStr );
+    jq_newBreakfastInput.attr( "yummyid", lunchYummlyID );
     jq_newLunchDiv.append( jq_newLunchInput );
     var jq_newLunchLabel = $( "<label>" );
     jq_newLunchLabel.attr( "for","lunch" );
@@ -153,6 +199,7 @@ function buildDayofMeals( epochStr ) {
     jq_newDinnerInput.addClass( "meal" );
     jq_newDinnerInput.attr( "value", "dinner" );
     jq_newDinnerInput.attr( "epoch", epochStr );
+    jq_newBreakfastInput.attr( "yummyid", dinnerYummlyID );
     jq_newDinnerDiv.append( jq_newDinnerInput );
     var jq_newDinnerLabel = $( "<label>" );
     jq_newDinnerLabel.attr( "for","dinner" );
@@ -166,24 +213,6 @@ function buildDayofMeals( epochStr ) {
     return jq_newDiv;
 
 }
-
-//-------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------
-function buildDaysOfWeekInDOM () {
-
-    var startDay = parseInt(moment(startOfWeekDate).format("DD"));
-
-    for (i=0; i<7; i++) {
-       var epoch = moment(startOfWeekDate).add(i, 'days');
-       var epochStr = moment(epoch).format("X");
-       var jq_day = $("#day" + i);
-       jq_day.attr("value",epochStr);
-       jq_day.append("<a>" + startDay + "</a>");
-       jq_day.append( buildDayofMeals(epochStr) );
-       ++startDay;
-    }
-
-};
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
@@ -217,16 +246,11 @@ function buildFavoriteMealArea( meal ) {
                            "?_app_id=" + ourAPIid +
                            "&_app_key=" + ourAPIkey;
 
-    console.log(queryURL);
-
             $.ajax({
                 type: 'GET',
                 url: queryURL,
             }).then(function (result) {
 
-                console.log(JSON.stringify(result));
-                console.log("buildFavoriteMealArea()" + result.name);
-                console.log("buildFavoriteMealArea()" + result.images[0].hostedLargeUrl);
                 var jq_divID = $("#favorite-"+meal);
                 jq_divID.empty();
                 jq_divID.append("<h3>"+meal+"</h3>");
@@ -258,7 +282,6 @@ function buildFromRandomMeal( meal ) {
                 type: 'GET',
                 url: queryURL,
             }).then(function (result) {
-                console.log(meal);
                 var result_length = result.matches.length;
                 var randomNumber = Math.floor(Math.random() * result_length);
 
@@ -298,8 +321,30 @@ function removeActiveSearchDB () {
     });
  };
 
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+function homepageControl() {
+    $(document).ready( function() {
+    
+        $("#user-name").text("Username: " + userName);
+        for (i=0; i<3; i++) {
+            if (i == 0) meal = "breakfast";
+            if (i == 1) meal = "lunch";
+            if (i == 2) meal = "dinner";
+            buildFavoriteMealArea( meal );
+        }
+    
+        createAweekOfEpochKeys();
+    
+        $(".meal").on( "click", selectMeal );
+    
+    });
+};
+
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 removeActiveSearchDB();
-createAweekOfEpochKeys();
 
 var meal = "default";
 for (i=0; i<3; i++) {
@@ -309,19 +354,22 @@ for (i=0; i<3; i++) {
     buildFromRandomMeal( meal );
 }
 
-//-------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------
-$(document).ready( function() {
+auth.onAuthStateChanged( function(user) {
+    console.log( "In onAuthStatChange() ");
 
-    for (i=0; i<3; i++) {
-        if (i == 0) meal = "breakfast";
-        if (i == 1) meal = "lunch";
-        if (i == 2) meal = "dinner";
-        buildFavoriteMealArea( meal );
+    if (user) {
+        // User is signed in.
+        console.log( " current UserID -> " + user.uid );
+        console.log( user );
+        usersRef.child(user.uid).once( 'value', function(snapshot) {
+        console.log( 'usersRef userName -> ' + snapshot.val().userName );
+        userID = user.uid;
+        userName = snapshot.val().userName;
+        homepageControl();
+    });
+
+    } else {
+       // No user is signed in.
+       alert( " no current User " );
     }
-
-    buildDaysOfWeekInDOM();
-
-    $(".meal").on( "click", selectMeal );
-
 });
