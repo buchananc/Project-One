@@ -13,3 +13,6 @@ const database = firebase.database();
 const auth = firebase.auth();
 // Creating a reference to my users in Firebase
 const usersRef = database.ref().child('users');
+const mealPlanner = database.ref("/mealPlanner");
+const activeSearch = database.ref("/activeSearch");
+const favorite = database.ref("/favorite");
