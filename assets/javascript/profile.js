@@ -109,6 +109,24 @@ firebase.initializeApp(config);
 
 // Create a variable to reference the database
 var database = firebase.database();
+
+var auth = firebase.auth();
+
+var userId = AIUHER89732RH;
+//======================================================
+auth.onAuthStateChanged( function(user) {
+    console.log( "In onAuthStatChange() ");
+
+    if (user) {
+        // User is signed in.
+        userId = user.uid;
+        console.log( " current UserID -> " + user.uid );
+        console.log( user );
+    } else {
+        // No user is signed in.
+        console.log( " no current User " );
+    }
+});
 //=======================================================
 
 // Changes content on the screen after 'Save' button is cklicked
@@ -117,52 +135,38 @@ $("#save").on("click", function () {
     $(".edit-profile").removeAttr("id", "visible");
 
     // Saves INPUT FROM USER in variables
-    var userAvatar = $("img").attr("src");
-    console.log(userAvatar)
-    var avatar = $("#image_uploads").prop("files")[0];
+    var avatar
     var bio = $("#bio").val().trim();
-    console.log(avatar);
     console.log(bio);
 
-    var diets = selectDiet();
-    var restrictions = selectRestrictions();
+    var userDiets = selectDiet();
+    var userAllergies = selectRestrictions();
     // var userID = "123";
 
     // Creates local "temporary" object for holding new user data
-    var user = {
-        users: {
-            userID: {
-                name: "user1",
-                profilePicture: userAvatar,
-                bio: bio,
-            },
-        },
-        restrictions: {
-            Diests: {
-                userID: {
-                    diests: diets,
-                },
-            },
-            Allergies: {
-                userID: {
-                    allergies: restrictions,
-                },
-            }
-        },
-    }
+   
     // Code for handling the push
-    database.ref().push(user);
+    
+    database.ref().child(users).child(uid).set({diets: avatar})
+    database.ref().child(users).child(uid).set({diets: bio})
+    database.ref().child(users).child(uid).child('restrictions').set({diets: userDiets})
+    database.ref().child(users).child(uid).child('restrictions').set({allergies: userAllergies})
+    
+    
 
     // Get a reference to the storage service
     var storage = firebase.storage().ref();
 
     const file = $('#image_uploads').prop("files")[0];
+    
     console.log(file)
 
+
     const name = file.name;
+    console.log('I am the file name: ' + userId)
 
     // Path to store an image
-    const fileRef = storage.child('/public/' + name);
+    const fileRef = storage.child('/public/' + userId);
 
     fileRef.put(avatar).then(function (result) {
         console.log(result);

@@ -45,6 +45,9 @@ body {
     width: 100%;
 }
 
+.navbar-default a {
+    text-decoration: none;
+}
 h3 {
     color: white;
     text-transform: uppercase;
