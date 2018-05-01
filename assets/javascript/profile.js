@@ -96,24 +96,6 @@ $("#no-diet, #no-restriction").change(function () {
 });
 
 //======================================================
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyAn4RjRZUhRhWm3u2hHcM6hK-0lmOxIASs",
-    authDomain: "cross-bite-test.firebaseapp.com",
-    databaseURL: "https://cross-bite-test.firebaseio.com",
-    projectId: "cross-bite-test",
-    storageBucket: "cross-bite-test.appspot.com",
-    messagingSenderId: "966977937164"
-};
-firebase.initializeApp(config);
-
-// Create a variable to reference the database
-var database = firebase.database();
-
-var auth = firebase.auth();
-
-var userId = AIUHER89732RH;
-//======================================================
 auth.onAuthStateChanged( function(user) {
     console.log( "In onAuthStatChange() ");
 
@@ -147,11 +129,10 @@ $("#save").on("click", function () {
    
     // Code for handling the push
     
-    database.ref().child(users).child(uid).set({diets: avatar})
-    database.ref().child(users).child(uid).set({diets: bio})
+    // database.ref().child(users).child(uid).set({diets: avatar}) 
+    database.ref().child(users).child(uid).set({diets: bio}) 
     database.ref().child(users).child(uid).child('restrictions').set({diets: userDiets})
     database.ref().child(users).child(uid).child('restrictions').set({allergies: userAllergies})
-    
     
 
     // Get a reference to the storage service
@@ -189,7 +170,7 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(userBio);
     console.log(userProfilePicture);
 
-    var ava = $("<img>");
-    ava.attr('src', userProfilePicture);
-    $("#ava").html(ava)
+    // var ava = $("<img>");
+    // ava.attr('src', userProfilePicture);
+    // $("#ava").html(ava)
 });
