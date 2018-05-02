@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- linking fonts from Google -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
     <!-- linking local css -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -16,31 +16,35 @@
 </head>
 <body>
 
-    <!-- Creating login form -->
-    <div class="container" id="login_form">
 
-        <h3 id="site_title">Cross Bite</h3>
+    <!-- Creating login form -->
+    <div class="container page-wrap" id="login_form">
+
+        <h1 id="site_title">Cross Bite</h1>
+
+        <h3 id="description">your easy meal planner</h3>
 
         <!-- login panel -->
-        <div class="panel panel-default col-lg-4 col-md-5 col-sm-6">
+        <div class="panel panel-default col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6">
             <div class="panel-heading">
                 <h3 class="panel-title">Please Sign In</h3>
             </div>
             <div class="panel-body">
                 <div id="username_input" class="login_item hidden">
                     <input type="text" id="set_username" placeholder="User Name">
-                    <label for="set_username">:User Name</label>
+                    <label for="set_username">User Name</label>
                 </div>
                 <div id="email_input" class="login_item">
-                    <input type="email" id="email_login" placeholder="Email Address" autofocus>
-                    <label for="email_login">:Email</label>
+                    <input type="email" id="email_login" placeholder="email" autofocus>
+                   
                 </div>
                 <div id="pass_input" class="login_item">
                     <input type="text" id="pass_login" placeholder="password">
-                    <label for="pass_login">:Password</label>
+                   
                 </div>
                 <div class="login_item">
-                    <button id="sign_in" class="btn btn-primary">Sign in</button>
+                    <button id="sign_in" class="btn btn-default">Sign in</button>
+                    <button id="sign_in_google" class="btn btn-default">Sign in with <span class="fa fa-google" aria-hidden="true"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2000px-Google_%22G%22_Logo.svg.png" id="icon" alt="google-plus-icon"></span></button>
                     <button id="sign_up" class="btn btn-primary hidden">Sign up</button>
                 </div>
                 <div class="login_item" id="new_here">
@@ -48,8 +52,13 @@
                 </div>
             </div>
         </div>
-        
     </div>
+
+    <footer>
+        <div>
+            Copyright ©
+        </div>
+    </footer>
     
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
