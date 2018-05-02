@@ -54,7 +54,7 @@ function showFood(result, index, array) {
         `<p class="modalCookTime">${formattedCookTime}</p>` +
         `<p class="modalIngredientList">${formattedIngredients}</p>` +
         `<button class="recipeButtonLink">` +
-        `<a href="${link}">View Recipe!</a></div></div>`);
+        `<a target='_blank' href="${link}">View Recipe!</a></div></div>`);
 
     //////////////////create modal///////////////////
     $(".testButton").off("click");
