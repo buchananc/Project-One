@@ -126,7 +126,8 @@ $(() => {
             let token = result.credential.accessToken;
             // The signed-in user info.
             let user = result.user;
-            console.log(result);
+            // Extract displayName from user and set users/uid/userName equal to the returned value
+            usersRef.child(user.uid).set({'userName': user.displayName})
             // ...
             }).catch(function(error) {
             // Handle Errors here.
