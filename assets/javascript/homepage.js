@@ -170,16 +170,22 @@ function selectMeal( event ) {
    var selected = $(this);
    var selectedMeal = selected.attr("value");
    var selectedEpoch = selected.attr("epoch");
+   var selectedYummlyID = selected.attr("yummyid");
 
    event.preventDefault();
    console.log("selectMeal()");
 
-   console.log( selectedMeal + " " + selectedEpoch );
+   console.log( selectedMeal + " " + selectedEpoch + " " + selectedYummlyID );
 
+   var meal = {
+       selectedMeal,
+       selectedYummlyID
+   }
    activeSearch.child(userID+"/"+selectedEpoch).update({
-       selectedMeal
+       meal
    });
-    window.location.href="search.html";
+
+   window.location.href="search.html";
 
 }
 
@@ -280,7 +286,7 @@ function homepageControl() {
     
     createAweekOfEpochKeys();
     removeActiveSearchDB();
-    $("#username").text("Username: " + userName);
+    $("#username").text(userName);
     for (i=0; i<3; i++) {
        if (i == 0) meal = "breakfast";
        if (i == 1) meal = "lunch";
