@@ -22,6 +22,7 @@ $(() => {
   const userPass = $('#pass_login');
   const userName = $('#set_username');
   const signIn = $('#sign_in');
+  const signInGoogle = $('#sign_in_google')
   const signUp = $('#sign_up');
   const signOut = $('#sign_out');
   const newHere = $('#new_here');
@@ -61,6 +62,7 @@ $(() => {
       // Hide the 'sign in' button and 'new here' link...
       signIn.addClass('hidden');
       newHere.addClass('hidden');
+      signInGoogle.addClass('hidden');
       // Show the 'choose username' input and 'sign up' button
       usernameInput.removeClass('hidden');
       signUp.removeClass('hidden');
@@ -82,6 +84,7 @@ $(() => {
             // Grab the created user id
             .then(user => {
                 usersRef.child(user.uid).set({'userName': myName});
+                window.location.assign('./profile.html');
             })
             // Log any errors to the console
             .catch(err => {
