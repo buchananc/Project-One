@@ -23,7 +23,9 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: url(https://images.pexels.com/photos/349613/pexels-photo-349613.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
     background-repeat: no-repeat;
-    background-size: 100%; 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .navbar-default {
@@ -107,6 +109,16 @@ footer {
     text-align: center;
     font-size: 16px;
     padding: 15px 0px;
+}
+
+#modal-container {
+    font-family: 'Lato', sans-serif;
+}
+
+.fa-star { 
+    color: yellow;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
 }
 
 /* dropdown */

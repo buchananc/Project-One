@@ -10,9 +10,16 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+            crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/homepage.css">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -43,14 +50,32 @@
         </nav>
     </header>
 
+    <!-- MODAL BOX CONTAINER -->
+    <div class='container' id='modalContainer'>
+        <div class='modal fade' id='myModal' role='dialog'>
+            <div class='modal-dialog'>
+                <div class='modal-content' id='myModalContent'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                        <h4 class='modal-title'></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id='closeModal' class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL BOX CONTAINER ENDS -->
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 jumbotron" id="homepage-favorites">
                 <h2>favorites</h2>
                 <div class="row">
-                    <div class="col-md-4" id="favorite-breakfast" favorite="false"></div>
-                    <div class="col-md-4" id="favorite-lunch" favorite="false"></div>
-                    <div class="col-md-4" id="favorite-dinner" favorite="false"></div>
+                    <div class="col-md-4" id="favorite-breakfast" value="breakfast" favorite="false"></div>
+                    <div class="col-md-4" id="favorite-lunch" value="lunch" favorite="false"></div>
+                    <div class="col-md-4" id="favorite-dinner" value="dinner" favorite="false"></div>
                 </div>
             </div>
         </div>

@@ -148,20 +148,71 @@ function buildDayOfMeals( i, epoch, breakfastYummlyID, lunchYummlyID, dinnerYumm
     var jq_newBreakfastInput = $("#breakfast" + i );
     jq_newBreakfastInput.attr( "value", "breakfast" );
     jq_newBreakfastInput.attr( "epoch", epochStr );
-    jq_newBreakfastInput.attr( "yummyid", breakfastYummlyID );
+    jq_newBreakfastInput.attr( "yummlyid", breakfastYummlyID );
 
     // Lunch
     var jq_newLunchInput = $( "#lunch" + i );
     jq_newLunchInput.attr( "value", "lunch" );
     jq_newLunchInput.attr( "epoch", epochStr );
-    jq_newLunchInput.attr( "yummyid", lunchYummlyID );
+    jq_newLunchInput.attr( "yummlyid", lunchYummlyID );
 
     // Dinner
     var jq_newDinnerInput = $( "#dinner" + i );
     jq_newDinnerInput.attr( "value", "dinner" );
     jq_newDinnerInput.attr( "epoch", epochStr );
-    jq_newDinnerInput.attr( "yummyid", dinnerYummlyID );
+    jq_newDinnerInput.attr( "yummlyid", dinnerYummlyID );
 
+}
+
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+function genRating(rating) {
+    let html = `<div> Rating: <b id='rating' value=${rating} <span>`;
+    for (var i = 1, j = rating; i <= j; i++) {
+        html += '<i class="fa fa-star" aria-hidden="true"></i>';
+    }
+    html += '</span></b></div>';
+    return html;
+}
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+function selectFavorite( event ) {
+    var selected = $(this);
+    var selectedMeal = selected.attr("value");
+    var selectedYummlyID = selected.attr("yummlyid");
+
+    console.log( "selectFavorite() - " + selectedMeal + " " + selectedYummlyID );
+    var queryURL = "https://api.yummly.com/v1/api/recipe/" +
+                  selectedYummlyID +
+                  "?_app_id=" + ourAPIid +
+                  "&_app_key=" + ourAPIkey;
+
+    $.ajax({
+        type: 'GET',
+        url: queryURL,
+    }).then(function (result) {
+        console.log(queryURL);
+        var img = result.images[0].hostedSmallUrl;
+        var recipe_name = result.name;
+        var rating = result.rating;
+        var formattedCookTime = result.totalTime;
+        var formattedIngredients = result.ingredientLines;
+        var link = result.attribution.url;
+
+        $("#myModal .modal-title").text(recipe_name);
+        $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
+           `<div class='modal-body-info'>` +
+               `<img src=${img}>` +
+               genRating(rating) +
+               `<p class="modalCookTime">Cook Time: ${formattedCookTime}</p>` +
+               `<p class="modalIngredientList">Ingredients: ${formattedIngredients}</p>` +
+               `<button class="recipeButtonLink">` +
+               `<a target='_blank' href="${link}">View Recipe!</a>` +
+           `</div>`);
+           $("#myModal").modal("show");
+    });
 }
 
 //-------------------------------------------------------------------------------------------
@@ -170,7 +221,7 @@ function selectMeal( event ) {
    var selected = $(this);
    var selectedMeal = selected.attr("value");
    var selectedEpoch = selected.attr("epoch");
-   var selectedYummlyID = selected.attr("yummyid");
+   var selectedYummlyID = selected.attr("yummlyid");
 
    event.preventDefault();
    console.log("selectMeal()");
@@ -203,8 +254,9 @@ function buildFavoriteMealArea( meal ) {
     favorite.child( userID+"/"+meal ).on('value',function(snapshot) {
         var exists = (snapshot.val() !== null);
         if ( exists ) {
+            var yumID = snapshot.val().yummlyID;
             var queryURL = "https://api.yummly.com/v1/api/recipe/" +
-                           snapshot.val().yummlyID +
+                           yumID +
                            "?_app_id=" + ourAPIid +
                            "&_app_key=" + ourAPIkey;
 
@@ -215,6 +267,8 @@ function buildFavoriteMealArea( meal ) {
 
                 var jq_divID = $("#favorite-"+meal);
                 jq_divID.empty();
+                jq_divID.attr( "yummlyid", yumID );
+                jq_divID.attr("style", "cursor:pointer");
                 jq_divID.append("<h3>"+meal+"</h3>");
                 jq_divID.append("<p>"+result.name+"</p>");
                 jq_divID.append("<img src="+result.images[0].hostedLargeUrl+">");
@@ -298,9 +352,11 @@ function homepageControl() {
     }
 
     $(".meal").on( "click", selectMeal );
+    $("#favorite-breakfast").on( "click", selectFavorite );
+    $("#favorite-lunch").on( "click", selectFavorite );
+    $("#favorite-dinner").on( "click", selectFavorite );
     
 };
-
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
