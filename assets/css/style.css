@@ -1,44 +1,123 @@
 * {
-    padding: 0;
-    margin: 0;
+    box-sizing: border-box;
 }
 
-/* Setting page background as well as setting the body to height and width of screen */
 body {
-    height: 100vh;
-    width: 100%;
-    overflow-y: hidden;
-    background: url(../images/log_in_background.jpg);
-    background-position: center;
-    background-size: cover;
+    font-family: 'Lato', sans-serif;
+    background-image: url(https://images.pexels.com/photos/349608/pexels-photo-349608.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
     background-repeat: no-repeat;
+    background-size: 100%;
+    
 }
 
-/*  BEGIN STYLING LOGIN FORM */
-/* ================================================================================ */
-#login_form {
-    padding-top: 120px;
-    text-align: left;
+h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 70px;
+    letter-spacing: 20px;
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 10px;
 }
 
-.login_item {
-    margin-top: 10px;
+#description {
+    text-align: center;
+    color:  rgba(61, 152, 0, 0.9);
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+.panel {
+    padding: 0;
+    margin: 0, auto;
+    border-radius: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgba(255, 255, 255, 0.8);
+    color: #999;
 }
 
-#site_title {
-    font-family: 'Amatic SC', cursive;
-    font-size: 8em;
-    color: beige;
+.panel-heading {
+    width: 100%;
 }
 
-.hidden {
-    display: none;
+.panel-default>.panel-heading {
+    background-image: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #999;
 }
-/*  END STYLING LOGIN FORM */
-/* ================================================================================ */
 
-#greetings {
-    font-family: 'Amatic SC', cursive;
-    font-size: 3em;
-    color: beige;
+.panel-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+#email_login, #pass_login {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: rgba(223, 223, 223, 0.6);
+    color: #777;
+}
+
+
+#email_login:focus, #pass_login:focus,
+#sign_in:focus, #sign_in_google:focus
+ {
+    outline: none;
+    box-shadow: 0 0 10px rgb(66, 165, 0);
+}
+
+
+#sign_in, #sign_in_google {
+    border-radius: 0;
+    background-image: none;
+    background-color: rgba(61, 152, 0, 0.9);
+    text-shadow: none;
+    
+    color:white;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+#sign_in {
+    width: 40%;
+    height: 40px;
+}
+
+#sign_in_google {
+    width: 58%;
+    height: 40px;
+}
+
+#icon {
+  width: 24px;
+  background: white;
+  border-radius: 12px;
+  
+}
+
+#create_new_acct {
+    color:  rgba(61, 152, 0, 1);
+}
+
+#new_here p {
+    text-align: center;
+}
+
+
+footer {
+    width: 100%;
+    background-color: #F4EFDE;
+    opacity: 0.7;
+    color: rgba(61, 152, 0, 1);
+    text-align: center;
+    font-size: 16px;
+    padding: 15px 0px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }

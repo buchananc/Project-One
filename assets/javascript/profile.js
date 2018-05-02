@@ -155,22 +155,22 @@ $("#save").on("click", function () {
 });
 
 // Looking for changes in Firebase 
-database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+// database.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
     // Store data from database into variables
-    var userDiets = childSnapshot.val().restrictions.Diests.userID.diests;
-    var userAllergies = childSnapshot.val().restrictions.Allergies.userID.allergies;
-    var userBio = childSnapshot.val().users.userID.bio;
-    var userProfilePicture = childSnapshot.val().users.userID.profilePicture;
+    // var userDiets = childSnapshot.val().restrictions.Diests.userID.diests;
+    // var userAllergies = childSnapshot.val().restrictions.Allergies.userID.allergies;
+    // var userBio = childSnapshot.val().users.userID.bio;
+    // var userProfilePicture = childSnapshot.val().users.userID.profilePicture;
 
     // Console.loging the last user's data
-    console.log("DIETS");
-    console.log(userDiets);
-    console.log(userAllergies);
-    console.log(userBio);
-    console.log(userProfilePicture);
+    // console.log("DIETS");
+    // console.log(userDiets);
+    // console.log(userAllergies);
+    // console.log(userBio);
+    // console.log(userProfilePicture);
 
     // var ava = $("<img>");
     // ava.attr('src', userProfilePicture);
     // $("#ava").html(ava)
-});
+// });
