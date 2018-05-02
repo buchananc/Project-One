@@ -33,9 +33,9 @@ function showFood(result, index, array) {
     console.log(formattedCookTime);
     console.log(ingredientList);
     let ingredientListArray = [];
-    ingredientList.forEach(function(element) {
-         ingredientListArray.push(element);
-     });
+    ingredientList.forEach(function (element) {
+        ingredientListArray.push(element);
+    });
     let formattedIngredients = ingredientListArray.join('\n');
     let link = `https://www.yummly.com/#recipe/${foodID}`;
     console.log(link);
@@ -48,24 +48,25 @@ function showFood(result, index, array) {
         "</div><div>" +
         `<img src=${img}` + "><p>" + //adds image
         genRating(rating) + //adds rating stars
-        `</p></div><div><button type='button' class='btn btn-info btn-lg trigger testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button><div class='modal-title-info'>${recipe_name}</div><div class='modal-body-info'>`+
-            `<p class='modalRating'>${rating}</p>` +
-            `<p class="modalCookTime">${formattedCookTime}</p>` +
-            `<p class="modalIngredientList">${formattedIngredients}</p>` +
-            `<button class="recipeButtonLink">` +
-            `<a href="${link}">View Recipe!</a></div></div>`);
-        
+        `</p></div><div><button type='button' class='btn btn-info btn-lg trigger testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button><div class='modal-title-info'>${recipe_name}</div><div class='modal-body-info'>` +
+        `<img src=${img}` + "><p>" + //adds image
+        `<p class='modalRating'>${rating}</p>` +
+        `<p class="modalCookTime">${formattedCookTime}</p>` +
+        `<p class="modalIngredientList">${formattedIngredients}</p>` +
+        `<button class="recipeButtonLink">` +
+        `<a href="${link}">View Recipe!</a></div></div>`);
+
     //////////////////create modal///////////////////
     $(".testButton").off("click");
     $(".testButton").on('click', function () {
         console.log('hello');
-       // $("#myModal .modal-title").text(recipe_name);
+        // $("#myModal .modal-title").text(recipe_name);
         $("#myModal .modal-title").empty().append($(this).siblings(".modal-title-info").clone());
         $('#myModal .modal-body').empty().append($(this).siblings(".modal-body-info").clone());
         $("#myModal").modal("show");
     });
 }
-        
+
 //////////use searchAPI to search the Yummly API, return the recipe/food data jsonp object
 function searchAPI(recipe_search, food_search) {
     $('p.search_error').empty();
