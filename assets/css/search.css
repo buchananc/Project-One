@@ -50,3 +50,70 @@
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 } */
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-image: url(https://images.pexels.com/photos/349604/pexels-photo-349604.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    background-repeat: no-repeat;
+    background-size: 100%; 
+}
+
+.navbar-default {
+    background:  rgba(223, 223, 223, 0.7);
+    border: none;
+    width: 100%;
+}
+
+.navbar-default h3 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 42px;
+    letter-spacing: 15px;
+    margin: 0;
+    line-height: 69px;
+    width: 100%;
+    margin-left: 40px;
+}
+
+.user-p {
+    padding: 0 20px;
+    font-size: 14px;
+    margin: 0;
+    line-height: 69px;
+  
+}
+
+#username {
+    color:rgba(61, 152, 0, 1);
+    text-decoration: underline; 
+    font-size: 18px;
+}
+/* the end of navbar */
+
+#submit,
+#clear {
+    border: none;
+    background-image: none;
+    background-color: rgba(67, 167, 0, 0.9);
+    text-shadow: none;
+    width: 30%;
+    color:white;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 5px;
+}
+
+#clear {
+    background-color: rgba(83, 206, 1, 0.9);
+}
+
+#submit:focus,
+#clear:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgb(66, 165, 0);
+}
+
+.search_error {
+    padding-top: 10px;
+}
