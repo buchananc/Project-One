@@ -3,7 +3,9 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: url(https://images.pexels.com/photos/349604/pexels-photo-349604.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .navbar-default {
@@ -65,11 +67,25 @@ body {
 .search_error {
     padding-top: 10px;
 }
-.fa-star {
+
+p.search_headers {
+    font-size: 1.3rem;
+}
+
+.fa-star { 
     color: yellow;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: orange;
 }
+
+#modal-container {
+    font-family: 'Lato', sans-serif;
+}
+
 .card .modal-body-info, .card .modal-title-info {
     display: none;
+}
+
+.modal-body-info {
+    float: left;
 }

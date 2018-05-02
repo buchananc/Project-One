@@ -40,6 +40,9 @@
                 </div>
             </nav>
         </header>
+        <!-- END OF NAVBAR -->
+
+        <!-- MODAL BOX CONTAINER -->
         <div class='container' id='modalContainer'>
             <div class='modal fade' id='myModal' role='dialog'>
                 <div class='modal-dialog'>
@@ -61,59 +64,61 @@
                         </div>
                     </div>
                 </div>
-            </div>`
-
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-3">Cross Bite</h1>
-                <p class="lead"></p>
             </div>
         </div>
+        <!-- MODAL BOX CONTAINER ENDS -->
 
         <!-- FOOD / RECIPE SEARCH MENU -->
-        <section class="side_search">
-            <!-- Slide down panel itself, hidden on load -->
-            <div id="panel">
-                <div class="sidesearch">
-                    <form id="foodsearch" action="search" method="get">
-                        <p class="search_headers">Search for Recipes:</p>
-                        <label id="search">
-                            <select name="recipe_search" id="recipe_search">
-                                <option selected="true" disabled="true">Choose recipe type:</option>
-                                <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
-                                <option class="options" id="2" name="bread" value="bread">Bread</option>
-                                <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
-                                <option class="options" id="4" name="salad" value="salad">Salad</option>
-                                <option class="options" id="5" name="side" value="side">Side</option>
-                                <option class="options" id="6" name="snack" value="snack">Snack</option>
-                            </select>
-                        </label>
-                        <p class="search_headers">-OR-</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="side_search">
+                        <!-- Slide down panel itself, hidden on load -->
+                        <div id="panel">
+                            <div class="sidesearch">
+                                <form id="foodsearch" action="search" method="get">
+                                    <p class="search_headers">Search for Recipes:</p>
+                                    <label id="search">
+                                        <select name="recipe_search" id="recipe_search">
+                                            <option selected="true" disabled="true">Choose recipe type:</option>
+                                            <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
+                                            <option class="options" id="2" name="bread" value="bread">Bread</option>
+                                            <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
+                                            <option class="options" id="4" name="salad" value="salad">Salad</option>
+                                            <option class="options" id="5" name="side" value="side">Side</option>
+                                            <option class="options" id="6" name="snack" value="snack">Snack</option>
+                                        </select>
+                                    </label>
+                                    <p class="search_headers">-OR-</p>
 
-                        <label id="food_search">
-                            <p class="search_headers">Search for food by type:</p>
-                            <input type="text" id="food_search" name="food_search">
-                        </label>
-                        <p>
-                            <button type="reset" value="clear" id="clear">Clear</button>
-                            <p>
-                                <input type="submit" name="submit" value="Search" id="submit">
-                            </p>
-                            <p class="search_error"></p>
-                    </form>
-                    <hr>
-                </div>
-                <!-- Search results start Here -->
-                <section class="results img-holder">
-                    <section class="display_columns">
-                        <div class="column_results">
-                            <!-- Result data goes in here -->
+                                    <label id="food_search">
+                                        <p class="search_headers">Search for food by type:</p>
+                                        <input type="text" id="food_search" name="food_search">
+                                    </label>
+                                    <p>
+                                        <button type="reset" value="clear" id="clear">Clear</button>
+                                        <p>
+                                            <input type="submit" name="submit" value="Search" id="submit">
+                                        </p>
+                                        <p class="search_error"></p>
+                                </form>
+                                <hr>
+                            </div>
+
+                            <!-- SEARCH RESULTS START HERE -->
+                            <section class="results img-holder">
+                                <section class="display_columns">
+                                    <div class="column_results">
+                                        <!-- Result data goes in here -->
+                                    </div>
+                                </section>
+                            </section>
+                            <!-- SEARCH RESULTS END HERE -->
                         </div>
                     </section>
-                </section>
-                <!-- Search results end here -->
+                </div>
             </div>
-        </section>
+        </div>
 
         <!-- Moment.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

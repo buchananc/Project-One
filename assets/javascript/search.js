@@ -36,7 +36,7 @@ function showFood(result, index, array) {
     ingredientList.forEach(function (element) {
         ingredientListArray.push(element);
     });
-    let formattedIngredients = ingredientListArray.join('\n');
+    let formattedIngredients = ingredientListArray.join(', ');
     let link = `https://www.yummly.com/#recipe/${foodID}`;
     console.log(link);
     let img = result.imageUrlsBySize[90];
