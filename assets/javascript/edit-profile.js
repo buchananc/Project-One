@@ -16,7 +16,7 @@ function selectDiet() {
     if (diets.length > 0) {
         console.log("You have selected " + diets);
     } else {
-        console.log("Please at least check one of the checkbox");
+        $('#no-diet').prop('checked', true);
     }
     return diets;
 };
@@ -37,11 +37,10 @@ function selectRestrictions() {
     if (restrictions.length > 0) {
         console.log("You have selected " + restrictions);
     } else {
-        console.log("Please at least check one of the checkbox");
+        $('#no-restriction').prop('checked', true);
     }
     return restrictions;
 };
-
 
 ///////////////////////////////////////////////////////////////////
 // EVENT LISTENERS
@@ -96,25 +95,24 @@ $("#no-diet, #no-restriction").change(function () {
 });
 
 //======================================================
-auth.onAuthStateChanged( function(user) {
+auth.onAuthStateChanged(function (user) {
     console.log("In onAuthStatChange() ");
 
     if (user) {
         // User is signed in.
         userId = user.uid;
-        console.log( " current UserID -> " + user.uid );
-        console.log( user );
-        usersRef.child(userId).once( 'value', function(snapshot) {
+        console.log(" current UserID -> " + user.uid);
+        console.log(user);
+        usersRef.child(userId).once('value', function (snapshot) {
             userName = snapshot.val().userName;
-            console.log( 'usersRef userName -> ' + userName );
+            console.log('usersRef userName -> ' + userName);
             $("#username").text(userName);
             $("#u-name").text(userName);
             $("#welcome").text(userName);
-
         });
     } else {
         // No user is signed in.
-        console.log( " no current User " );
+        console.log(" no current User ");
     }
 });
 //=======================================================
@@ -132,13 +130,17 @@ $("#save").on("click", function () {
 
     var userDiets = selectDiet();
     var userAllergies = selectRestrictions();
-   
+
     // Code for handling pushing data to database
-    usersRef.child(userId).update({Bio: bio}) 
-    usersRef.child(userId).child('restrictions').update({diets: userDiets})
-    usersRef.child(userId).child('restrictions').update({allergies: userAllergies})
-   
-    
+    usersRef.child(userId).update({
+        Bio: bio
+    })
+    usersRef.child(userId).child('restrictions').update({
+        diets: userDiets
+    })
+    usersRef.child(userId).child('restrictions').update({
+        allergies: userAllergies
+    })
 
     // Get a reference to the storage service
     var storage = firebase.storage().ref();
@@ -146,34 +148,16 @@ $("#save").on("click", function () {
     // Path to store an image
     const fileRef = storage.child('/Profile Picture/' + userId);
 
-    fileRef.put(avatar).then(function (result) {
-        console.log('hello', result);
-        var userPic = result.metadata.downloadURLs[0]
-        usersRef.child(userId).update({profilePicture: userPic}) 
+    if (avatar) {
+        fileRef.put(avatar).then(function (result) {
+            console.log('hello', result);
+            var userPic = result.metadata.downloadURLs[0]
+            usersRef.child(userId).update({
+                profilePicture: userPic
+            })
+            window.location.href = "profile.html";
+        })
+    } else {
         window.location.href = "profile.html";
-    });
-
-    
-
+    }
 });
-
-// Looking for changes in Firebase 
-// database.ref().on("child_added", function (childSnapshot) {
-
-    // //Store data from database into variables
-    // var userDiets = childSnapshot.val().restrictions.Diests.userID.diests;
-    // var userAllergies = childSnapshot.val().restrictions.Allergies.userID.allergies;
-    // var userBio = childSnapshot.val().users.userId.Bio;
-    // var userProfilePicture = childSnapshot.val().users.userID.profilePicture;
-
-    // //Console.loging the last user's data
-    // console.log("DIETS");
-    // console.log(userDiets);
-    // console.log(userAllergies);
-    // console.log(userBio);
-    // console.log(userProfilePicture);
-
-    // var ava = $("<img>");
-    // ava.attr('src', userProfilePicture);
-    // $("#ava").html(ava)
-// });

@@ -6,8 +6,8 @@ var config = {
     projectId: "cross-bite",
     storageBucket: "cross-bite.appspot.com",
     messagingSenderId: "789203245949"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 const database = firebase.database();
 const auth = firebase.auth();
