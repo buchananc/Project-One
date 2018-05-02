@@ -97,13 +97,18 @@ $("#no-diet, #no-restriction").change(function () {
 
 //======================================================
 auth.onAuthStateChanged( function(user) {
-    console.log( "In onAuthStatChange() ");
+    console.log("In onAuthStatChange() ");
 
     if (user) {
         // User is signed in.
         userId = user.uid;
         console.log( " current UserID -> " + user.uid );
         console.log( user );
+        usersRef.child(userId).once( 'value', function(snapshot) {
+            userName = snapshot.val().userName;
+            console.log( 'usersRef userName -> ' + userName );
+            $("#username").text(userName);
+        });
     } else {
         // No user is signed in.
         console.log( " no current User " );
@@ -129,10 +134,11 @@ $("#save").on("click", function () {
    
     // Code for handling the push
     
-    // database.ref().child(users).child(uid).set({diets: avatar}) 
-    database.ref().child(users).child(uid).set({diets: bio}) 
-    database.ref().child(users).child(uid).child('restrictions').set({diets: userDiets})
-    database.ref().child(users).child(uid).child('restrictions').set({allergies: userAllergies})
+    
+    usersRef.child(userId).update({Bio: bio}) 
+    usersRef.child(userId).child('restrictions').update({diets: userDiets})
+    usersRef.child(userId).child('restrictions').update({allergies: userAllergies})
+   
     
 
     // Get a reference to the storage service
@@ -147,23 +153,26 @@ $("#save").on("click", function () {
     console.log('I am the file name: ' + userId)
 
     // Path to store an image
-    const fileRef = storage.child('/public/' + userId);
+    const fileRef = storage.child(userId);
 
     fileRef.put(avatar).then(function (result) {
         console.log(result);
     });
+
+    // usersRef.child(userId).update({profilePicture: userPic}) 
+
 });
 
 // Looking for changes in Firebase 
-// database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+// database.ref().on("child_added", function (childSnapshot) {
 
-    // Store data from database into variables
+    // //Store data from database into variables
     // var userDiets = childSnapshot.val().restrictions.Diests.userID.diests;
     // var userAllergies = childSnapshot.val().restrictions.Allergies.userID.allergies;
-    // var userBio = childSnapshot.val().users.userID.bio;
+    // var userBio = childSnapshot.val().users.userId.Bio;
     // var userProfilePicture = childSnapshot.val().users.userID.profilePicture;
 
-    // Console.loging the last user's data
+    // //Console.loging the last user's data
     // console.log("DIETS");
     // console.log(userDiets);
     // console.log(userAllergies);
