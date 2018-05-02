@@ -1,5 +1,7 @@
 /////////////// Global Variables /////////////////
 let userData = '';
+let userID = "";
+let userName = "";
 
 ///////////////Data object constructor/////////////////////////////////////////////
 function dataObj() {
@@ -100,8 +102,8 @@ function searchAPI(recipe_search, food_search) {
     });
 }
 
-/////////////////////Document Section////////////////////////////////////
-$(document).ready(function () {
+////////// search page control
+function searchPageControl() {
     // Recipe/food search, search API
     $('#foodsearch').submit(function (event) {
         event.preventDefault();
@@ -116,4 +118,27 @@ $(document).ready(function () {
             $('p.search_error').text("Please choose from either recipes OR food type.");
         }
     });
+}
+
+/////////////////////Document Section////////////////////////////////////
+$(document).ready(function () {
+
+    /////////////////////Pull user id and name from db, display, 
+    /////////////////////   then using callback enable search page functionality
+    auth.onAuthStateChanged( function(user) {
+        if (user) {
+            // User is signed in.
+            usersRef.child(user.uid).once( 'value', function(snapshot) {
+                userID = user.uid;
+                userName = snapshot.val().userName;
+                $("#username").text(userName);
+
+                searchPageControl();
+
+            });
+        } else {
+            alert( "no current User" );
+        }
+    });
+
 })

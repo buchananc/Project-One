@@ -44,8 +44,8 @@
 //
 //-------------------------------------------------------------------------------------------
 
-var userID = "test5456879bcd4579";
-var userName = "test";
+var userID = "";
+var userName = "";
 
 //-------------------------------------------------------------------------------------------
 // Global variables
@@ -185,6 +185,8 @@ function selectMeal( event ) {
        meal
    });
 
+   // window.location.href="../test/project1/search.html";
+   // ToDo: in testing mode with above
    window.location.href="search.html";
 
 }
@@ -319,11 +321,11 @@ $(document).ready( function() {
             console.log( " current UserID -> " + user.uid );
             console.log( user );
             usersRef.child(user.uid).once( 'value', function(snapshot) {
-            console.log( 'usersRef userName -> ' + snapshot.val().userName );
-            userID = user.uid;
-            userName = snapshot.val().userName;
-            homepageControl();
-        });
+                console.log( 'usersRef userName -> ' + snapshot.val().userName );
+                userID = user.uid;
+                userName = snapshot.val().userName;
+                homepageControl();
+            });
 
         } else {
            // No user is signed in.
