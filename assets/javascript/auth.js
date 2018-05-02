@@ -29,6 +29,20 @@ $(() => {
   const createNewAcct = $('#create_new_acct');
   const usernameInput = $('#username_input');
 
+
+
+  // START AUTH STATE CHECK
+  // =====================================================================================
+      auth.onAuthStateChanged(user => {
+          if (user){
+              window.location.assign('./profile.html');
+          }
+      })
+  // END AUTH STATE CHECK
+  // =====================================================================================
+  
+
+
   // START SIGN IN FUNCTION
   // =====================================================================================
   // When user clicks 'sign in'...
@@ -98,6 +112,38 @@ $(() => {
             })
   })
 
+
+  //BEGIN SIGN IN WITH GOOGLE
+  //======================================================================================
+  signInGoogle.click(() =>{
+      const provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('profile');
+            provider.addScope('email');
+
+        firebase.auth().signInWithPopup(provider).then(result =>{
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            let token = result.credential.accessToken;
+            // The signed-in user info.
+            let user = result.user;
+            console.log(result);
+            // ...
+            }).catch(function(error) {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            // The email of the user's account used.
+            let email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            let credential = error.credential;
+            // ...
+            });
+
+        // redirect the user to the profile page by default
+        // TODO -- try to figure out if it is their first time using the application
+  })
+  //BEGIN SIGN IN WITH GOOGLE
+  //======================================================================================
+
   // When user clicks 'sign out'...
   signOut.click(() => {
     auth.signOut();
@@ -107,14 +153,5 @@ $(() => {
   // END SIGN UP FUNCTION
   // =====================================================================================
 
-  // BEGIN ON AUTH CHANGE
-  // =====================================================================================
-  auth.onAuthStateChanged(user => {
-      if (user){
-        // Once successfully signed up send the user to the landing page
-        // window.location = '/assets/html/landing.html'
-      } else {
-          // do nothing
-      }
-  })
+  
 })

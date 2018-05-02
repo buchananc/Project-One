@@ -31,16 +31,17 @@
             </div>
             <div class="panel-body">
                 <div id="username_input" class="login_item hidden">
-                    <input type="text" id="set_username" placeholder="User Name">
-                    <label for="set_username">User Name</label>
+                    <input type="text" class="login_input" id="set_username" required>
+                    <label class="floating-label" for="set_username">User Name</label>
                 </div>
                 <div id="email_input" class="login_item">
-                    <input type="email" id="email_login" placeholder="email" autofocus>
+                    <input type="text" class="login_input" id="email_login" required>
+                    <label class="floating-label">email</label>
                    
                 </div>
                 <div id="pass_input" class="login_item">
-                    <input type="text" id="pass_login" placeholder="password">
-                   
+                    <input type="text" class="login_input" id="pass_login" required>
+                    <label class="floating-label">password</label>
                 </div>
                 <div class="login_item">
                     <button id="sign_in" class="btn btn-default">Sign in</button>
