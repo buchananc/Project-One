@@ -1,7 +1,13 @@
 /////////////// Global Variables /////////////////
 let userData = '';
-let userID = "";
-let userName = "";
+let userID = '';
+let userName = '';
+
+let searchCriteria = {
+    selectedEpoch: 0,
+    selectedMeal: ' ',
+    selectedYummlyID: ' '
+};
 
 ///////////////Data object constructor/////////////////////////////////////////////
 function dataObj() {
@@ -133,7 +139,16 @@ $(document).ready(function () {
                 userName = snapshot.val().userName;
                 $("#username").text(userName);
 
-                searchPageControl();
+                activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
+                    searchCriteria = activeSearchSnapshot.val().searchCriteria;
+
+                    console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
+                    console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
+                    console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
+
+                    searchPageControl();
+
+                });
 
             });
         } else {

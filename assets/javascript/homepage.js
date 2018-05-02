@@ -177,12 +177,13 @@ function selectMeal( event ) {
 
    console.log( selectedMeal + " " + selectedEpoch + " " + selectedYummlyID );
 
-   var meal = {
+   var searchCriteria = {
+       selectedEpoch,
        selectedMeal,
        selectedYummlyID
    }
-   activeSearch.child(userID+"/"+selectedEpoch).update({
-       meal
+   activeSearch.child(userID).update({
+       searchCriteria
    });
 
    // window.location.href="../test/project1/search.html";
