@@ -20,3 +20,9 @@ const usersRef = database.ref().child('users');
 const mealPlanner = database.ref("/mealPlanner");
 const activeSearch = database.ref("/activeSearch");
 const favorite = database.ref("/favorite");
+
+
+const signOut = function(){
+    auth.signOut(); // Firebase provided function to sign users out.. couldn't be any easier
+    window.location.assign('./index.html'); // Redirects user to main sign in page
+}

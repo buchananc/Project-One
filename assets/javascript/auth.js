@@ -38,6 +38,7 @@ $(() => {
               window.location.assign('./profile.html');
           }
       })
+      // TODO -- check if user has already visited site, if so direct them to the homepage
   // END AUTH STATE CHECK
   // =====================================================================================
   
@@ -137,19 +138,7 @@ $(() => {
             let credential = error.credential;
             // ...
             });
-
-        // redirect the user to the profile page by default
-        // TODO -- try to figure out if it is their first time using the application
   })
-  //BEGIN SIGN IN WITH GOOGLE
-  //======================================================================================
-
-  // When user clicks 'sign out'...
-  signOut.click(() => {
-    auth.signOut();
-    // Once successfully logged out send the user to the sign in page
-    window.location.assign('../../index.html');
-  });
   // END SIGN UP FUNCTION
   // =====================================================================================
 
