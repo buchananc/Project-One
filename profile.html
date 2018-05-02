@@ -31,150 +31,58 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <p class="navbar-text">Signed in as
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" id="username">Username</a></p>
-                            <ul id="products-menu" class="dropdown-menu clearfix" role="menu">
-                                <li>
-                                    <a href="profile.html">Edit Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#">Sign Out</a>
-                                </li>
-                            </ul>
+                            <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" id="username"></a>
+                        </p>
+                        <ul id="products-menu" class="dropdown-menu clearfix" role="menu">
+                            <li>
+                                <a href="edit-profile.html">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">Sign Out</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
         </nav>
     </header>
 
     <div class="main-content container">
-        <div class="edit-profile" id="visible">
-
-            <h2> Welcome
-                <span>Username</span>!</h2>
-            <h5>Choose your diet and dietery restrictions</h5>
-
-            <div class="row row-one">
-                <div id="diets" class="col-lg-4 col-md-4">
-                    <h4>Diets</h4>
-                    <div>
-                        <input type="checkbox" id="no-diet" name="diet" value="no-diet">
-                        <label for="no-diet">No Diet</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="disable" id="vegan" name="diet" value="vegan">
-                        <label for="vegan">Vegan</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="disable" id="vegitarian" name="diet" value="vegitarian">
-                        <label for="vegitarian">Vegitarian</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="disable" id="lacto" name="diet" value="lacto vegitarian">
-                        <label for="lacto">Lacto Vegetarian</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="disable" id="ovo" name="diet" value="ovo vegitarian">
-                        <label for="ovo">Ovo Vegetarian</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="disable" id="pescetarian" name="diet" value="pescetarian">
-                        <label for="pescetarian">Pescetarian</label>
-                    </div>
-
-                </div>
-
-                <div id="allergies" class="col-lg-4 col-md-4">
-                    <h4>Dietary Restrictions</h4>
-                    <div>
-                        <input type="checkbox" id="no-restriction" name="restriction" value="no-restriction">
-                        <label for="no-restriction">No Dietary Restriction</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="dairy" name="restriction" value="dairy">
-                        <label for="dairy">Dairy</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="egg" name="restriction" value="egg">
-                        <label for="egg">Egg</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="gluten" name="restriction" value="gluten">
-                        <label for="gluten">Gluten</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="peanut" name="restriction" value="peanut">
-                        <label for="peanut">Peanut</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="seafood" name="restriction" value="seafood">
-                        <label for="seafood">Seafood</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="sesame" name="restriction" value="sesame">
-                        <label for="sesame">Sesame</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="shellfish" name="restriction" value="shellfish">
-                        <label for="shellfish">Shellfish</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
-                        <label for="soy">Soy</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree-nut">
-                        <label for="tree-nut">Tree Nut</label>
-                    </div>
-                </div>
-
-                <!-- img holder -->
-                <div id="picture" class="col-lg-4 col-md-4">
-                    <p>Choose your profile picture</p>
-                    <div class="avatar">
-                        <img src="https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720-250x250.png" id="pic-placeholder"
-                            alt="placeholder">
-                    </div>
-
-                    <!-- image uploader -->
-                    <div method="post" enctype="multipart/form-data">
-                        <div>
-                            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png, .gif">
-                        </div>
-                    </div>
-                </div>
-                <!-- closing tag for picture -->
-            </div>
-            <!-- closing tag for row -->
-
-            <div class="row second-row">
-                <div id="bio-container" class="col-lg-6 col-md-6">
-                    <label for="bio">My cooking story</label>
-                    <br>
-                    <textarea name="textarea" rows="8" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
-                </div>
-
-                <div class="button-container col-lg-6 col-md-6">
-                    <button class="btn btn-defoult" id="save">Save</button>
-                </div>
-            </div>
-            <!-- closing tag for row -->
-        </div>
-        <!-- closing tag for edit profile -->
 
         <!-- PROFILE PAGE -->
         <div class="profile-page">
-            <h2>My Profile</h2>
-            <div id="ava"></div>
-            <p>User Name</p>
-            <p>Bio</p>
-            <div>
-                <span>Vegitarian/</span>
-                <span>Dairy Intolerant/</span>
-                <span>Egg Intolerant/</span>
+            <h2 id="u-profile">My Profile</h2>
+            <div id="ava">
+                <img src="https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720-300x300.png" id="pic-placeholder"
+                    alt="placeholder">
             </div>
-            <button class="btn btn-default">Edit Profile</button>
-            <button class="btn btn-default">
-                <a href="homepage.html">Go to Homepage</a>
-            </button>
+            <div class="u-name">
+                <span id="u-name"></span>
+            </div>
+            <p class="u-bio">
+                <em>My cooking story: </em>
+                <span id="u-bio"></span>
+            </p>
+            <div class="u-restrictions">
+                <div id="u-diets">
+                    <em>Diets: </em>
+                    <ul>
+                        <li class="u-diets">Vegitarian</li>
+                    </ul>
+                </div>
+                <div id="u-allergies">
+                    <em>Allergies: </em>
+                    <ul>
+                        <li class="u-allergies">Eggs</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div>
+                <button class="btn btn-default" id="go-home">
+                    <a href="homepage.html">Go to Homepage</a>
+                </button>
+            </div>
+
         </div>
         <!-- closing tag for profile-page -->
 

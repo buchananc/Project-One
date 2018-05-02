@@ -1,99 +1,6 @@
 // FUNCTIONS
 ///////////////////////////////////////////////////////////////////
-// Function to get data from checkboxes
-function selectDiet() {
-    // declare a checkbox array 
-    var diets = [];
 
-    // look for all checkboes that have a class 'disable' and check if it was checked 
-    $(".disable:checked, #no-diet:checked").each(function () {
-        diets.push($(this).val());
-    });
-
-    console.log(diets)
-
-    // check if there are selected checkboxes
-    if (diets.length > 0) {
-        console.log("You have selected " + diets);
-    } else {
-        console.log("Please at least check one of the checkbox");
-    }
-    return diets;
-};
-
-// Function to get data from checkboxes
-function selectRestrictions() {
-    // declare a checkbox array
-    var restrictions = [];
-
-    // look for all checkboes that have a class 'disable' and check if it was checked 
-    $(".restriction:checked, #no-restriction:checked").each(function () {
-        restrictions.push($(this).val());
-    });
-
-    console.log(restrictions);
-
-    // check if there are selected checkboxes
-    if (restrictions.length > 0) {
-        console.log("You have selected " + restrictions);
-    } else {
-        console.log("Please at least check one of the checkbox");
-    }
-    return restrictions;
-};
-
-
-///////////////////////////////////////////////////////////////////
-// EVENT LISTENERS
-
-// Event listener for uploading profile picture
-$("#image_uploads").on("change", function () {
-    // Get the picture from the form
-    var avatar = $("#image_uploads").prop("files")[0];
-    // Select a div for preview and assign it to the variable
-    var profilePicture = $(".avatar");
-    // Setting up a file reader
-    var reader = new FileReader;
-
-    // After the read operation is complete put the result into img tag
-    reader.addEventListener("load", function () {
-        var img = $("<img>");
-        img.attr('src', reader.result);
-        img.attr('id', "profile-preview");
-        // Append a preview image to the div
-        profilePicture.html(img);
-    });
-
-    if (avatar) {
-        // Returns  a result that contains the data as a URL representing the file's data as a base64 encoded string
-        reader.readAsDataURL(avatar);
-    }
-});
-
-// if 'No Diet' is checked other checkboxes are disabled
-$("#no-diet, #no-restriction").change(function () {
-    var noDiet = $("#no-diet");
-    var dietChoise = $(".disable");
-
-    if (noDiet.is(':checked')) {
-        console.log(noDiet.is(':checked'));
-        dietChoise.prop('checked', false);
-        dietChoise.prop('disabled', true);
-    } else {
-        dietChoise.prop('disabled', false);
-    }
-
-    var noRestriction = $("#no-restriction");
-    var restrictionChise = $(".restriction")
-
-    if (noRestriction.is(':checked')) {
-        console.log(noRestriction.is(':checked'));
-        restrictionChise.prop('checked', false);
-        restrictionChise.prop('disabled', true);
-    } else {
-        restrictionChise.prop('disabled', false);
-    }
-});
 
 //======================================================
 auth.onAuthStateChanged( function(user) {
@@ -108,6 +15,7 @@ auth.onAuthStateChanged( function(user) {
             userName = snapshot.val().userName;
             console.log( 'usersRef userName -> ' + userName );
             $("#username").text(userName);
+            $("#u-name").text(userName);
         });
     } else {
         // No user is signed in.
@@ -116,52 +24,7 @@ auth.onAuthStateChanged( function(user) {
 });
 //=======================================================
 
-// Changes content on the screen after 'Save' button is cklicked
-$("#save").on("click", function () {
-    $(".profile-page").attr("id", "visible");
-    $(".edit-profile").removeAttr("id", "visible");
 
-    // Saves INPUT FROM USER in variables
-    var avatar
-    var bio = $("#bio").val().trim();
-    console.log(bio);
-
-    var userDiets = selectDiet();
-    var userAllergies = selectRestrictions();
-    // var userID = "123";
-
-    // Creates local "temporary" object for holding new user data
-   
-    // Code for handling the push
-    
-    
-    usersRef.child(userId).update({Bio: bio}) 
-    usersRef.child(userId).child('restrictions').update({diets: userDiets})
-    usersRef.child(userId).child('restrictions').update({allergies: userAllergies})
-   
-    
-
-    // Get a reference to the storage service
-    var storage = firebase.storage().ref();
-
-    const file = $('#image_uploads').prop("files")[0];
-    
-    console.log(file)
-
-
-    const name = file.name;
-    console.log('I am the file name: ' + userId)
-
-    // Path to store an image
-    const fileRef = storage.child(userId);
-
-    fileRef.put(avatar).then(function (result) {
-        console.log(result);
-    });
-
-    // usersRef.child(userId).update({profilePicture: userPic}) 
-
-});
 
 // Looking for changes in Firebase 
 // database.ref().on("child_added", function (childSnapshot) {
