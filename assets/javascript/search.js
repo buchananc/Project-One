@@ -51,18 +51,26 @@ function showFood(result, index, array) {
 
     /////////////push results to html//////////////////////////
     $('div.column_results').append(
-        `<div class='card' id=${foodID} data-value=${foodID}` +
-        `><div><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}` +
-        "</div><div>" +
-        `<img src=${img}` + "><p>" + //adds image
-        genRating(rating) + //adds rating stars
-        `</p></div><div><button type='button' class='btn btn-info btn-lg trigger testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button><div class='modal-title-info'>${recipe_name}</div><div class='modal-body-info'>` +
-        `<img src=${img}` + "><p>" + //adds image
-        `<p class='modalRating'>${rating}</p>` +
-        `<p class="modalCookTime">${formattedCookTime}</p>` +
-        `<p class="modalIngredientList">${formattedIngredients}</p>` +
-        `<button class="recipeButtonLink">` +
-        `<a target='_blank' href="${link}">View Recipe!</a></div></div>`);
+        `<div class='card' id=${foodID} data-value=${foodID}>` +
+            `<div><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</div>` +
+            `<div>` +
+                `<img src=${img}>` +
+                `<p>genRating(rating)</p>` +
+            `</div>` +
+            `<div>` +
+                `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button>` +
+                `<div class='modal-title-info'>${recipe_name}</div>` +
+                `<div class='modal-body-info'>` +
+                    `<img src=${img}>` + 
+                    `<p>class='modalRating'>${rating}</p>` +
+                    `<p class="modalCookTime">${formattedCookTime}</p>` +
+                    `<p class="modalIngredientList">${formattedIngredients}</p>` +
+                    `<button class="recipeButtonLink"><a target='_blank' href="${link}">View Recipe!</a></button>` +
+                `</div>` +
+            `</div>` +
+        `</div>`
+        
+        );
 
     //////////////////create modal///////////////////
     $(".testButton").off("click");
@@ -125,6 +133,12 @@ function searchPageControl() {
         }
     });
 }
+
+//////////erase before pushing///////////////////
+// $(document).ready(function () {
+// searchPageControl();
+// });
+/////////////////end erase//////////////
 
 /////////////////////Document Section////////////////////////////////////
 $(document).ready(function () {
