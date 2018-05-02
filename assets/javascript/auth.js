@@ -35,7 +35,7 @@ $(() => {
   // =====================================================================================
       auth.onAuthStateChanged(user => {
           if (user){
-              window.location.assign('./profile.html');
+              window.location.assign('./homepage.html');
           }
       })
       // TODO -- check if user has already visited site, if so direct them to the homepage
@@ -137,8 +137,8 @@ $(() => {
             let email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             let credential = error.credential;
-            // ...
             });
+        // TODO -- handel linking accounts with oAuth
   })
   // END SIGN UP FUNCTION
   // =====================================================================================
