@@ -7,7 +7,6 @@ body {
     background-image: url(https://images.pexels.com/photos/349608/pexels-photo-349608.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
     background-repeat: no-repeat;
     background-size: 100%;
-    
 }
 
 h1 {
@@ -54,7 +53,7 @@ h1 {
     letter-spacing: 2px;
 }
 
-#email_login, #pass_login {
+#email_login, #pass_login, #set_username {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -71,18 +70,22 @@ h1 {
     box-shadow: 0 0 10px rgb(66, 165, 0);
 }
 
-
-#sign_in, #sign_in_google {
+#sign_in, #sign_in_google,
+#sign_up {
     border-radius: 0;
     background-image: none;
     background-color: rgba(61, 152, 0, 0.9);
     text-shadow: none;
-    
     color:white;
     font-size: 18px;
     letter-spacing: 2px;
     margin-bottom: 20px;
 }
+
+#sing_up {
+    width: 100%;
+}
+
 #sign_in {
     width: 40%;
     height: 40px;
@@ -107,7 +110,6 @@ h1 {
 #new_here p {
     text-align: center;
 }
-
 
 footer {
     width: 100%;
