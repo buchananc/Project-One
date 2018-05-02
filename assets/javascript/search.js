@@ -1,13 +1,13 @@
 /////////////// Global Variables /////////////////
 let userData = '';
-let userID = '';
-let userName = '';
+// let userID = '';
+// let userName = '';
 
-let searchCriteria = {
-    selectedEpoch: 0,
-    selectedMeal: ' ',
-    selectedYummlyID: ' '
-};
+// let searchCriteria = {
+//     selectedEpoch: 0,
+//     selectedMeal: ' ',
+//     selectedYummlyID: ' '
+// };
 
 ///////////////Data object constructor/////////////////////////////////////////////
 function dataObj() {
@@ -55,7 +55,7 @@ function showFood(result, index, array) {
             `<div><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</div>` +
             `<div>` +
                 `<img src=${img}>` +
-                `<p>genRating(rating)</p>` +
+                `<p>` + genRating(rating) + `</p>` +
             `</div>` +
             `<div>` +
                 `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button>` +
@@ -135,39 +135,39 @@ function searchPageControl() {
 }
 
 //////////erase before pushing///////////////////
-// $(document).ready(function () {
-// searchPageControl();
-// });
+$(document).ready(function () {
+searchPageControl();
+});
 /////////////////end erase//////////////
 
 /////////////////////Document Section////////////////////////////////////
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    /////////////////////Pull user id and name from db, display, 
-    /////////////////////   then using callback enable search page functionality
-    auth.onAuthStateChanged( function(user) {
-        if (user) {
-            // User is signed in.
-            usersRef.child(user.uid).once( 'value', function(snapshot) {
-                userID = user.uid;
-                userName = snapshot.val().userName;
-                $("#username").text(userName);
+//     /////////////////////Pull user id and name from db, display, 
+//     /////////////////////   then using callback enable search page functionality
+//     auth.onAuthStateChanged( function(user) {
+//         if (user) {
+//             // User is signed in.
+//             usersRef.child(user.uid).once( 'value', function(snapshot) {
+//                 userID = user.uid;
+//                 userName = snapshot.val().userName;
+//                 $("#username").text(userName);
 
-                activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
-                    searchCriteria = activeSearchSnapshot.val().searchCriteria;
+//                 activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
+//                     searchCriteria = activeSearchSnapshot.val().searchCriteria;
 
-                    console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
-                    console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
-                    console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
+//                     console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
+//                     console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
+//                     console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
 
-                    searchPageControl();
+//                     searchPageControl();
 
-                });
+//                 });
 
-            });
-        } else {
-            alert( "no current User" );
-        }
-    });
+//             });
+//         } else {
+//             alert( "no current User" );
+//         }
+//     });
 
-})
+// })
