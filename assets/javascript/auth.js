@@ -42,6 +42,7 @@ $(() => {
             // Display this user's id
             .then(user => {
                 console.log('Hello, ' + user.displayName + '!');
+                window.location.assign('./homepage.html');
             })
             // Catch any errors
             .catch(err => {
