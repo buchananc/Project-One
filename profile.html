@@ -24,19 +24,32 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="homepage.html"><h3>Cross Bite</h3></a>
+                    <a href="homepage.html">
+                        <h3>Cross Bite</h3>
+                    </a>
                 </div>
-                <p class="navbar-text navbar-right user-p">Signed in as
-                    <a href="#" class="navbar-link" id="username">Username</a>
-                </p>
-            </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <p class="navbar-text">Signed in as
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" id="username">Username</a></p>
+                            <ul id="products-menu" class="dropdown-menu clearfix" role="menu">
+                                <li>
+                                    <a href="profile.html">Edit Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sign Out</a>
+                                </li>
+                            </ul>
+                    </li>
+                </ul>
         </nav>
     </header>
 
     <div class="main-content container">
         <div class="edit-profile" id="visible">
 
-            <h2> Welcome <span>Username</span>!</h2>
+            <h2> Welcome
+                <span>Username</span>!</h2>
             <h5>Choose your diet and dietery restrictions</h5>
 
             <div class="row row-one">
@@ -66,7 +79,7 @@
                         <input type="checkbox" class="disable" id="pescetarian" name="diet" value="pescetarian">
                         <label for="pescetarian">Pescetarian</label>
                     </div>
-                   
+
                 </div>
 
                 <div id="allergies" class="col-lg-4 col-md-4">
