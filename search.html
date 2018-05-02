@@ -1,99 +1,123 @@
 <!DOCTYPE>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Meal Search</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Meal Search</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+            crossorigin="anonymous">
+        
+        <!-- Foundation CSS CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+            crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
+        <!-- Local CSS -->
+        <link rel="stylesheet" href="./assets/css/search.css">
+    </head>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
-        crossorigin="anonymous">
-
-    <!-- Local CSS -->
-    <link rel="stylesheet" href="./assets/css/search.css">
-
-</head>
-
-<body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-3">Cross Bite</h1>
-            <p class="lead"></p>
-        </div>
-    </div>
-
-    <!-- FOOD / RECIPE SEARCH MENU -->
-    <section class="side_search">
-        <!-- Slide down panel itself, hidden on load -->
-        <div id="panel">
-            <div class="sidesearch">
-                <form id="foodsearch" action="search" method="get">
-                    <p class="search_headers">Search for Recipes:</p>
-                    <label id="search">
-                        <select name="recipe_search" id="recipe_search">
-                            <option selected="true" disabled="true">Choose recipe type:</option>
-                            <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
-                            <option class="options" id="2" name="bread" value="bread">Bread</option>
-                            <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
-                            <option class="options" id="4" name="salad" value="salad">Salad</option>
-                            <option class="options" id="5" name="side" value="side">Side</option>
-                            <option class="options" id="6" name="snack" value="snack">Snack</option>
-                            
-                        </select>
-                    </label>
-                    <p class="search_headers">-OR-</p>
-    
-                    <label id="food_search">
-                        <p class="search_headers">Search for food by type:</p>
-                        <input type="text" id="food_search" name="food_search">
-                    </label>
-                    <p>
-                        <button type="reset" value="clear" id="clear">Clear</button>
-                        <p>
-                            <input type="submit" name="submit" value="Search" id="submit">
-                        </p>
-                        <p class="search_error"></p>
-                </form>
-                <hr>
-            </div>
-    
-            <!-- Search results start Here -->
-            <section class="results img-holder">
-                <section class="display_columns">
-                    <div class="column_results">
-                        <!-- Result data goes in here -->
+    <body>
+        <div class='container' id='modalContainer'>
+            <div class='modal fade' id='myModal' role='dialog'>
+                <div class='modal-dialog'>
+                    <div class='modal-content' id='myModalContent'>
+                        <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                            <h4 class='modal-title'></h4>
+                        </div>
+                        <div class='modal-body'>
+                            <p class='modalRating'></p>
+                            <p class="modalCookTime"></p>
+                            <p class="modalIngredientList"></p>
+                            <button class="recipeButtonLink">
+                                <a href="">View Recipe!</a>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id='closeModal' class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                </section>
-            </section>
-            <!-- Search results end here -->
+                </div>
+            </div>`
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-3">Cross Bite</h1>
+                <p class="lead"></p>
+            </div>
         </div>
-    </section>
 
+        <!-- FOOD / RECIPE SEARCH MENU -->
+        <section class="side_search">
+            <!-- Slide down panel itself, hidden on load -->
+            <div id="panel">
+                <div class="sidesearch">
+                    <form id="foodsearch" action="search" method="get">
+                        <p class="search_headers">Search for Recipes:</p>
+                        <label id="search">
+                            <select name="recipe_search" id="recipe_search">
+                                <option selected="true" disabled="true">Choose recipe type:</option>
+                                <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
+                                <option class="options" id="2" name="bread" value="bread">Bread</option>
+                                <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
+                                <option class="options" id="4" name="salad" value="salad">Salad</option>
+                                <option class="options" id="5" name="side" value="side">Side</option>
+                                <option class="options" id="6" name="snack" value="snack">Snack</option>
+                            </select>
+                        </label>
+                        <p class="search_headers">-OR-</p>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                        <label id="food_search">
+                            <p class="search_headers">Search for food by type:</p>
+                            <input type="text" id="food_search" name="food_search">
+                        </label>
+                        <p>
+                            <button type="reset" value="clear" id="clear">Clear</button>
+                            <p>
+                                <input type="submit" name="submit" value="Search" id="submit">
+                            </p>
+                            <p class="search_error"></p>
+                    </form>
+                    <hr>
+                </div>
+                <!-- Search results start Here -->
+                <section class="results img-holder">
+                    <section class="display_columns">
+                        <div class="column_results">
+                            <!-- Result data goes in here -->
+                        </div>
+                    </section>
+                </section>
+                <!-- Search results end here -->
+            </div>
+        </section>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+        <!-- Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
-    <!-- Firebase -->
-    <!-- <script src="https: //www.gstatic.com/firebasejs/4.13.0/firebase.js"></script> -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <!-- Local JavaScript -->
-    <script src="./assets/javascript/search.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</body>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Firebase -->
+        <script src="https: //www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        
+        <script src="./assets/javascript/init.js"></script>
+
+        <!-- Local JavaScript -->
+        <script src="./assets/javascript/search.js"></script>
+        
+    </body>
 
 </html>
