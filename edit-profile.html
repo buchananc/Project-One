@@ -13,7 +13,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/edit-profile.css">
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script src="assets/javascript/init.js"></script>
@@ -50,7 +50,7 @@
         <div class="edit-profile">
 
             <h2> Welcome
-                <span id="welcome"></span>!</h2>
+                <span id="welcome">User</span>!</h2>
             <h5>Choose your diet and dietery restrictions</h5>
 
             <div class="row row-one">
@@ -114,16 +114,20 @@
                         <label for="sesame">Sesame</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="shellfish" name="restriction" value="shellfish">
-                        <label for="shellfish">Shellfish</label>
+                        <input type="checkbox" class="restriction" id="sulfite" name="restriction" value="sulfite">
+                        <label for="shellfish">Sulfite</label>
                     </div>
                     <div>
                         <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
                         <label for="soy">Soy</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree-nut">
+                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree+nut">
                         <label for="tree-nut">Tree Nut</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="wheat">
+                        <label for="tree-nut">Wheat</label>
                     </div>
                 </div>
 
@@ -147,26 +151,21 @@
             <!-- closing tag for row -->
 
             <div class="row second-row">
-                <div id="bio-container" class="col-lg-6 col-md-6">
+                <div id="bio-container" class="col-lg-8 col-md-8">
                     <label for="bio">Write your cooking story</label>
                     <br>
-                    <textarea name="textarea" rows="8" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
+                    <textarea name="textarea" rows="6" cols="50" id="bio" placeholder="Tell something about yourself and your cooking experience..."></textarea>
                 </div>
 
-                <div class="button-container col-lg-6 col-md-6">
+                <div class="button-container col-lg-4 col-md-4">
                     <button class="btn btn-defoult" id="save">Save</button>
                 </div>
             </div>
             <!-- closing tag for row -->
         </div>
         <!-- closing tag for edit profile -->
-
     </div>
     <!-- closing tag for main content -->
-
-    <footer>
-        <p>Copyright ©</p>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/edit-profile.js"></script>

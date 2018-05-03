@@ -1,16 +1,3 @@
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border: 2px solid #999;
-    border-radius: 0;
-}
-
-#profile-preview {
-    width: 100%;
-    height: 100%;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -233,6 +220,7 @@ footer {
     font-size: 18px;
     letter-spacing: 2px;
     text-decoration: none;
+    float: right;
 }
 
 #go-home a {
@@ -257,6 +245,20 @@ footer {
     color:rgba(61, 152, 0, 1);
 }
 
+@media screen and (max-width:980px) {
+ 
+}
 
+@media screen and (max-width:850px) {
+
+}
+
+@media screen and (max-width:660px) {
+
+}
+
+@media screen and (max-width:460px) {
+
+}
 
 

@@ -161,3 +161,6 @@ $("#save").on("click", function () {
         window.location.href = "profile.html";
     }
 });
+
+// Listening event for Sign out button uses function signOut from init.js
+$("#sign-out").on("click", signOut);
