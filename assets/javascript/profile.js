@@ -54,5 +54,7 @@ function populatePage (snapshot) {
     for(var j=0; j<userAllergies.length; j++){
         $("#u-allergies").append('<li class="u-allergies">' + userAllergies[j])
     }
-    
 };
+
+// Listening event for Sign out button uses function signOut from init.js
+$("#sign-out").on("click", signOut);
