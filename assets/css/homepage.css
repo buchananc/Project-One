@@ -122,6 +122,17 @@ footer {
     text-align: center;
 }
 
+#selectRecipeBtn {
+    background-color: #4AA398;
+    color: white;
+    font-family: 'Lato',
+    sans-serif;
+    margin: 10px 10px 0 10px;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
 /* STAR RATING */
 .fa-star { 
     color: rgb(243, 181, 49);

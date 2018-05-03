@@ -29,17 +29,11 @@
 //        |
 //        -> UserID
 //               |
-//               -> epoch
+//               -> searchCriteria
 //                   |
-//                   -> breakfast
-//                        -> yummlyID
-//                        -> random  [true/false]
-//                   -> lunch
-//                        -> yummlyID
-//                        -> random  [true/false]
-//                   -> dinner
-//                        -> yummlyID
-//                        -> random  [true/false]
+//                   -> selectedEpoch: 
+//                   -> selectedMeal:  [breakfast/lunch/dinner]
+//                   -> selectedYummlyID:
 //
 //
 //-------------------------------------------------------------------------------------------
@@ -183,7 +177,14 @@ function selectFavorite( event ) {
     var selectedMeal = selected.attr("value");
     var selectedYummlyID = selected.attr("yummlyid");
 
-    console.log( "selectFavorite() - " + selectedMeal + " " + selectedYummlyID );
+    displayRecipeModal( selectedMeal, "0", selectedYummlyID );
+}
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
+
+    console.log( "displayRecipeModal() - " + selectedMeal + " " + selectedYummlyID );
     var queryURL = "https://api.yummly.com/v1/api/recipe/" +
                   selectedYummlyID +
                   "?_app_id=" + ourAPIid +
@@ -211,21 +212,47 @@ function selectFavorite( event ) {
 
 
         $("#myModal .modal-title").text(recipe_name);
-        $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
-           `<div class='modal-body-info'>` +
-               `<div class="row">` +
-                   `<div class="col-sm-7">` +
-                       `<img src=${img}>` +
-                       `<p class="modalRating">` + genRating(rating) + `</p>` + 
-                       `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
-                       `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
-                    `</div>` +
-                   `<div class="col-sm-5">` +
-                       `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
-                    `</div>` +
-                `</div>` +
-           `</div>`);
-           $("#myModal").modal("show");
+          $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
+             `<div class='modal-body-info'>` +
+                 `<div class="row">` +
+                     `<div class="col-sm-7">` +
+                         `<img src=${img}>` +
+                         `<p class="modalRating">` + genRating(rating) + `</p>` + 
+                         `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
+                         `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
+                      `</div>` +
+                     `<div class="col-sm-5">` +
+                         `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
+                         `<p id="selectRecipeBtn" style="cursor:pointer" data-value=${selectedYummlyID}>Search for new ${selectedMeal}</p>` +
+                      `</div>` +
+                  `</div>` +
+             `</div>`);
+        if ( selectedEpoch != 0 ) {
+          $("#selectRecipeBtn").addClass("visible");
+        }
+        else {
+//          $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
+//             `<div class='modal-body-info'>` +
+//                 `<div class="row">` +
+//                     `<div class="col-sm-7">` +
+//                         `<img src=${img}>` +
+//                         `<p class="modalRating">` + genRating(rating) + `</p>` + 
+//                         `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
+//                         `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
+//                      `</div>` +
+//                     `<div class="col-sm-5">` +
+//                         `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
+//                      `</div>` +
+//                  `</div>` +
+//             `</div>`);
+          $("#selectRecipeBtn").addClass("hidden");
+        }
+
+        $("#myModal").modal("show");
+        $("#selectRecipeBtn").on( "click", function () {
+            console.log("in display")
+            window.location.href="search.html";
+        });
     });
 }
 
@@ -243,17 +270,20 @@ function selectMeal( event ) {
    console.log( selectedMeal + " " + selectedEpoch + " " + selectedYummlyID );
 
    var searchCriteria = {
-       selectedEpoch,
-       selectedMeal,
-       selectedYummlyID
+        selectedEpoch,
+        selectedMeal,
+        selectedYummlyID
    }
    activeSearch.child(userID).update({
        searchCriteria
    });
 
-   // window.location.href="../test/project1/search.html";
-   // ToDo: in testing mode with above
-   window.location.href="search.html";
+   if ( selectedYummlyID == " " ) { 
+       window.location.href="search.html";
+    }
+    else {
+       displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID );
+    }
 
 }
 
