@@ -100,7 +100,7 @@ $(() => {
             // Grab the created user id
             .then(user => {
                 usersRef.child(user.uid).set({'userName': myName});
-                window.location.assign('./profile.html');
+                window.location.assign('./edit-profile.html');
             })
             // Log any errors to the console
             .catch(err => {
