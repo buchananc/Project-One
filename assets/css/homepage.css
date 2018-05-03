@@ -111,18 +111,54 @@ footer {
     padding: 15px 0px;
 }
 
+#getRecipeBtn {
+    background-color: rgba(83, 206, 1, 0.9);
+    color: white;
+    font-family: 'Lato',
+    sans-serif;
+    margin: 10px 10px 0 10px;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* STAR RATING */
+.fa-star { 
+    color: rgb(243, 181, 49);
+    font-size: 15px;
+}
+
+/* MODAL */
 #modal-container {
     font-family: 'Lato', sans-serif;
 }
 
-.fa-star { 
-    color: yellow;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: orange;
+.modal-header {
+    border: none;
+}
+
+.modal-body {
+    border: none;
+}
+
+#getRecipeBtn a {
+    color: white;
+}
+
+.card .modal-body-info, .card .modal-title-info {
+    display: none;
+}
+
+.modal-title-info {
+    font-size: 3rem;
+    
+}
+
+.modal-body-info {
+    float: left;
 }
 
 /* dropdown */
-
 .dropdown:hover .dropdown-menu {
     display: block;
   }

@@ -197,19 +197,33 @@ function selectFavorite( event ) {
         var img = result.images[0].hostedSmallUrl;
         var recipe_name = result.name;
         var rating = result.rating;
-        var formattedCookTime = result.totalTime;
-        var formattedIngredients = result.ingredientLines;
+        var cookTime = result.totalTimeInSeconds;
+        var formattedCookTime = moment.utc(cookTime * 1000).format('HH:mm:ss');
         var link = result.attribution.url;
+
+        var ingredientList = result.ingredientLines;
+        var ingredientListArray = [];
+        console.log(ingredientList);
+        ingredientList.forEach(function (element) {
+            ingredientListArray.push(element);
+        });
+        var formattedIngredients = ingredientListArray.join(', ');
+
 
         $("#myModal .modal-title").text(recipe_name);
         $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
            `<div class='modal-body-info'>` +
-               `<img src=${img}>` +
-               genRating(rating) +
-               `<p class="modalCookTime">Cook Time: ${formattedCookTime}</p>` +
-               `<p class="modalIngredientList">Ingredients: ${formattedIngredients}</p>` +
-               `<button class="recipeButtonLink">` +
-               `<a target='_blank' href="${link}">View Recipe!</a>` +
+               `<div class="row">` +
+                   `<div class="col-sm-7">` +
+                       `<img src=${img}>` +
+                       `<p class="modalRating">` + genRating(rating) + `</p>` + 
+                       `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
+                       `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
+                    `</div>` +
+                   `<div class="col-sm-5">` +
+                       `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
+                    `</div>` +
+                `</div>` +
            `</div>`);
            $("#myModal").modal("show");
     });
