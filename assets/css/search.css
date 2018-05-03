@@ -6,6 +6,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    font-size: 18px;
 }
 
 .navbar-default {
@@ -78,26 +79,88 @@ p.search_headers {
     background-color: transparent;
 }
 
+.jumbotron p {
+    font-size: 18px;
+}
+
 /* RECIPE SEARCH */
 .card {
     background-color: rgba(255, 255, 255, 0.8);
     color: #777;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 30px;
-    padding-top: 0;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 20px;
     padding-bottom: 20px;
+    text-align: center;
+    float: left;
+    width: 350px;
+    border-radius: 25px;
 }
 
-.btn-info {
+#cardInfo {
+    margin-left: 10px;
+}
+
+h3 {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1.4rem;
+}
+
+#button1 {
+    border-radius: 8px;
+    font-size: .9rem;
+}
+
+#whatMeal {
+    background-color: #EE6217;
+    color: white;
+    font-family: 'Lato',
+    sans-serif;
+    margin: 10px 10px 0 10px;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+#whatDate {
+    background-color: #4AA398;
+    color: white;
+    font-family: 'Lato',
+    sans-serif;
+    margin: 10px 10px 0 10px;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+#getRecipeBtn {
+    background-color: rgba(83, 206, 1, 0.9);
+    color: white;
+    font-family: 'Lato',
+    sans-serif;
+    margin: 10px 10px 0 10px;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+/* .btn-info {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     color: white;
-}
+} */
 
 /* STAR RATING */
 .fa-star { 
     color: rgb(243, 181, 49);
+    font-size: 15px;
 }
 
 /* MODAL */
@@ -105,8 +168,21 @@ p.search_headers {
     font-family: 'Lato', sans-serif;
 }
 
+.modal-header {
+    border: none;
+}
+
+.modal-body {
+    border: none;
+}
+
 .card .modal-body-info, .card .modal-title-info {
     display: none;
+}
+
+.modal-title-info {
+    font-size: 2rem;
+    
 }
 
 .modal-body-info {

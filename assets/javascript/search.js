@@ -1,13 +1,13 @@
 /////////////// Global Variables /////////////////
 let userData = '';
-// let userID = '';
-// let userName = '';
+let userID = '';
+let userName = '';
 
-// let searchCriteria = {
-//     selectedEpoch: 0,
-//     selectedMeal: ' ',
-//     selectedYummlyID: ' '
-// };
+let searchCriteria = {
+    selectedEpoch: 0,
+    selectedMeal: ' ',
+    selectedYummlyID: ' '
+};
 
 ///////////////Data object constructor/////////////////////////////////////////////
 function dataObj() {
@@ -31,52 +31,63 @@ function genRating(rating) {
 
 ////////////get array of results from Yummly, loop through, grab data//////////////
 function showFood(result, index, array) {
-    console.log(result);
+    // console.log(result);
     let foodID = result.id;
     let recipe_name = result.recipeName ? result.recipeName : 'Name';
     let rating = result.rating;
     let ingredientList = result.ingredients;
     let cookTime = result.totalTimeInSeconds;
     let formattedCookTime = moment.utc(cookTime * 1000).format('HH:mm:ss');
-    console.log(formattedCookTime);
-    console.log(ingredientList);
+    // console.log(formattedCookTime);
+    // console.log(ingredientList);
     let ingredientListArray = [];
     ingredientList.forEach(function (element) {
         ingredientListArray.push(element);
     });
     let formattedIngredients = ingredientListArray.join(', ');
     let link = `https://www.yummly.com/#recipe/${foodID}`;
-    console.log(link);
+    // console.log(link);
     let img = result.imageUrlsBySize[90];
 
     /////////////push results to html//////////////////////////
     $('div.column_results').append(
-        `<div class='card' id=${foodID} data-value=${foodID}>` +
-            `<div><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</div>` +
-            `<div>` +
-                `<img src=${img}>` +
-                `<p>` + genRating(rating) + `</p>` +
-            `</div>` +
-            `<div>` +
-                `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>View More Information</button>` +
-                `<div class='modal-title-info'>${recipe_name}</div>` +
-                `<div class='modal-body-info'>` +
-                    `<img src=${img}>` + 
-                    `<p>class='modalRating'>${rating}</p>` +
-                    `<p class="modalCookTime">${formattedCookTime}</p>` +
-                    `<p class="modalIngredientList">${formattedIngredients}</p>` +
-                    `<button class="recipeButtonLink"><a target='_blank' href="${link}">View Recipe!</a></button>` +
+        `<div class="row">` +
+            `<div class="col-sm-12">` +
+                `<div class='card' id=${foodID} data-value=${foodID}>` +
+                    `<div class="row">` +
+                        `<div class="col-sm-12" id="cardInfo">` +
+                            `<h3><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h3>` +
+                            `<img src=${img} class='recipeImage1'>` +
+                            `<p>` + genRating(rating) + `</p>` +
+                            `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>See More</button>` +
+                                `<div class='modal-title-info'>${recipe_name}</div>` +
+                                `<div class='modal-body-info'>` +
+                                    `<div class="row">` +
+                                        `<div class="col-sm-7">` +
+                                            `<img src=${img} class='recipeImage2'>` + 
+                                            `<p class='modalRating'>` + genRating(rating) + `</p>` +
+                                            `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
+                                            `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
+                                        `</div>` +
+                                        `<div class="col-sm-5">` +
+                                            `<p id='whatMeal'>What Meal?</p>` +
+                                            `<p id='whatDate'>What Date?</p>` +
+                                            `<p id="getRecipeBtn"><a target="_blank" href="${link}">See Full Recipe</a></p>` +                                
+                                        `</div>` +
+                                    `</div>` +
+                                `</div>` +
+                            
+                        `</div>` +
+                    `</div>` +
                 `</div>` +
             `</div>` +
-        `</div>`
-        
-        );
+        `</div>` 
+    );
 
     //////////////////create modal///////////////////
     $(".testButton").off("click");
     $(".testButton").on('click', function () {
         console.log('hello');
-        // $("#myModal .modal-title").text(recipe_name);
         $("#myModal .modal-title").empty().append($(this).siblings(".modal-title-info").clone());
         $('#myModal .modal-body').empty().append($(this).siblings(".modal-body-info").clone());
         $("#myModal").modal("show");
@@ -135,39 +146,39 @@ function searchPageControl() {
 }
 
 //////////erase before pushing///////////////////
-$(document).ready(function () {
-searchPageControl();
-});
+// $(document).ready(function () {
+// searchPageControl();
+// });
 /////////////////end erase//////////////
 
 /////////////////////Document Section////////////////////////////////////
-// $(document).ready(function () {
+$(document).ready(function () {
 
-//     /////////////////////Pull user id and name from db, display, 
-//     /////////////////////   then using callback enable search page functionality
-//     auth.onAuthStateChanged( function(user) {
-//         if (user) {
-//             // User is signed in.
-//             usersRef.child(user.uid).once( 'value', function(snapshot) {
-//                 userID = user.uid;
-//                 userName = snapshot.val().userName;
-//                 $("#username").text(userName);
+    /////////////////////Pull user id and name from db, display, 
+    /////////////////////   then using callback enable search page functionality
+    auth.onAuthStateChanged( function(user) {
+        if (user) {
+            // User is signed in.
+            usersRef.child(user.uid).once( 'value', function(snapshot) {
+                userID = user.uid;
+                userName = snapshot.val().userName;
+                $("#username").text(userName);
 
-//                 activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
-//                     searchCriteria = activeSearchSnapshot.val().searchCriteria;
+                activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
+                    searchCriteria = activeSearchSnapshot.val().searchCriteria;
 
-//                     console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
-//                     console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
-//                     console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
+                    console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
+                    console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
+                    console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
 
-//                     searchPageControl();
+                    searchPageControl();
 
-//                 });
+                });
 
-//             });
-//         } else {
-//             alert( "no current User" );
-//         }
-//     });
+            });
+        } else {
+            alert( "no current User" );
+        }
+    });
 
-// })
+})
