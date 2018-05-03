@@ -48,49 +48,54 @@ function showFood(result, index, array) {
     let link = `https://www.yummly.com/#recipe/${foodID}`;
     // console.log(link);
     let img = result.imageUrlsBySize[90];
+    // selected date string
+    let dateString = moment.unix(parseInt(searchCriteria.selectedEpoch)).format('MMMM DD');
+    //
+
 
     /////////////push results to html//////////////////////////
     $('div.column_results').append(
-        `<div class="row">` +
-            `<div class="col-sm-12">` +
-                `<div class='card' id=${foodID} data-value=${foodID}>` +
-                    `<div class="row">` +
-                        `<div class="col-sm-12" id="cardInfo">` +
-                            `<h3><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h3>` +
-                            `<img src=${img} class='recipeImage1'>` +
-                            `<p>` + genRating(rating) + `</p>` +
-                            `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>See More</button>` +
-                                `<div class='modal-title-info'>${recipe_name}</div>` +
-                                `<div class='modal-body-info'>` +
-                                    `<div class="row">` +
-                                        `<div class="col-sm-7">` +
-                                            `<img src=${img} class='recipeImage2'>` + 
-                                            `<p class='modalRating'>` + genRating(rating) + `</p>` +
-                                            `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
-                                            `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
-                                        `</div>` +
-                                        `<div class="col-sm-5">` +
-                                            `<p id='whatMeal'>What Meal?</p>` +
-                                            `<p id='whatDate'>What Date?</p>` +
-                                            `<p id="getRecipeBtn"><a target="_blank" href="${link}">See Full Recipe</a></p>` +                                
-                                        `</div>` +
-                                    `</div>` +
-                                `</div>` +
-                            
-                        `</div>` +
-                    `</div>` +
-                `</div>` +
-            `</div>` +
-        `</div>` 
+        `<div class='row'>` +
+        `<div class='col-sm-12'>` +
+        `<div class='card' id=${foodID} data-value=${foodID}>` +
+        `<div class='row'>` +
+        `<div class='col-sm-12' id='cardInfo'>` +
+        `<h3><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h3>` +
+        `<img src=${img} class='recipeImage1'>` +
+        `<p>` + genRating(rating) + `</p>` +
+        `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>See More</button>` +
+        `<div class='modal-title-info'>${recipe_name}</div>` +
+        `<div class='modal-body-info'>` +
+        `<div class='row'>` +
+        `<div class='col-sm-7'>` +
+        `<img src=${img} class='recipeImage2'>` +
+        `<p class='modalRating'>` + genRating(rating) + `</p>` +
+        `<p class='modalCookTime'><b>Cook Time: </b>${formattedCookTime}</p>` +
+        `<p class='modalIngredientList'><b>Ingredients: </b>${formattedIngredients}</p>` +
+        `</div>` +
+        `<div class='col-sm-5'>` +
+        `<p id='whatMeal'><b>Meal: </b>${searchCriteria.selectedMeal}</p>` +
+        `<p id='whatDate'><b>Date: </b>${dateString}</p>` +
+        `<p id='getRecipeBtn'><a target='_blank' href='${link}'>See Full Recipe</a></p>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `</div>` +
+        `</div>`
     );
 
     //////////////////create modal///////////////////
     $(".testButton").off("click");
-    $(".testButton").on('click', function () {
+    $(".testButton").on("click", function () {
         console.log('hello');
         $("#myModal .modal-title").empty().append($(this).siblings(".modal-title-info").clone());
-        $('#myModal .modal-body').empty().append($(this).siblings(".modal-body-info").clone());
+        $("#myModal .modal-body").empty().append($(this).siblings(".modal-body-info").clone());
         $("#myModal").modal("show");
+        //on click to db here
+        
     });
 }
 
@@ -156,20 +161,20 @@ $(document).ready(function () {
 
     /////////////////////Pull user id and name from db, display, 
     /////////////////////   then using callback enable search page functionality
-    auth.onAuthStateChanged( function(user) {
+    auth.onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
-            usersRef.child(user.uid).once( 'value', function(snapshot) {
+            usersRef.child(user.uid).once('value', function (snapshot) {
                 userID = user.uid;
                 userName = snapshot.val().userName;
                 $("#username").text(userName);
 
-                activeSearch.child(userID).once( 'value', function( activeSearchSnapshot ) {
+                activeSearch.child(userID).once('value', function (activeSearchSnapshot) {
                     searchCriteria = activeSearchSnapshot.val().searchCriteria;
 
-                    console.log( "selectedEpoch -> " + searchCriteria.selectedEpoch );
-                    console.log( "selecedMeal -> " + searchCriteria.selectedMeal );
-                    console.log( "selectedYummlyID -> " + searchCriteria.selectedYummlyID );
+                    console.log("selectedEpoch -> " + searchCriteria.selectedEpoch);
+                    console.log("selecedMeal -> " + searchCriteria.selectedMeal);
+                    console.log("selectedYummlyID -> " + searchCriteria.selectedYummlyID);
 
                     searchPageControl();
 
@@ -177,7 +182,7 @@ $(document).ready(function () {
 
             });
         } else {
-            alert( "no current User" );
+            alert("no current User");
         }
     });
 
