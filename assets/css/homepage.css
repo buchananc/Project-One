@@ -128,7 +128,8 @@ footer {
     text-align: center;
 }
 
-#selectRecipeBtn {
+#selectRecipeBtn,
+#scheduleMealBtn {
     background-color: #4AA398;
     color: white;
     font-family: 'Lato',

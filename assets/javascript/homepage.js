@@ -249,20 +249,41 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
                    `<div class="col-sm-5">` +
                        `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
                        `<p id="selectRecipeBtn" style="cursor:pointer" data-value=${selectedYummlyID}>Search for new ${selectedMeal}</p>` +
+                       `<p id="scheduleMealBtn" style="cursor:pointer" scheduled-meal=${selectedMeal} scheduled-time=${selectedEpoch}>Schedule meal in Calendar</p>` +
                     `</div>` +
                 `</div>` +
            `</div>`);
         if ( selectedEpoch != 0 ) {
           $("#selectRecipeBtn").addClass("visible");
+          // ToDo:  add logic to check if user has verified e-mail
+          //        then make this button vissble
+          //   if ( user...emailVerified ) { visible } else { hidden }
+          $("#scheduleMealBtn").addClass("visible");
         }
         else {
           $("#selectRecipeBtn").addClass("hidden");
+          $("#scheduleMealBtn").addClass("hidden");
         }
 
         $("#myModal").modal("show");
+
         $("#selectRecipeBtn").on( "click", function () {
             console.log("in display")
             window.location.href="search.html";
+        });
+        
+        $("#scheduleMealBtn").on( "click", function () {
+            scheduledMeal = $(this).attr("scheduled-meal");
+            scheduledTime = $(this).attr("scheduled-time");
+            var rfc339Time  = 0;
+            
+            if( scheduledMeal == "breakfast" ) addSeconds = 8*60*60;
+            if( scheduledMeal == "lunch" ) addSeconds = 12*60*60;
+            if( scheduledMeal == "dinner" ) addSeconds = 18*60*60;
+
+            rfc339Time = moment.unix(parseInt(selectedEpoch)+addSeconds).format("YYYY-MM-DDTHH:mm:ssZ");
+            console.log( " scheduleMealBtn selected " + scheduledMeal );
+            console.log( " scheduleMealBtn selected " + rfc339Time );
         });
     });
 }
