@@ -200,6 +200,10 @@ a {
     float: left;
 }
 
+.modal-footer {
+    border-top:none;
+}
+
 /* DROPDOWN */
 
 .dropdown:hover .dropdown-menu {
