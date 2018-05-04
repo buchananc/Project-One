@@ -1,8 +1,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    /* background-image: url(https://images.pexels.com/photos/349604/pexels-photo-349604.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260); */
-    background-image: url(assets/images/chopboard.jpg);
+    background-image: url(https://images.pexels.com/photos/616361/pexels-photo-616361.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -16,6 +15,8 @@ body {
 }
 
 .navbar-default h3 {
+    font-family: 'Lato',
+    sans-serif;
     color: white;
     text-transform: uppercase;
     font-weight: 900;
@@ -70,9 +71,9 @@ body {
     padding-top: 10px;
 }
 
-p.search_headers {
+/* p.search_headers {
     font-size: 1.3rem;
-}
+} */
 
 /* JUMBOTRON */
 #jumboRecipe {

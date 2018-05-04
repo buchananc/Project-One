@@ -7,9 +7,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meal Search</title>
-        <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
+        
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -20,9 +24,7 @@
 
     <!-- Foundation CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
-        crossorigin="anonymous">
+
     <!-- Local CSS -->
     <link rel="stylesheet" href="./assets/css/search.css">
 </head>
@@ -84,8 +86,7 @@
     <!-- FOOD / RECIPE SEARCH MENU -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2" id="dietSidePanel">
-                <div id="dietaryRestrictions">
+                <!-- <div id="dietaryRestrictions">
                     <div>
                         <b>Your selected diets: </b><br>
                         <span id="selected-diets"></span>
@@ -99,9 +100,8 @@
                         <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
                         <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-10">
+                </div> -->
+            <div class="col-sm-12">
                 <section class="side_search">
                     <div id="panel">
                         <div class="sidesearch">
@@ -111,7 +111,7 @@
                                         <p class="search_headers">Browse Recipes:</p>
                                         <label id="search">
                                             <select name="recipe_search" id="recipe_search">
-                                                <option selected="true" disabled="true">Choose recipe type:</option>
+                                                <option selected="true" disabled="true">Select category:</option>
                                                 <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
                                                 <option class="options" id="2" name="bread" value="bread">Bread</option>
                                                 <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
@@ -128,12 +128,11 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-4">
-                                        <!-- <p class="search_headers">-OR-</p> -->
                                         <img src="assets/images/orimg.png">
                                     </div>
                                     <div class="col-sm-4">
                                         <label id="food_search">
-                                            <p class="search_headers">Search for food by type:</p>
+                                            <label class="search_headers">Search ingredients:</p>
                                             <input type="text" id="food_search" name="food_search">
                                         </label>
                                         <button type="reset" value="clear" id="clear">Clear</button>
@@ -142,6 +141,24 @@
                                             <input type="submit" name="submit" value="Search" id="submit">
                                         </p>
                                         <p class="search_error"></p>
+                                        <div id="dietaryRestrictions">
+                                            <div>
+                                                <b>Your selected diets: </b>
+                                                <br>
+                                                <span id="selected-diets"></span>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <b>Your selected allergies: </b>
+                                                <br>
+                                                <span id="selected-allergies"></span>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
+                                                <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <button type="reset" value="clear" id="clear">Clear</button>
