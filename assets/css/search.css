@@ -2,7 +2,7 @@
 body {
     font-family: 'Lato', sans-serif;
     /* background-image: url(https://images.pexels.com/photos/349604/pexels-photo-349604.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260); */
-    background-image: url(/assets/images/chopboard.jpg);
+    background-image: url(assets/images/chopboard.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
