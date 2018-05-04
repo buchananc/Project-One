@@ -9,6 +9,52 @@ let searchCriteria = {
     selectedYummlyID: ' '
 };
 
+////////////////Meal Selected Function////////////////
+var selectedYummlyID = ' ';
+
+var breakfast = {
+    yummlyID: " ",
+    random: "false"
+};
+
+var lunch = {
+    yummlyID: " ",
+    random: "false"
+};
+
+var dinner = {
+    yummlyID: " ",
+    random: "false"
+};
+
+function mealSelected(event) {
+    event.preventDefault();
+
+    console.log("mealSelected()");
+    selectedYummlyID = $(this).attr("data-value");
+    console.log(selectedYummlyID);
+
+    if (searchCriteria.selectedMeal == "breakfast") {
+        breakfast.yummlyID = selectedYummlyID;
+        mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
+            breakfast
+        });
+    }
+    else if (searchCriteria.selectedMeal == "lunch") {
+        lunch.yummlyID = selectedYummlyID;
+        mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
+            lunch
+        });
+    }
+    else if (searchCriteria.selectedMeal == "dinner") {
+        dinner.yummlyID = selectedYummlyID;
+        mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
+            dinner
+        });
+    }
+    window.location.href = "homepage.html";
+}
+
 ///////////////Data object constructor/////////////////////////////////////////////
 function dataObj() {
     this.uid = '',
@@ -76,6 +122,7 @@ function showFood(result, index, array) {
         `<div class='col-sm-5'>` +
         `<p id='whatMeal'><b>Meal: </b>${searchCriteria.selectedMeal}</p>` +
         `<p id='whatDate'><b>Date: </b>${dateString}</p>` +
+        `<p id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}>Select This Meal</p>` +
         `<p id='getRecipeBtn'><a target='_blank' href='${link}'>See Full Recipe</a></p>` +
         `</div>` +
         `</div>` +
@@ -95,6 +142,7 @@ function showFood(result, index, array) {
         $("#myModal .modal-body").empty().append($(this).siblings(".modal-body-info").clone());
         $("#myModal").modal("show");
         //on click to db here
+        $("#selectRecipeButton").on("click", mealSelected);
         
     });
 }
