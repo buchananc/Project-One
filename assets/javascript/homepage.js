@@ -214,11 +214,12 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
                   "?_app_id=" + ourAPIid +
                   "&_app_key=" + ourAPIkey;
 
+    console.log(queryURL);
     $.ajax({
         type: 'GET',
         url: queryURL,
     }).then(function (result) {
-        console.log(queryURL);
+        console.log(result);
         var img = result.images[0].hostedSmallUrl;
         var recipe_name = result.name;
         var rating = result.rating;
@@ -439,9 +440,6 @@ $(document).ready( function() {
                 homepageControl();
             });
 
-        } else {
-           // No user is signed in.
-           alert( " no current User " );
         }
     });
 });
