@@ -143,18 +143,42 @@ function buildDayOfMeals( i, epoch, breakfastYummlyID, lunchYummlyID, dinnerYumm
     jq_newBreakfastInput.attr( "value", "breakfast" );
     jq_newBreakfastInput.attr( "epoch", epochStr );
     jq_newBreakfastInput.attr( "yummlyid", breakfastYummlyID );
+    if ( breakfastYummlyID == " " ) {
+        jq_newBreakfastInput.removeClass("meal");
+        jq_newBreakfastInput.addClass("no-meal");
+    }
+    else {
+        jq_newBreakfastInput.removeClass("no-meal");
+        jq_newBreakfastInput.addClass("meal");
+    }
 
     // Lunch
     var jq_newLunchInput = $( "#lunch" + i );
     jq_newLunchInput.attr( "value", "lunch" );
     jq_newLunchInput.attr( "epoch", epochStr );
     jq_newLunchInput.attr( "yummlyid", lunchYummlyID );
+    if ( lunchYummlyID == " " ) {
+        jq_newLunchInput.removeClass("meal");
+        jq_newLunchInput.addClass("no-meal");
+    }
+    else {
+        jq_newLunchInput.removeClass("no-meal");
+        jq_newLunchInput.addClass("meal");
+    }
 
     // Dinner
     var jq_newDinnerInput = $( "#dinner" + i );
     jq_newDinnerInput.attr( "value", "dinner" );
     jq_newDinnerInput.attr( "epoch", epochStr );
     jq_newDinnerInput.attr( "yummlyid", dinnerYummlyID );
+    if ( dinnerYummlyID == " " ) {
+        jq_newDinnerInput.removeClass("meal");
+        jq_newDinnerInput.addClass("no-meal");
+    }
+    else {
+        jq_newDinnerInput.removeClass("no-meal");
+        jq_newDinnerInput.addClass("meal");
+    }
 
 }
 
@@ -212,39 +236,25 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
 
 
         $("#myModal .modal-title").text(recipe_name);
-          $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
-             `<div class='modal-body-info'>` +
-                 `<div class="row">` +
-                     `<div class="col-sm-7">` +
-                         `<img src=${img}>` +
-                         `<p class="modalRating">` + genRating(rating) + `</p>` + 
-                         `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
-                         `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
-                      `</div>` +
-                     `<div class="col-sm-5">` +
-                         `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
-                         `<p id="selectRecipeBtn" style="cursor:pointer" data-value=${selectedYummlyID}>Search for new ${selectedMeal}</p>` +
-                      `</div>` +
-                  `</div>` +
-             `</div>`);
+        $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
+           `<div class='modal-body-info'>` +
+               `<div class="row">` +
+                   `<div class="col-sm-7">` +
+                       `<img src=${img}>` +
+                       `<p class="modalRating">` + genRating(rating) + `</p>` + 
+                       `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
+                       `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
+                    `</div>` +
+                   `<div class="col-sm-5">` +
+                       `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
+                       `<p id="selectRecipeBtn" style="cursor:pointer" data-value=${selectedYummlyID}>Search for new ${selectedMeal}</p>` +
+                    `</div>` +
+                `</div>` +
+           `</div>`);
         if ( selectedEpoch != 0 ) {
           $("#selectRecipeBtn").addClass("visible");
         }
         else {
-//          $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
-//             `<div class='modal-body-info'>` +
-//                 `<div class="row">` +
-//                     `<div class="col-sm-7">` +
-//                         `<img src=${img}>` +
-//                         `<p class="modalRating">` + genRating(rating) + `</p>` + 
-//                         `<p class="modalCookTime"><b>Cook Time: </b>${formattedCookTime}</p>` +
-//                         `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
-//                      `</div>` +
-//                     `<div class="col-sm-5">` +
-//                         `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
-//                      `</div>` +
-//                  `</div>` +
-//             `</div>`);
           $("#selectRecipeBtn").addClass("hidden");
         }
 
@@ -396,6 +406,7 @@ function homepageControl() {
     }
 
     $(".meal").on( "click", selectMeal );
+    $(".no-meal").on( "click", selectMeal );
     $("#favorite-breakfast").on( "click", selectFavorite );
     $("#favorite-lunch").on( "click", selectFavorite );
     $("#favorite-dinner").on( "click", selectFavorite );
