@@ -6,8 +6,9 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: url(https://images.pexels.com/photos/349610/pexels-photo-349610.jpeg?cs=srgb&dl=board-bread-breakfast-349610.jpg&fm=jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
-    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .navbar-default {

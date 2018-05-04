@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/edit-profile.css">
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="assets/javascript/init.js"></script>
+    
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                                 <a href="edit-profile.html">Edit Profile</a>
                             </li>
                             <li>
-                                <a href="#">Sign Out</a>
+                                <a href="#" id="sign-out">Sign Out</a>
                             </li>
                         </ul>
                     </li>
@@ -61,24 +61,28 @@
                         <label for="no-diet">No Diets</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="vegan" name="diet" value="vegan">
+                        <input type="checkbox" class="disable" id="vegan" name="diet" value="386^Vegan">
                         <label for="vegan">Vegan</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="vegitarian" name="diet" value="vegitarian">
+                        <input type="checkbox" class="disable" id="vegitarian" name="diet" value="387^Vegetarian">
                         <label for="vegitarian">Vegitarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="lacto" name="diet" value="lacto vegitarian">
+                        <input type="checkbox" class="disable" id="lacto" name="diet" value="388^Lacto vegetarian">
                         <label for="lacto">Lacto Vegetarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="ovo" name="diet" value="ovo vegitarian">
+                        <input type="checkbox" class="disable" id="ovo" name="diet" value="389^Ovo vegetarian">
                         <label for="ovo">Ovo Vegetarian</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="disable" id="pescetarian" name="diet" value="pescetarian">
+                        <input type="checkbox" class="disable" id="pescetarian" name="diet" value="390^Pescetarian">
                         <label for="pescetarian">Pescetarian</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="disable" id="paleo" name="diet" value="403^Paleo">
+                        <label for="paleo">Paleo</label>
                     </div>
 
                 </div>
@@ -90,43 +94,43 @@
                         <label for="no-restriction">No Dietary Restrictions</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="dairy" name="restriction" value="dairy">
+                        <input type="checkbox" class="restriction" id="dairy" name="restriction" value="396^Dairy">
                         <label for="dairy">Dairy</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="egg" name="restriction" value="egg">
+                        <input type="checkbox" class="restriction" id="egg" name="restriction" value="397^Egg">
                         <label for="egg">Egg</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="gluten" name="restriction" value="gluten">
+                        <input type="checkbox" class="restriction" id="gluten" name="restriction" value="393^Gluten">
                         <label for="gluten">Gluten</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="peanut" name="restriction" value="peanut">
+                        <input type="checkbox" class="restriction" id="peanut" name="restriction" value="394^Peanut">
                         <label for="peanut">Peanut</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="seafood" name="restriction" value="seafood">
+                        <input type="checkbox" class="restriction" id="seafood" name="restriction" value="398^Seafood">
                         <label for="seafood">Seafood</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="sesame" name="restriction" value="sesame">
+                        <input type="checkbox" class="restriction" id="sesame" name="restriction" value="399^Sesame">
                         <label for="sesame">Sesame</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="sulfite" name="restriction" value="sulfite">
+                        <input type="checkbox" class="restriction" id="sulfite" name="restriction" value="401^Sulfite">
                         <label for="shellfish">Sulfite</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="soy" name="restriction" value="soy">
+                        <input type="checkbox" class="restriction" id="soy" name="restriction" value="400^Soy">
                         <label for="soy">Soy</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="tree+nut">
+                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="395^Tree Nut">
                         <label for="tree-nut">Tree Nut</label>
                     </div>
                     <div>
-                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="wheat">
+                        <input type="checkbox" class="restriction" id="tree-nut" name="restriction" value="392^Wheat">
                         <label for="tree-nut">Wheat</label>
                     </div>
                 </div>
@@ -168,6 +172,7 @@
     <!-- closing tag for main content -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/init.js"></script>
     <script type="text/javascript" src="assets/javascript/edit-profile.js"></script>
 </body>
 

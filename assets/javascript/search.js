@@ -6,7 +6,8 @@ let userName = '';
 let searchCriteria = {
     selectedEpoch: 0,
     selectedMeal: ' ',
-    selectedYummlyID: ' '
+    selectedYummlyID: ' ',
+    queryParams: '',
 };
 
 ////////////////Meal Selected Function////////////////
@@ -39,13 +40,13 @@ function mealSelected(event) {
         mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
             breakfast
         });
-    }
+    } 
     else if (searchCriteria.selectedMeal == "lunch") {
         lunch.yummlyID = selectedYummlyID;
         mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
             lunch
         });
-    }
+    } 
     else if (searchCriteria.selectedMeal == "dinner") {
         dinner.yummlyID = selectedYummlyID;
         mealPlanner.child(userID + "/" + searchCriteria.selectedEpoch).update({
@@ -146,7 +147,7 @@ function showFood(result, index, array) {
         $("#myModal").modal("show");
         //on click to db here
         $("#selectRecipeButton").on("click", mealSelected);
-        
+
     });
 }
 
@@ -169,6 +170,12 @@ function searchAPI(recipe_search, food_search) {
         "?_app_id=" + ourAPIid +
         "&_app_key=" + ourAPIkey +
         "&q=" + search_params;
+
+    // Checks if "use your diets and allergies" box is checked and creats an updated queryURL
+    if ($("#search-restrictions").is(':checked')) {
+        queryURL = queryURL + searchCriteria.queryParams;
+    }
+    console.log(queryURL)
 
     $.ajax({
         type: 'GET',
@@ -228,7 +235,7 @@ $(document).ready(function () {
                     console.log("selectedYummlyID -> " + searchCriteria.selectedYummlyID);
 
                     searchPageControl();
-
+                    searchCriteria.queryParams = checkForRestrictions(snapshot);
                 });
 
             });
@@ -238,3 +245,50 @@ $(document).ready(function () {
     });
 
 })
+
+// Function for desplaying diets and allergies and creating query parameters for including diets and allergies
+function checkForRestrictions(snapshot) {
+
+    console.log('snapshot', snapshot);
+    // Pull data from database into variables
+    var userDiets = snapshot.val().restrictions.diets;
+    var userAllergies = snapshot.val().restrictions.allergies;
+    // New variable for query parameter
+    var queryParams = [];
+
+    // Append diets from Firebase into selected-diets div
+    for (var i = 0; i < userDiets.length; i++) {
+        $("#selected-diets").append(userDiets[i].label + "/ ")
+    }
+
+    // Append diets from Firebase into selected-allergies div
+    for (var j = 0; j < userAllergies.length; j++) {
+        $("#selected-allergies").append(userAllergies[j].label + "/ ")
+    }
+
+    // Checks if 
+    if (userDiets[0].id !== '0') {
+        // Loops through the diets array of objects and concatenates ids and lebles into search queries
+        for (var i = 0; i < userDiets.length; i++) {
+            // Saving label to a variable
+            var label = userDiets[i].label;
+            // Chacking id diet's id is 387 and changes label 'Vegitarian' to "Lacto-ovo vegetarian" (API docs' requirement)
+            if (userDiets[i].id == "387") {
+                label = "Lacto-ovo vegetarian";
+            }
+            // Puts pieces of guery parameters together
+            queryParams.push('&allowedDiet[]=' + userDiets[i].id + "^" + label);
+        }
+    }
+    if (userAllergies[0].id !== '0') {
+        // Loops through the allergies array of objects and concatenates ids and lebles into search queries
+        for (var j = 0; j < userAllergies.length; j++) {
+            // Puts pieces of guery parameters together
+            queryParams.push('&allowedAllergy[]=' + userAllergies[j].id + "^" + userAllergies[j].label + '-Free');
+        }
+    }
+
+    console.log(queryParams.join(''))
+    // Returns combined query parameters in a string 
+    return queryParams.join('');
+};

@@ -37,7 +37,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <p class="navbar-text">Signed in as
-                            <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" id="username"></a>
+                            <a href="profile.html" class="nav-link dropdown-toggle" data-toggle="dropdown" id="username"></a>
                         </p>
                         <ul id="products-menu" class="dropdown-menu clearfix" role="menu">
                             <li>
@@ -87,6 +87,17 @@
                     <div id="panel">
                         <div class="sidesearch">
                             <form id="foodsearch" action="search" method="get">
+                                <div>Your selected diets:
+                                    <span id="selected-diets"></span>
+                                </div>
+                                <div>Your selected allergies:
+                                    <span id="selected-allergies"></span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
+                                    <label for="no-diet">Use your diets and allergies as search parametrs</label>
+                                </div>
+
                                 <p class="search_headers">Search for Recipes:</p>
                                 <label id="search">
                                     <select name="recipe_search" id="recipe_search">
@@ -105,11 +116,11 @@
                                     <p class="search_headers">Search for food by type:</p>
                                     <input type="text" id="food_search" name="food_search">
                                 </label>
-                            
+
                                 <button type="reset" value="clear" id="clear">Clear</button>
-                                    <p></p>
-                                    <p><input type="submit" name="submit" value="Search" id="submit"></p>
-                                    <p class="search_error"></p>
+                                <p></p>
+                                <p><input type="submit" name="submit" value="Search" id="submit"></p>
+                                <p class="search_error"></p>
                             </form>
                         </div>
 
@@ -118,11 +129,11 @@
                             <div class="row">
                                 <div class="col-sm-12 jumbotron">
                                     <div class="column_results">
-                                    <!-- Result data goes in here -->
+                                        <!-- Result data goes in here -->
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <!-- SEARCH RESULTS END HERE -->
                     </div>
                 </section>
@@ -150,4 +161,3 @@
 </body>
 
 </html>
-

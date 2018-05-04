@@ -7,7 +7,12 @@ function selectDiet() {
 
     // look for all checkboes that have a class 'disable' and check if it was checked 
     $(".disable:checked, #no-diet:checked").each(function () {
-        diets.push($(this).val());
+        var values = $(this).val().split("^")
+
+        diets.push({
+            id: values[0],
+            label: values[1],
+        });
     });
 
     console.log(diets)
@@ -17,6 +22,10 @@ function selectDiet() {
         console.log("You have selected " + diets);
     } else {
         $('#no-diet').prop('checked', true);
+        diets.push({
+            id: '0',
+            label: $('#no-diet').val(),
+        });  
     }
     return diets;
 };
@@ -28,7 +37,12 @@ function selectRestrictions() {
 
     // look for all checkboes that have a class 'disable' and check if it was checked 
     $(".restriction:checked, #no-restriction:checked").each(function () {
-        restrictions.push($(this).val());
+        var values = $(this).val().split("^")
+
+        restrictions.push({
+            id: values[0],
+            label: values[1],
+        });
     });
 
     console.log(restrictions);
@@ -38,6 +52,10 @@ function selectRestrictions() {
         console.log("You have selected " + restrictions);
     } else {
         $('#no-restriction').prop('checked', true);
+        restrictions.push({
+            id: '0',
+            label: $('#no-restriction').val(),
+        }); 
     }
     return restrictions;
 };
@@ -162,5 +180,15 @@ $("#save").on("click", function () {
     }
 });
 
-// Listening event for Sign out button uses function signOut from init.js
-$("#sign-out").on("click", signOut);
+auth.onAuthStateChanged(user =>{
+    if (user){
+        console.log(user.photoURL);
+        $("#pic-placeholder").attr("src", user.photoURL)
+
+        usersRef.child(userId).update({
+            profilePicture: user.photoURL
+        })
+    }
+})
+
+// append picture from google to $(".avatar")
