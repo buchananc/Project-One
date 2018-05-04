@@ -77,7 +77,7 @@ function genRating(rating) {
 
 ////////////get array of results from Yummly, loop through, grab data//////////////
 function showFood(result, index, array) {
-    // console.log(result);
+    console.log(result);
     let foodID = result.id;
     let recipe_name = result.recipeName ? result.recipeName : 'Name';
     let rating = result.rating;
@@ -86,6 +86,7 @@ function showFood(result, index, array) {
     let formattedCookTime = moment.utc(cookTime * 1000).format('HH:mm:ss');
     // console.log(formattedCookTime);
     // console.log(ingredientList);
+    console.log(foodID);
     let ingredientListArray = [];
     ingredientList.forEach(function (element) {
         ingredientListArray.push(element);
@@ -109,21 +110,23 @@ function showFood(result, index, array) {
         `<h3><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h3>` +
         `<img src=${img} class='recipeImage1'>` +
         `<p>` + genRating(rating) + `</p>` +
-        `<button type='button' class='btn btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i>See More</button>` +
+        `<button type='button' class='btn btn-primary btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i><span class='glyphicon glyphicon-cutlery'></span> See More</button>` +
         `<div class='modal-title-info'>${recipe_name}</div>` +
         `<div class='modal-body-info'>` +
         `<div class='row'>` +
         `<div class='col-sm-7'>` +
+        `<div id='whatMeal'><b>Meal: </b>${searchCriteria.selectedMeal}</div>` +
+        `<div id='whatDate'><b>Date: </b>${dateString}</div>` +
         `<img src=${img} class='recipeImage2'>` +
         `<p class='modalRating'>` + genRating(rating) + `</p>` +
         `<p class='modalCookTime'><b>Cook Time: </b>${formattedCookTime}</p>` +
         `<p class='modalIngredientList'><b>Ingredients: </b>${formattedIngredients}</p>` +
         `</div>` +
         `<div class='col-sm-5'>` +
-        `<p id='whatMeal'><b>Meal: </b>${searchCriteria.selectedMeal}</p>` +
-        `<p id='whatDate'><b>Date: </b>${dateString}</p>` +
-        `<p id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}>Select This Meal</p>` +
-        `<p id='getRecipeBtn'><a target='_blank' href='${link}'>See Full Recipe</a></p>` +
+        `<p class='btn btn-primary btn-success' id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}><span class='glyphicon glyphicon-ok'></span> Select This Meal</p>` +
+        `<p class='btn btn-primary btn-info' id='getRecipeBtn'><a target='_blank' href='${link}'><span class='glyphicon glyphicon-search'></span> See Full Recipe</a></p>` +
+        // `<p id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}>Select This Meal</p>` +
+        // `<p id='getRecipeBtn'><a target='_blank' href='${link}'>See Full Recipe</a></p>` +
         `</div>` +
         `</div>` +
         `</div>` +
