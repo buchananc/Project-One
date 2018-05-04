@@ -6,7 +6,10 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: url(https://images.pexels.com/photos/349608/pexels-photo-349608.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -16,7 +19,7 @@ h1 {
     font-size: 70px;
     letter-spacing: 20px;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 130px;
     margin-bottom: 10px;
 }
 
@@ -37,6 +40,7 @@ h1 {
 
 .panel-heading {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .panel-default>.panel-heading {
@@ -81,6 +85,11 @@ h1 {
     color: rgba(61, 152, 0, 0.9);
 }
 
+#email_input, 
+#pass_input, #username_input{
+    height: 70px;
+}
+
 
 #email_login:focus, #pass_login:focus,
 #sign_in:focus, #sign_in_google:focus
@@ -92,6 +101,7 @@ h1 {
 #sign_in, #sign_in_google,
 #sign_up {
     border-radius: 0;
+    border: none;
     background-image: none;
     background-color: rgba(61, 152, 0, 0.9);
     text-shadow: none;
@@ -101,8 +111,10 @@ h1 {
     margin-bottom: 20px;
 }
 
-#sing_up {
+#sign_up {
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #sign_in {
