@@ -47,7 +47,7 @@ var userName = "";
 var ourAPIid = "4dced6d2";
 var ourAPIkey = "1a7e0fea32a0ad94892aaeb51b858b48";
 
-var startOfWeekDate = moment().startOf('week');
+var startOfDay = moment().startOf('day');
 
 var breakfast = {
     yummlyID: " ",
@@ -82,9 +82,26 @@ function createAweekOfEpochKeys() {
 
 
     mealPlanner.child( userID ).once('value',function(snapshot) {
+        var i_epoch = parseInt(moment(startOfDay).format('X'));
+        //
+        // Remove old scheduled meals from the db for this user
+        //
+        snapshot.forEach( function(childSnapshot)  {
+            var db_epoch = parseInt(childSnapshot.key);
+            if ( db_epoch < i_epoch ) {
+                console.log ( "child key less than today-> " + childSnapshot.key );
+                childSnapshot.ref.remove();
+            }
+        });
+
+        //
+        // Check the next 7 days of scheduled meals
+        //   Read if the day exists
+        //   Create if the day does not exist
+        //
         var userExists = (snapshot.val() !== null);
         for (i=0; i<7; i++) {
-            var epoch = moment(startOfWeekDate).add(i, 'days');
+            var epoch = moment(startOfDay).add(i, 'days');
             var epochStr = moment(epoch).format("X");
     
             console.log( epochStr );
@@ -104,7 +121,18 @@ function createAweekOfEpochKeys() {
                 }
                 else {
                   console.log("createAweekOfEpochKeys() mealPlanner epoch NOT EXISTS")
-
+                  var breakfast = user.mealPlan.breakfast
+                  mealPlanner.child(userID+"/"+epochStr).update({
+                      breakfast
+                  });
+                  var lunch = user.mealPlan.lunch
+                  mealPlanner.child(userID+"/"+epochStr).update({
+                      lunch
+                  });
+                  var dinner = user.mealPlan.dinner
+                  mealPlanner.child(userID+"/"+epochStr).update({
+                     dinner 
+                  });
                 }
             }
             else {
@@ -133,10 +161,12 @@ function createAweekOfEpochKeys() {
 function buildDayOfMeals( i, epoch, breakfastYummlyID, lunchYummlyID, dinnerYummlyID ) {
     var epochStr = moment(epoch).format("X");
 
-    var startDay = parseInt(moment(epoch).format("DD"));
+    var startDay = moment(epoch).format("MMM DD");
+    var dayName = moment(epoch).format("dddd");
     var jq_day = $("#day" + i);
     jq_day.attr("value",epochStr);
-    jq_day.prepend("<a>" + startDay + "</a>");
+    jq_day.prepend("<p class='date'>" + startDay + "</p>");
+    jq_day.prepend("<p class='day-name'>" + dayName + "</p>");
 
     // Breakfast
     var jq_newBreakfastInput = $("#breakfast" + i );
@@ -415,6 +445,18 @@ function removeActiveSearchDB () {
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
+function randomMeals() {
+    var meal = "default";
+    for (i=0; i<3; i++) {
+        if (i == 0) meal = "breakfast";
+        if (i == 1) meal = "lunch";
+        if (i == 2) meal = "dinner";
+        buildFromRandomMeal( meal );
+    }
+};
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 function homepageControl() {
     
     createAweekOfEpochKeys();
@@ -429,6 +471,7 @@ function homepageControl() {
 
     $(".meal").on( "click", selectMeal );
     $(".no-meal").on( "click", selectMeal );
+    $("#random-meals").on( "click", randomMeals );
     $("#favorite-breakfast").on( "click", selectFavorite );
     $("#favorite-lunch").on( "click", selectFavorite );
     $("#favorite-dinner").on( "click", selectFavorite );
@@ -440,13 +483,7 @@ function homepageControl() {
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
-var meal = "default";
-for (i=0; i<3; i++) {
-    if (i == 0) meal = "breakfast";
-    if (i == 1) meal = "lunch";
-    if (i == 2) meal = "dinner";
-    buildFromRandomMeal( meal );
-}
+randomMeals();
 
 $(document).ready( function() {
     
