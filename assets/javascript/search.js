@@ -125,9 +125,7 @@ function showFood(result, index, array) {
         `</div>` +
         `<div class='col-sm-5'>` +
         `<p class='btn btn-primary btn-success' id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}><span class='glyphicon glyphicon-ok'></span> Select This Meal</p>` +
-        `<p class='btn btn-primary btn-info' id='getRecipeBtn'><a target='_blank' href='${link}'><span class='glyphicon glyphicon-search'></span> See Full Recipe</a></p>` +
-        // `<p id='selectRecipeButton' style='cursor:pointer' data-value=${foodID}>Select This Meal</p>` +
-        // `<p id='getRecipeBtn'><a target='_blank' href='${link}'>See Full Recipe</a></p>` +
+        `<p class='btn btn-primary btn-info' id='getRecipeBtn'><a target='_blank' href='${link}'><span class='glyphicon glyphicon-new-window'></span> See Full Recipe</a></p>` +
         `</div>` +
         `</div>` +
         `</div>` +
@@ -216,9 +214,12 @@ function searchPageControl() {
 
 /////////////////////Document Section////////////////////////////////////
 $(document).ready(function () {
-
-    /////////////////////Pull user id and name from db, display, 
-    /////////////////////   then using callback enable search page functionality
+    ////////////link to profile page///////////////////
+    $("#username").on("click", function () {
+        window.location.href = "profile.html";
+    });
+    //Pull user id and name from db, display, 
+    //then using callback enable search page functionality
     auth.onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
