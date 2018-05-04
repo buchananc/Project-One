@@ -247,9 +247,9 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
                        `<p class="modalIngredientList"><b>Ingredients: </b>${formattedIngredients}</p>` +
                     `</div>` +
                    `<div class="col-sm-5">` +
-                       `<p id="getRecipeBtn"><a target='_blank' href="${link}">See Full Recipe</a></p>` +
-                       `<p id="selectRecipeBtn" style="cursor:pointer" data-value=${selectedYummlyID}>Search for new ${selectedMeal}</p>` +
-                       `<p id="scheduleMealBtn" style="cursor:pointer" scheduled-meal=${selectedMeal} scheduled-time=${selectedEpoch}>Schedule meal in Calendar</p>` +
+                       `<p class="btn btn-primary btn-info" id="getRecipeBtn"><a target="_blank" href=${link}><span class="glyphicon glyphicon-new-window"></span> See Full Recipe</a></p>` +
+                       `<p clase="btn btn-primary btn-info" id="selectRecipeBtn" data-value=${selectedYummlyID}><span class='glyphicon glyphicon-search'></span> New ${selectedMeal}</p>` +
+                       `<p class="btn btn-primary btn-info" id="scheduleMealBtn" scheduled-meal=${selectedMeal} scheduled-time=${selectedEpoch}><span class="glyphicon glyphicon-calendar"></span> Schedule ${selectedMeal}</p>` +
                     `</div>` +
                 `</div>` +
            `</div>`);
@@ -432,6 +432,9 @@ function homepageControl() {
     $("#favorite-breakfast").on( "click", selectFavorite );
     $("#favorite-lunch").on( "click", selectFavorite );
     $("#favorite-dinner").on( "click", selectFavorite );
+    $("#username").on("click", function (){
+        window.location.href = "profile.html";
+    });
     
 };
 
