@@ -12,7 +12,7 @@ body {
 }
 
 .navbar-default {
-    background:  rgba(223, 223, 223, 0.8);
+    background: rgba(223, 223, 223, 0.8);
     border: none;
     width: 100%;
 }
@@ -41,38 +41,39 @@ h3 {
 }
 
 #username {
-    color:rgba(61, 152, 0, 1);
-    text-decoration: underline; 
+    color: rgba(61, 152, 0, 1);
+    text-decoration: underline;
     font-size: 18px;
 }
+
 /* dropdown */
 
 .dropdown:hover .dropdown-menu {
     display: block;
-  }
+}
 
 .dropdown {
     list-style-type: none;
-    
 }
 
 .dropdown-menu>li>a {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     color: #777;
-    padding-top: 10px;  
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .main-content {
     background-color: rgba(255, 255, 255, 0.9);
-    color:#777;
+    color: #777;
     font-size: 16px;
     font-weight: 300;
     margin-bottom: 80px;
 }
 
-.main-content h2, h5 {
+.main-content h2,
+h5 {
     font-weight: 300;
 }
 
@@ -97,19 +98,20 @@ h3 {
 }
 
 #welcome {
-    color:rgba(61, 152, 0, 1);
+    color: rgba(61, 152, 0, 1);
 }
 
-#diets, #allergies {
+#diets,
+#allergies {
     padding: 0 50px;
 }
 
-label{
+label {
     font-weight: 300;
 }
 
-#picture p{
-    color:#777;
+#picture p {
+    color: #777;
     font-size: 18px;
 }
 
@@ -140,7 +142,7 @@ label{
 
 #bio-container {
     padding-left: 50px;
-    color:#777;
+    color: #777;
     font-size: 18px;
 }
 
@@ -154,7 +156,7 @@ label{
 
 textarea::placeholder {
     color: #999;
-  }
+}
 
 textarea:focus {
     outline: none;
@@ -167,7 +169,7 @@ textarea:focus {
     background-color: rgba(61, 152, 0, 0.9);
     text-shadow: none;
     width: 30%;
-    color:white;
+    color: white;
     font-size: 18px;
     letter-spacing: 2px;
     margin-top: 131px;
@@ -186,32 +188,59 @@ footer {
     text-align: center;
     font-size: 16px;
     padding: 15px 0px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
-
 
 @media screen and (max-width:980px) {
- 
+    #picture {
+        margin: 0 auto;
+        width: 50%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .avatar {
+        margin: 0 auto;
+    }
+    #save {
+        margin-top: 20px;
+    }
+    footer {
+        position: static;
+    }
 }
 
-@media screen and (max-width:850px) {
-
+@media screen and (max-width:768px) {
+    .navbar-right {
+        margin-top: 0;
+        text-align: center;
+    }
+    .navbar-default h3 {
+        text-align: center;
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width:660px) {
-
+    .navbar {
+        margin-bottom: 0
+    }
+    .navbar-default h3 {
+        text-align: center;
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width:460px) {
+    body {
+        min-width: 400px;
+    }
+    #go-home {
+        width: 100%;
+    }
 
+    footer {
+        position: static;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
