@@ -218,6 +218,11 @@ $(document).ready(function () {
     $("#username").on("click", function () {
         window.location.href = "profile.html";
     });
+
+    //////////////Restriction Sidebar////////////////////////
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
     //Pull user id and name from db, display, 
     //then using callback enable search page functionality
     auth.onAuthStateChanged(function (user) {

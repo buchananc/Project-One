@@ -7,13 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meal Search</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
         crossorigin="anonymous">
-        
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -84,100 +85,114 @@
     <!-- MODAL BOX CONTAINER ENDS -->
 
     <!-- FOOD / RECIPE SEARCH MENU -->
-    <div class="container-fluid">
-        <div class="row">
-                <!-- <div id="dietaryRestrictions">
-                    <div>
-                        <b>Your selected diets: </b><br>
-                        <span id="selected-diets"></span>
-                    </div>
-                    <br>
-                    <div><b>Your selected allergies: </b><br>
-                        <span id="selected-allergies"></span>
-                    </div>
-                    <br>
-                    <div>
-                        <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
-                        <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
-                    </div>
-                </div> -->
-            <div class="col-sm-12">
-                <section class="side_search">
-                    <div id="panel">
-                        <div class="sidesearch">
-                            <form id="foodsearch" action="search" method="get">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <p class="search_headers">Browse Recipes:</p>
-                                        <label id="search">
-                                            <select name="recipe_search" id="recipe_search">
-                                                <option selected="true" disabled="true">Select category:</option>
-                                                <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
-                                                <option class="options" id="2" name="bread" value="bread">Bread</option>
-                                                <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
-                                                <option class="options" id="4" name="cake" value="cake">Cake</option>
-                                                <option class="options" id="5" name="chicken" value="chicken">Chicken</option>
-                                                <option class="options" id="6" name="cookies" value="cookies">Cookies</option>
-                                                <option class="options" id="7" name="pasta" value="pasta">Pasta</option>
-                                                <option class="options" id="8" name="pork" value="pork">Pork</option>
-                                                <option class="options" id="9" name="salad" value="salad">Salad</option>
-                                                <option class="options" id="10" name="shrimp" value="shrimp">Shrimp</option>
-                                                <option class="options" id="11" name="side" value="side">Side</option>
-                                                <option class="options" id="12" name="snack" value="snack">Snack</option>
-                                            </select>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <img src="assets/images/orimg.png">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label id="food_search">
-                                            <label class="search_headers">Search ingredients:</p>
-                                            <input type="text" id="food_search" name="food_search">
-                                        </label>
-                                        <button type="reset" value="clear" id="clear">Clear</button>
-                                        <p></p>
-                                        <p>
-                                            <input type="submit" name="submit" value="Search" id="submit">
-                                        </p>
-                                        <p class="search_error"></p>
-                                        <div id="dietaryRestrictions">
-                                            <div>
-                                                <b>Your selected diets: </b>
-                                                <br>
-                                                <span id="selected-diets"></span>
-                                            </div>
-                                            <br>
-                                            <div>
-                                                <b>Your selected allergies: </b>
-                                                <br>
-                                                <span id="selected-allergies"></span>
-                                            </div>
-                                            <br>
-                                            <div>
-                                                <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
-                                                <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
+    <div class="wrapper">
+        <!-- SIDEBAR NAV-->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Your Chosen Restrictions</h3>
+            </div>
+            <div id="dietaryRestrictions">
+                <ul class="list-unstyled components">
+                    <li class="dietRest">
+                        <div>
+                            <b>Your selected diets: </b>
+                            <br>
+                            <span id="selected-diets"></span>
+                        </div>
+                    </li>
+                    <li class="allergyRest">
+                        <div>
+                            <b>Your selected allergies: </b>
+                            <br>
+                            <span id="selected-allergies"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- PAGE CONTENT -->
+        <div class="container-fluid">
+            <div class="row">
+                    <!-- <div id="dietaryRestrictions">
+                        <div>
+                            <b>Your selected diets: </b><br>
+                            <span id="selected-diets"></span>
+                        </div>
+                        <br>
+                        <div><b>Your selected allergies: </b><br>
+                            <span id="selected-allergies"></span>
+                        </div>
+                        <br>
+                        <div>
+                            <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
+                            <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
+                        </div>
+                    </div> -->
+                <div class="col-sm-12">
+                    <section class="side_search">
+                        <div id="panel">
+                            <div class="sidesearch">
+                                <form id="foodsearch" action="search" method="get">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <p class="search_headers">Browse Recipes:</p>
+                                            <label id="search">
+                                                <select name="recipe_search" id="recipe_search">
+                                                    <option selected="true" disabled="true">Select category:</option>
+                                                    <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
+                                                    <option class="options" id="2" name="bread" value="bread">Bread</option>
+                                                    <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
+                                                    <option class="options" id="4" name="cake" value="cake">Cake</option>
+                                                    <option class="options" id="5" name="chicken" value="chicken">Chicken</option>
+                                                    <option class="options" id="6" name="cookies" value="cookies">Cookies</option>
+                                                    <option class="options" id="7" name="pasta" value="pasta">Pasta</option>
+                                                    <option class="options" id="8" name="pork" value="pork">Pork</option>
+                                                    <option class="options" id="9" name="salad" value="salad">Salad</option>
+                                                    <option class="options" id="10" name="shrimp" value="shrimp">Shrimp</option>
+                                                    <option class="options" id="11" name="side" value="side">Side</option>
+                                                    <option class="options" id="12" name="snack" value="snack">Snack</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img src="assets/images/orimg.png">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label id="food_search">
+                                                <label class="search_headers"> 
+                                                <input type="text" id="food_search" name="food_search" placeholder="Search ingredients (ex. lime)">
+                                            </label>
+                                            <button type="submit" name="submit" value="Search" id="submit" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-search"></span> Search</button>
+                                            <button type="reset" value="clear" id="clear" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> Clear</button>
+                                            <p></p>
+                                            <!-- <p class="search_error"></p> -->
+                                            <button type="button" id="sidebarCollapse" class="btn btn-primary btn-info navbar-btn"><span class="glyphicon glyphicon-remove"></span> See MyRestrictions</button>
+                                            <div id="dietaryRestrictions">
+                                                <div>
+                                                    <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
+                                                    <label for="no-diet">Check if you would like to include your restrictions in this search.</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- <button type="reset" value="clear" id="clear">Clear</button>
-                                <p></p>
-                                <p><input type="submit" name="submit" value="Search" id="submit"></p>
-                                <p class="search_error"></p> -->
-                            </form>
+                                    <!-- <button type="reset" value="clear" id="clear">Clear</button>
+                                    <p></p>
+                                    <p><input type="submit" name="submit" value="Search" id="submit"></p>
+                                    <p class="search_error"></p> -->
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SEARCH RESULTS START HERE -->
+                    <div class="row">
+                        <div class="col-sm-12 jumbotron" id="jumboRecipe">
+                            <div class="column_results clearfix">
+                                <!-- Result data goes in here -->
+                            </div>
                         </div>
                     </div>
-                </section>
-                <!-- SEARCH RESULTS START HERE -->
-                <div class="row">
-                    <div class="col-sm-12 jumbotron" id="jumboRecipe">
-                        <div class="column_results clearfix">
-                            <!-- Result data goes in here -->
-                        </div>
-                    </div>
+                    <!-- SEARCH RESULTS END HERE -->
                 </div>
-                <!-- SEARCH RESULTS END HERE -->
             </div>
         </div>
     </div>
