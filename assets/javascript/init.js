@@ -21,8 +21,12 @@ const mealPlanner = database.ref("/mealPlanner");
 const activeSearch = database.ref("/activeSearch");
 const favorite = database.ref("/favorite");
 
+const sign_out_btn = $('#sign-out');
+
 
 const signOut = function(){
     auth.signOut(); // Firebase provided function to sign users out.. couldn't be any easier
     window.location.assign('./index.html'); // Redirects user to main sign in page
 }
+
+sign_out_btn.click(signOut);
