@@ -7,6 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meal Search</title>
+        <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -20,7 +23,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
         crossorigin="anonymous">
-
     <!-- Local CSS -->
     <link rel="stylesheet" href="./assets/css/search.css">
 </head>
@@ -44,11 +46,12 @@
                                 <a href="edit-profile.html">Edit Profile</a>
                             </li>
                             <li>
-                                <a href="#">Sign Out</a>
+                                <a href="#" id="sign-out">Sign Out</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
+            </div>
         </nav>
     </header>
     <!-- END OF NAVBAR
@@ -105,16 +108,22 @@
                             <form id="foodsearch" action="search" method="get">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <p class="search_headers">Search for Recipes:</p>
+                                        <p class="search_headers">Browse Recipes:</p>
                                         <label id="search">
                                             <select name="recipe_search" id="recipe_search">
                                                 <option selected="true" disabled="true">Choose recipe type:</option>
                                                 <option class="options" id="1" name="appetizer" value="appetizer">Appetizer</option>
                                                 <option class="options" id="2" name="bread" value="bread">Bread</option>
                                                 <option class="options" id="3" name="breakfast" value="breakfast">Breakfast</option>
-                                                <option class="options" id="4" name="salad" value="salad">Salad</option>
-                                                <option class="options" id="5" name="side" value="side">Side</option>
-                                                <option class="options" id="6" name="snack" value="snack">Snack</option>
+                                                <option class="options" id="4" name="cake" value="cake">Cake</option>
+                                                <option class="options" id="5" name="chicken" value="chicken">Chicken</option>
+                                                <option class="options" id="6" name="cookies" value="cookies">Cookies</option>
+                                                <option class="options" id="7" name="pasta" value="pasta">Pasta</option>
+                                                <option class="options" id="8" name="pork" value="pork">Pork</option>
+                                                <option class="options" id="9" name="salad" value="salad">Salad</option>
+                                                <option class="options" id="10" name="shrimp" value="shrimp">Shrimp</option>
+                                                <option class="options" id="11" name="side" value="side">Side</option>
+                                                <option class="options" id="12" name="snack" value="snack">Snack</option>
                                             </select>
                                         </label>
                                     </div>
@@ -127,12 +136,18 @@
                                             <p class="search_headers">Search for food by type:</p>
                                             <input type="text" id="food_search" name="food_search">
                                         </label>
+                                        <button type="reset" value="clear" id="clear">Clear</button>
+                                        <p></p>
+                                        <p>
+                                            <input type="submit" name="submit" value="Search" id="submit">
+                                        </p>
+                                        <p class="search_error"></p>
                                     </div>
                                 </div>
-                                <button type="reset" value="clear" id="clear">Clear</button>
+                                <!-- <button type="reset" value="clear" id="clear">Clear</button>
                                 <p></p>
                                 <p><input type="submit" name="submit" value="Search" id="submit"></p>
-                                <p class="search_error"></p>
+                                <p class="search_error"></p> -->
                             </form>
                         </div>
                     </div>
