@@ -1,21 +1,6 @@
 var thisUser;
 // Developed by Caleb Sears as part of the UNCC Coding Bootcamp - Group Project 1
 $(() => {
-    // Initializing Firebase
-    var config = {
-        apiKey: "AIzaSyCeZJWPPfaCh9IqHcd0SLw6AdKkH46qZRQ",
-        authDomain: "cross-bite.firebaseapp.com",
-        databaseURL: "https://cross-bite.firebaseio.com",
-        projectId: "cross-bite",
-        storageBucket: "cross-bite.appspot.com",
-        messagingSenderId: "789203245949"
-      };
-      firebase.initializeApp(config);
-
-  const database = firebase.database();
-  const auth = firebase.auth();
-  // Creating a reference to my users in Firebase
-  const usersRef = database.ref().child('users');
 
   // Assigning DOM elements to global variables
   const userEmail = $('#email_login');
@@ -34,9 +19,17 @@ $(() => {
   // START AUTH STATE CHECK
   // =====================================================================================
       auth.onAuthStateChanged(user => {
-          if (user){
-              window.location.assign('./homepage.html');
-          }
+           if (user){
+                // check if user has already created an account with through our site
+                const promise = usersRef.child(user.uid).child('firstTimeUser').once('value');
+                    promise.then(isFirstTime =>{
+                        if (isFirstTime.val()){
+                            window.location.assign('./edit-profile.html');
+                        } else {
+                            window.location.assign('./homepage.html');
+                        }
+                    })
+            }
       })
       // TODO -- check if user has already visited site, if so direct them to the homepage
   // END AUTH STATE CHECK
@@ -56,8 +49,7 @@ $(() => {
         promise
             // Display this user's id
             .then(user => {
-                console.log('Hello, ' + user.displayName + '!');
-                window.location.assign('./homepage.html');
+                usersRef.child(user.uid).update({'firstTimeUser': false});
             })
             // Catch any errors
             .catch(err => {
@@ -99,8 +91,8 @@ $(() => {
         promise
             // Grab the created user id
             .then(user => {
-                usersRef.child(user.uid).set({'userName': myName});
-                window.location.assign('./edit-profile.html');
+                usersRef.child(user.uid).update({'userName': myName});
+                usersRef.child(user.uid).update({'firstTimeUser': true});
             })
             // Log any errors to the console
             .catch(err => {
@@ -128,6 +120,7 @@ $(() => {
             let user = result.user;
             // Extract displayName from user and set users/uid/userName equal to the returned value
             usersRef.child(user.uid).update({'userName': user.displayName})
+            usersRef.child(user.uid).update({'firstTimeUser': false});
             // ...
             }).catch(function(error) {
             // Handle Errors here.
