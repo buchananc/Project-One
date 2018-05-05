@@ -119,7 +119,7 @@
                 <div class="col-sm-12">
                     <form id="foodsearch" action="search" method="get">
                         <div class="row">
-                            <div class="col-sm-2" id="columnOne">
+                            <div class="col-sm-3" id="columnOne">
                                 <p class="search_headers">Browse Recipes:</p>
                                 <label id="search">
                                     <select name="recipe_search" id="recipe_search">
@@ -142,19 +142,21 @@
                             <div class="col-sm-6" id="columnTwo">
                                 <img class="orImg" src="assets/images/orimg.png">
                             </div>
-                            <div class="col-sm-4" id="columnThree">
+                            <div class="col-sm-3" id="columnThree">
                                 <label id="food_search">
-                                    <label class="search_headers"> 
-                                    <input type="text" id="food_search" name="food_search" placeholder="Search ingredients (ex. lime)">
+                                    <label class="search_headers">Search ingredients: </label> 
+                                    <input type="text" id="food_search" name="food_search">
                                 </label>
+                                <br>
                                 <button type="submit" name="submit" value="Search" id="submit" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-search"></span> Search</button>
+                                <br>
                                 <button type="reset" value="clear" id="clear" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> Clear</button>
                                 <p></p>
                                 <!-- <p class="search_error"></p> -->
                                 <div id="dietaryRestrictions">
                                     <div>
                                         <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
-                                        <label for="no-diet">Check if you would like to include your restrictions in this search.</label>
+                                        <label for="no-diet" id="noDiet">Check if you would like to include your restrictions in this search.</label>
                                     </div>
                                     <p>
                                         <button type="button" id="sidebarCollapse" class="btn btn-primary btn-info navbar-btn">

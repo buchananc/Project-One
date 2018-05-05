@@ -21,7 +21,7 @@ body {
 .navbar-default h3 {
     color: white;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 900 !important;
     font-size: 42px;
     letter-spacing: 15px;
     margin: 0;
@@ -42,7 +42,7 @@ body {
 }
 
 #username {
-    color: rgba(61, 152, 0, 1);
+    color: rgba(61, 152, 0, 1) !important;
     text-decoration: underline;
     font-size: 18px;
 }
@@ -50,42 +50,35 @@ body {
 /* the end of navbar */
 
 /* BUTTONS */
-/* #submit,
 #clear {
-    border: none;
-    background-image: none;
-    background-color: rgba(67, 167, 0, 0.9);
-    text-shadow: none;
-    width: 30%;
-    color: white;
-    font-size: 18px;
-    letter-spacing: 2px;
-    padding: 5px;
+    margin-top: 10px;
 }
-
-#clear {
-    background-color: rgba(83, 206, 1, 0.9);
-}
-
-#submit:focus,
-#clear:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgb(66, 165, 0);
-} */
 
 .search_error {
     padding-top: 10px;
 }
 
 p.search_headers {
-    font-size: 18px;
+    font-size: 25px;
     font-family: 'Lato',
     sans-serif;
     margin-top: 15px;
 }
+label.sidebar-header {
+    font-size: 25px;
+    font-family: 'Lato',
+    sans-serif;
+}
 
 #foodsearch {
     margin-top: 50px;
+    font-size: 25px;
+    font-family: 'Lato',
+    sans-serif;
+}
+
+#columnOne {
+    text-align: center;
 }
 
 #columnTwo {
@@ -94,14 +87,20 @@ p.search_headers {
 
 .orImg {
     margin-top: 15px;
-    width: 100%;
-}
-#columnThree {
-    margin-top: 75px;
+    width: 70%;
 }
 
 input#food_search {
     width: 100%;
+    font-size: 18px;
+    font-family: 'Lato',
+    sans-serif;
+}
+
+#recipe_search {
+    font-size: 18px;
+    font-family: 'Lato',
+    sans-serif;
 }
 
 #wrapper {
@@ -128,7 +127,7 @@ h2 {
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(64, 64, 64, 0.4);
     color: #000;
     transition: all 0.3s;
     font-family: 'Lato',
@@ -162,17 +161,12 @@ h2 {
     padding-right: 0px;
 }
 
-/* .jumbotron p {
-    font-size: 18px;
-} */
-
 /* RECIPE SEARCH */
 .column_results {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
 .card {
-    /* background-color: rgba(255, 255, 255, 0.9); */
     color: #777;
     font-size: 18px;
     font-weight: bold;
@@ -182,8 +176,7 @@ h2 {
     padding-bottom: 10px;
     text-align: center;
     float: left;
-    /* width: 350px; */
-    /* border-radius: 25px; */
+    display: inline-block;
 }
 
 h3 {
@@ -192,25 +185,19 @@ h3 {
 
 #button1 {
     border-radius: 8px;
-    font-size: .9rem;
+    font-size: 18px;
 }
 
 #whatMeal {
     font-family: 'Lato',
     sans-serif;
-    margin: 10px 10px 0 10px;
-    border-radius: 25px;
-    padding: 10px;
-    text-align: center;
+    font-size: 18px;
 }
 
 #whatDate {
     font-family: 'Lato',
     sans-serif;
-    margin: 10px 10px 0 10px;
-    border-radius: 25px;
-    padding: 10px;
-    text-align: center;
+    font-size: 18px;
 }
 
 #selectRecipeButton {
@@ -232,8 +219,12 @@ h3 {
     text-align: center;
 }
 
+#noDiet {
+    font-size: 18px;
+}
+
 a {
-    /* color: white; */
+    color: white !important;
     color: rgba(83, 206, 1, 0.9);
     text-decoration: none;
 }
@@ -261,6 +252,7 @@ h1 {
 
 .modal-body {
     border: none;
+    padding: 0 10px;
 }
 
 h4 {
@@ -271,7 +263,7 @@ h4 {
 }
 
 .modal-title-info {
-    font-size: 18px;
+    font-size: 24px !important;
 }
 
 .modal-body-info {
@@ -280,6 +272,16 @@ h4 {
 
 .modal-footer {
     border-top:none;
+}
+
+.modalIngredientList {
+    font-size: 18px !important;
+}
+.modalCookTime {
+    font-size: 18px !important;
+}
+.modalRating {
+    font-size: 18px !important;
 }
 
 /* DROPDOWN */
