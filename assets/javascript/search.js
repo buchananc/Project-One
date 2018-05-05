@@ -103,8 +103,7 @@ function showFood(result, index, array) {
 
     /////////////push results to html//////////////////////////
     $('div.column_results').append(
-        `<div class='row'>` +
-        `<div class='col-sm-12'>` +
+        `<div class='col-sm-3'>` +
         `<div class='card' id=${foodID} data-value=${foodID}>` +
         `<div class='row'>` +
         `<div class='col-sm-12' id='cardInfo'>` +
@@ -132,8 +131,7 @@ function showFood(result, index, array) {
         `</div>` +
         `</div>` +
         `</div>` +
-        `</div>` +
-        `</div>`
+        `</div>` 
     );
 
     //////////////////create modal///////////////////

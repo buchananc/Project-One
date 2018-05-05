@@ -2,8 +2,6 @@
 // Developed by Caleb Sears as part of the UNCC Coding Bootcamp - Group Project 1
 $(() => {
 
-    console.log('hello world');
-
   // Assigning DOM elements to global variables
   const userEmail = $('#email_login');
   const userPass = $('#pass_login');
@@ -23,14 +21,16 @@ $(() => {
       auth.onAuthStateChanged(user => {
            if (user){
                 // check if user has already created an account with through our site
-                const promise = usersRef.child(user.uid).child('firstTimeUser').once('value');
-                    promise.then(isFirstTime =>{
-                        if (isFirstTime.val()){
-                            window.location.assign('./edit-profile.html');
-                        } else {
-                            window.location.assign('./homepage.html');
-                        }
-                    })
+                const promise = usersRef.child(user.uid).once('value');
+                      promise.then(snap =>{
+                          let oldUser = snap.child('firstTimeUser').exists();
+                          if (oldUser){
+                              window.location.assign('./homepage.html');
+                          } else {
+                              window.location.assign('./edit-profile.html')
+                              usersRef.child(user.uid).update({'firstTimeUser': true});
+                          }
+                      })
             }
       })
       // TODO -- check if user has already visited site, if so direct them to the homepage
@@ -51,7 +51,7 @@ $(() => {
         promise
             // Display this user's id
             .then(user => {
-                usersRef.child(user.uid).update({'firstTimeUser': false});
+                // usersRef.child(user.uid).update({'firstTimeUser': false});
             })
             // Catch any errors
             .catch(err => {
@@ -94,7 +94,6 @@ $(() => {
             // Grab the created user id
             .then(user => {
                 usersRef.child(user.uid).update({'userName': myName});
-                usersRef.child(user.uid).update({'firstTimeUser': true});
             })
             // Log any errors to the console
             .catch(err => {
@@ -122,7 +121,6 @@ $(() => {
             let user = result.user;
             // Extract displayName from user and set users/uid/userName equal to the returned value
             usersRef.child(user.uid).update({'userName': user.displayName})
-            usersRef.child(user.uid).update({'firstTimeUser': false});
             // ...
             }).catch(function(error) {
             // Handle Errors here.
