@@ -278,17 +278,21 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
                     `</div>` +
                    `<div class="col-sm-5">` +
                        `<p class="btn btn-primary btn-info" id="getRecipeBtn"><a target="_blank" href=${link}><span class="glyphicon glyphicon-new-window"></span> See Full Recipe</a></p>` +
-                       `<p clase="btn btn-primary btn-info" id="selectRecipeBtn" data-value=${selectedYummlyID}><span class='glyphicon glyphicon-search'></span> New ${selectedMeal}</p>` +
+                       `<p clase="btn btn-primary btn-info" id="selectRecipeBtn" data-value=${selectedYummlyID} style="cursor:pointer"><span class='glyphicon glyphicon-search'></span> New ${selectedMeal}</p>` +
                        `<p class="btn btn-primary btn-info" id="scheduleMealBtn" scheduled-meal=${selectedMeal} scheduled-time=${selectedEpoch}><span class="glyphicon glyphicon-calendar"></span> Schedule ${selectedMeal}</p>` +
                     `</div>` +
                 `</div>` +
            `</div>`);
         if ( selectedEpoch != 0 ) {
           $("#selectRecipeBtn").addClass("visible");
-          // ToDo:  add logic to check if user has verified e-mail
-          //        then make this button vissble
-          //   if ( user...emailVerified ) { visible } else { hidden }
-          $("#scheduleMealBtn").addClass("visible");
+          if ( auth.currentUser.emailVerified ) {
+              console.log(" google USER " + auth.currentUser.email);
+              $("#scheduleMealBtn").addClass("visible");
+          }
+          else {
+              console.log(" not verified USER ");
+              $("#scheduleMealBtn").addClass("hidden");
+          }
         }
         else {
           $("#selectRecipeBtn").addClass("hidden");
