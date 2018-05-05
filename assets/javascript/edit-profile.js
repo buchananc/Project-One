@@ -25,7 +25,7 @@ function selectDiet() {
         diets.push({
             id: '0',
             label: $('#no-diet').val(),
-        });  
+        });
     }
     return diets;
 };
@@ -55,7 +55,7 @@ function selectRestrictions() {
         restrictions.push({
             id: '0',
             label: $('#no-restriction').val(),
-        }); 
+        });
     }
     return restrictions;
 };
@@ -180,15 +180,16 @@ $("#save").on("click", function () {
     }
 });
 
-auth.onAuthStateChanged(user =>{
-    if (user){
-        console.log(user.photoURL);
-        $("#pic-placeholder").attr("src", user.photoURL)
+auth.onAuthStateChanged(user => {
+    if (user) {
+        if (user.photoURL) {
+            console.log(user.photoURL);
+            $("#pic-placeholder").attr("src", user.photoURL)
 
-        usersRef.child(userId).update({
-            profilePicture: user.photoURL
-        })
+            usersRef.child(userId).update({
+                profilePicture: user.photoURL
+            })
+        }
     }
-})
-
-// append picture from google to $(".avatar")
+    
+});

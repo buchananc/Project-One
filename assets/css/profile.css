@@ -256,7 +256,6 @@ footer {
 @media screen and (max-width:768px) {
     body {
         width: 100%;
-        position: fixed;
     }
     #go-home {
         clear: both;
@@ -269,6 +268,9 @@ footer {
     .navbar-default h3 {
         text-align: center;
         margin-left: 0;
+    }
+    footer {
+        position: static;
     }
 }
 
@@ -284,8 +286,28 @@ footer {
 
 
 @media screen and (max-width:460px) {
+    body {
+        min-width: 100%;
+    }
     #go-home {
         width: 100%;
     }
-   
+    h3 {
+        margin: 10px 0;
+        font-size: 35px;
+        line-height: 35px;
+    }
+    #description{
+        font-size: 18px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    #ava {
+        width: 150px;
+        height: 150px;
+    }
+
+    .main-content {
+        margin-bottom: 0;
+    }
 }

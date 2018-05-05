@@ -212,6 +212,9 @@ footer {
 }
 
 @media screen and (max-width:768px) {
+    body {
+        width: 100%;
+    }
     .navbar-right {
         margin-top: 0;
         text-align: center;
@@ -234,13 +237,26 @@ footer {
 
 @media screen and (max-width:460px) {
     body {
-        min-width: 400px;
+        min-width: 100%;
     }
-    #go-home {
-        width: 100%;
+
+    h3 {
+        margin: 10px 0;
+        font-size: 35px;
+        line-height: 35px;
+    }
+
+    #description{
+        font-size: 18px;
+        margin: 0 auto;
+        margin-bottom: 20px;
     }
 
     footer {
         position: static;
+    }
+
+    .main-content {
+        margin-bottom: 0;
     }
 }
