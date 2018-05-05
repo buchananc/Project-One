@@ -1,7 +1,3 @@
-#homepage-favorites {
-    text-align: center;
-}
-
 #day0,
 #day1,
 #day2,
@@ -44,6 +40,11 @@ body {
     line-height: 69px;
     width: 100%;
     margin-left: 40px;
+    text-decoration: none; 
+}
+
+a:link, a:visited{
+    text-decoration: none;
 }
 
 .user-p {
@@ -68,6 +69,7 @@ body {
     margin-bottom: 30px;
     padding-top: 0;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 #homepage-favorites h2 {
@@ -83,6 +85,23 @@ body {
     text-transform: uppercase;
     letter-spacing: 5px;
     color: #999;
+}
+
+#homepage-favorites a {
+    color: #777;
+}
+
+#homepage-favorites>#random-meals>h2 {
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 6px;
+}
+
+#homepage-favorites>#random-meals>h2:hover {
+    text-decoration: #ddd underline;
+}
+
+#homepage-favorites p {
+    font-size: 18px;
 }
 
 #meal-plan .jumbotron {
@@ -193,3 +212,4 @@ footer {
     padding-top: 10px;  
     padding-bottom: 10px;
 }
+
