@@ -1,6 +1,8 @@
-var thisUser;
+
 // Developed by Caleb Sears as part of the UNCC Coding Bootcamp - Group Project 1
 $(() => {
+
+    console.log('hello world');
 
   // Assigning DOM elements to global variables
   const userEmail = $('#email_login');
