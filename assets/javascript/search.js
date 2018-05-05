@@ -31,9 +31,7 @@ var dinner = {
 function mealSelected(event) {
     event.preventDefault();
 
-    // console.log("mealSelected()");
     selectedYummlyID = $(this).attr("data-value");
-    // console.log(selectedYummlyID);
 
     if (searchCriteria.selectedMeal == "breakfast") {
         breakfast.yummlyID = selectedYummlyID;
@@ -78,23 +76,18 @@ function genRating(rating) {
 
 ////////////get array of results from Yummly, loop through, grab data//////////////
 function showFood(result, index, array) {
-    console.log(result);
     let foodID = result.id;
     let recipe_name = result.recipeName ? result.recipeName : 'Name';
     let rating = result.rating;
     let ingredientList = result.ingredients;
     let cookTime = result.totalTimeInSeconds;
     let formattedCookTime = moment.utc(cookTime * 1000).format('HH:mm:ss');
-    // console.log(formattedCookTime);
-    // console.log(ingredientList);
-    console.log(foodID);
     let ingredientListArray = [];
     ingredientList.forEach(function (element) {
         ingredientListArray.push(element);
     });
     let formattedIngredients = ingredientListArray.join(', ');
     let link = `https://www.yummly.com/#recipe/${foodID}`;
-    // console.log(link);
     let img = result.imageUrlsBySize[90];
     // selected date string
     let dateString = moment.unix(parseInt(searchCriteria.selectedEpoch)).format('MMMM DD');
@@ -137,7 +130,6 @@ function showFood(result, index, array) {
     //////////////////create modal///////////////////
     $(".testButton").off("click");
     $(".testButton").on("click", function () {
-        console.log('hello');
         $("#myModal .modal-title").empty().append($(this).siblings(".modal-title-info").clone());
         $("#myModal .modal-body").empty().append($(this).siblings(".modal-body-info").clone());
         $("#myModal").modal("show");
@@ -171,14 +163,12 @@ function searchAPI(recipe_search, food_search) {
     if ($("#search-restrictions").is(':checked')) {
         queryURL = queryURL + searchCriteria.queryParams;
     }
-    console.log(queryURL)
 
     $.ajax({
         type: 'GET',
         dataType: 'json',
         url: queryURL,
     }).then(function (result) {
-        console.log(result);
         let results_length = result.matches.length; //saves results as a variable
 
         $('div.column_results').append(`Search Results (${results_length})`);
@@ -236,10 +226,6 @@ $(document).ready(function () {
                 activeSearch.child(userID).once('value', function (activeSearchSnapshot) {
                     searchCriteria = activeSearchSnapshot.val().searchCriteria;
 
-                    console.log("selectedEpoch -> " + searchCriteria.selectedEpoch);
-                    console.log("selecedMeal -> " + searchCriteria.selectedMeal);
-                    console.log("selectedYummlyID -> " + searchCriteria.selectedYummlyID);
-
                     searchPageControl();
                     searchCriteria.queryParams = checkForRestrictions(snapshot);
                 });
@@ -255,7 +241,6 @@ $(document).ready(function () {
 // Function for desplaying diets and allergies and creating query parameters for including diets and allergies
 function checkForRestrictions(snapshot) {
 
-    console.log('snapshot', snapshot);
     // Pull data from database into variables
     var userDiets = snapshot.val().restrictions.diets;
     var userAllergies = snapshot.val().restrictions.allergies;
@@ -294,7 +279,6 @@ function checkForRestrictions(snapshot) {
         }
     }
 
-    console.log(queryParams.join(''))
     // Returns combined query parameters in a string 
     return queryParams.join('');
 };
