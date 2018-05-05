@@ -33,7 +33,6 @@
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
-            console.log('done');
           // Listen for sign-in state changes.
           gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
@@ -52,7 +51,7 @@
             newEvent();
             
         } else {
-            console.log('logged out');
+            // user is not authenticated
         }
       }
 
@@ -69,9 +68,6 @@
         const description = eventObj.description;
         const startTime = eventObj.startTime;
         const endTime = eventObj.endTime;
-        
-        console.log('start time: ', startTime);
-        console.log('end time: ' + endTime);
 
             var event = {
                 'summary': summary,
@@ -93,9 +89,7 @@
 
 
             request.execute(function(event) {
-                console.log(event);
+                // Don't need to do anything here
               });
-
-            console.log(request);
                
         }
