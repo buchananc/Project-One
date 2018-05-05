@@ -36,7 +36,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a href="homepage.html">
-                        <h3>Cross Bite</h3>
+                        <h3><b>Cross Bite</b></h3>
                     </a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
@@ -89,7 +89,7 @@
         <!-- SIDEBAR NAV-->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Your Chosen Restrictions</h3>
+                <h2>Your Chosen Restrictions</h2>
             </div>
             <div id="dietaryRestrictions">
                 <ul class="list-unstyled components">
@@ -98,6 +98,8 @@
                             <b>Your selected diets: </b>
                             <br>
                             <span id="selected-diets"></span>
+                            <br>
+                            <br>                           
                         </div>
                     </li>
                     <li class="allergyRest">
@@ -105,6 +107,7 @@
                             <b>Your selected allergies: </b>
                             <br>
                             <span id="selected-allergies"></span>
+                            <br>
                         </div>
                     </li>
                 </ul>
@@ -113,21 +116,6 @@
         <!-- PAGE CONTENT -->
         <div class="container-fluid">
             <div class="row">
-                    <!-- <div id="dietaryRestrictions">
-                        <div>
-                            <b>Your selected diets: </b><br>
-                            <span id="selected-diets"></span>
-                        </div>
-                        <br>
-                        <div><b>Your selected allergies: </b><br>
-                            <span id="selected-allergies"></span>
-                        </div>
-                        <br>
-                        <div>
-                            <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">
-                            <label for="no-diet">Use your diet restrictions and allergies in search parameters</label>
-                        </div>
-                    </div> -->
                 <div class="col-sm-12">
                     <section class="side_search">
                         <div id="panel">
@@ -155,7 +143,7 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
-                                            <img src="assets/images/orimg.png">
+                                            <img class="orImg" src="assets/images/orimg.png">
                                         </div>
                                         <div class="col-sm-4">
                                             <label id="food_search">
@@ -166,7 +154,7 @@
                                             <button type="reset" value="clear" id="clear" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-trash"></span> Clear</button>
                                             <p></p>
                                             <!-- <p class="search_error"></p> -->
-                                            <button type="button" id="sidebarCollapse" class="btn btn-primary btn-info navbar-btn"><span class="glyphicon glyphicon-remove"></span> See MyRestrictions</button>
+                                            <button type="button" id="sidebarCollapse" class="btn btn-primary btn-warning navbar-btn"><span class="glyphicon glyphicon-remove"></span> See MyRestrictions</button>
                                             <div id="dietaryRestrictions">
                                                 <div>
                                                     <input type="checkbox" id="search-restrictions" name="use-restrictions" value="restrictions">

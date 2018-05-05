@@ -108,7 +108,7 @@ function showFood(result, index, array) {
         `<div class='card' id=${foodID} data-value=${foodID}>` +
         `<div class='row'>` +
         `<div class='col-sm-12' id='cardInfo'>` +
-        `<h3><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h3>` +
+        `<h1><span><i class='fa fa-hand-o-right' aria-hidden='true'></i></span>${recipe_name}</h1>` +
         `<img src=${img} class='recipeImage1'>` +
         `<p>` + genRating(rating) + `</p>` +
         `<button type='button' class='btn btn-primary btn-info testButton' id='button1'><i class="fa fa-external-link" aria-hidden="true"></i><span class='glyphicon glyphicon-cutlery'></span> See More</button>` +
@@ -221,6 +221,7 @@ $(document).ready(function () {
 
     //////////////Restriction Sidebar////////////////////////
     $('#sidebarCollapse').on('click', function () {
+        $("#sidebarCollapse").removeClass("active");
         $('#sidebar').toggleClass('active');
     });
     //Pull user id and name from db, display, 
