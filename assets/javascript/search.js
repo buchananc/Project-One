@@ -232,7 +232,7 @@ $(document).ready(function () {
 
             });
         } else {
-            alert("no current User");
+            // User is signed off
         }
     });
 
