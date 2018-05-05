@@ -31,9 +31,9 @@ var dinner = {
 function mealSelected(event) {
     event.preventDefault();
 
-    console.log("mealSelected()");
+    // console.log("mealSelected()");
     selectedYummlyID = $(this).attr("data-value");
-    console.log(selectedYummlyID);
+    // console.log(selectedYummlyID);
 
     if (searchCriteria.selectedMeal == "breakfast") {
         breakfast.yummlyID = selectedYummlyID;
@@ -214,6 +214,7 @@ function searchPageControl() {
 
 /////////////////////Document Section////////////////////////////////////
 $(document).ready(function () {
+
     ////////////link to profile page///////////////////
     $("#username").on("click", function () {
         window.location.href = "profile.html";

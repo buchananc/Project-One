@@ -12,10 +12,6 @@ body {
     background-attachment: fixed;
 }
 
-.navbar.navbar-default {
-    margin: 0;
-}
-
 .navbar-default {
     background: rgba(223, 223, 223, 0.7);
     border: none;
@@ -23,7 +19,6 @@ body {
 }
 
 .navbar-default h3 {
-    font-family: 'Lato', sans-serif;
     color: white;
     text-transform: uppercase;
     font-weight: 900;
@@ -32,7 +27,11 @@ body {
     margin: 0;
     line-height: 69px;
     width: 100%;
-    margin-left: 15px;
+    margin-left: 40px;
+}
+
+.navbar.navbar-default {
+    margin-bottom: 0;
 }
 
 .user-p {
@@ -85,29 +84,40 @@ p.search_headers {
     margin-top: 15px;
 }
 
-#food_search {
-    margin-top: 60px;
+#foodsearch {
+    margin-top: 50px;
 }
 
-#foodsearch {
-    margin-top: 20px;
+#columnTwo {
+    text-align: center;
 }
 
 .orImg {
     margin-top: 15px;
+    width: 100%;
+}
+#columnThree {
+    margin-top: 75px;
 }
 
-.wrapper {
+input#food_search {
+    width: 100%;
+}
+
+#wrapper {
     display: flex;
     align-items: stretch;
     font-family: 'Lato',
     sans-serif;
 }
+#food_search {
+    width: 100%;
+}
 
 /* SIDEBAR */
 h2 {
     font-size: 30px;
-    font-family: 'Lato',
+    font-family: 'Lato' ,
     sans-serif;
 }
 
@@ -177,8 +187,6 @@ h2 {
 }
 
 h3 {
-    padding-left: 10px;
-    padding-right: 10px;
     font-size: 18px;
 }
 
@@ -231,7 +239,7 @@ a {
 }
 
 h1 {
-    font-size: 22px;
+    font-size: 22px !important;
     width: 200px;
 }
 
@@ -282,7 +290,6 @@ h4 {
 
 .dropdown {
     list-style-type: none;
-    
 }
 
 .dropdown-menu>li>a {
