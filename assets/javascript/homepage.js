@@ -75,6 +75,15 @@ var user = {
     mealPlan
 };
 
+// I am so sorry I'm inserting this ugly object here.. 
+// It holds all the data needed for the google calendar event
+const eventObj = {
+    summary: '',
+    description: '',
+    startTime: '',
+    endTime: ''
+}
+
 
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
@@ -265,6 +274,9 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
         });
         var formattedIngredients = ingredientListArray.join(', ');
 
+        // Adding the recipe name to my eventObj called with eventObj.description
+        eventObj.description = recipe_name;
+
 
         $("#myModal .modal-title").text(recipe_name);
         $("#myModal .modal-title").empty().append(`<div class='modal-title-info'>${recipe_name}</div>` +
@@ -318,6 +330,16 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
             rfc339Time = moment.unix(parseInt(selectedEpoch)+addSeconds).format("YYYY-MM-DDTHH:mm:ssZ");
             console.log( " scheduleMealBtn selected " + scheduledMeal );
             console.log( " scheduleMealBtn selected " + rfc339Time );
+
+            // Updating my eventObj with meal info
+            eventObj.summary = scheduledMeal;
+            eventObj.startTime = rfc339Time;
+            eventObj.endTime = moment.unix(parseInt(selectedEpoch)+(addSeconds+60*60)).format("YYYY-MM-DDTHH:mm:ssZ");
+
+            // Adding click handler here for google authentication
+            handleAuthClick();
+
+
         });
     });
 }
