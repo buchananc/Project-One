@@ -98,7 +98,6 @@ function createAweekOfEpochKeys() {
         snapshot.forEach( function(childSnapshot)  {
             var db_epoch = parseInt(childSnapshot.key);
             if ( db_epoch < i_epoch ) {
-                console.log ( "child key less than today-> " + childSnapshot.key );
                 childSnapshot.ref.remove();
             }
         });
@@ -113,23 +112,18 @@ function createAweekOfEpochKeys() {
             var epoch = moment(startOfDay).add(i, 'days');
             var epochStr = moment(epoch).format("X");
     
-            console.log( epochStr );
-            console.log("    "+ moment(epoch).format("YYYY/MM/DD hh:mm:ss"));
             var breakfastYummlyID = " ";
             var lunchYummlyID = " ";
             var dinnerYummlyID = " ";
 
             if (userExists) {
-                console.log("createAweekOfEpochKeys() mealPlanner user EXISTS")
                 var epochExists = (snapshot.child(epochStr).val() !== null);
                 if (epochExists) {
-                  console.log("createAweekOfEpochKeys() mealPlanner epoch EXISTS")
                     breakfastYummlyID = snapshot.child(epochStr).val().breakfast.yummlyID;
                     lunchYummlyID = snapshot.child(epochStr).val().lunch.yummlyID;
                     dinnerYummlyID = snapshot.child(epochStr).val().dinner.yummlyID;
                 }
                 else {
-                  console.log("createAweekOfEpochKeys() mealPlanner epoch NOT EXISTS")
                   var breakfast = user.mealPlan.breakfast
                   mealPlanner.child(userID+"/"+epochStr).update({
                       breakfast
@@ -145,7 +139,6 @@ function createAweekOfEpochKeys() {
                 }
             }
             else {
-                console.log("createAweekOfEpochKeys() mealPlanner user NOT EXISTS")
                 var breakfast = user.mealPlan.breakfast
                 mealPlanner.child(userID+"/"+epochStr).update({
                     breakfast
@@ -247,18 +240,15 @@ function selectFavorite( event ) {
 //-------------------------------------------------------------------------------------------
 function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
 
-    console.log( "displayRecipeModal() - " + selectedMeal + " " + selectedYummlyID );
     var queryURL = "https://api.yummly.com/v1/api/recipe/" +
                   selectedYummlyID +
                   "?_app_id=" + ourAPIid +
                   "&_app_key=" + ourAPIkey;
 
-    console.log(queryURL);
     $.ajax({
         type: 'GET',
         url: queryURL,
     }).then(function (result) {
-        console.log(result);
         var img = result.images[0].hostedSmallUrl;
         var recipe_name = result.name;
         var rating = result.rating;
@@ -268,7 +258,6 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
 
         var ingredientList = result.ingredientLines;
         var ingredientListArray = [];
-        console.log(ingredientList);
         ingredientList.forEach(function (element) {
             ingredientListArray.push(element);
         });
@@ -298,11 +287,9 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
         if ( selectedEpoch != 0 ) {
           $("#selectRecipeBtn").addClass("visible");
           if ( auth.currentUser.emailVerified ) {
-              console.log(" google USER " + auth.currentUser.email);
               $("#scheduleMealBtn").addClass("visible");
           }
           else {
-              console.log(" not verified USER ");
               $("#scheduleMealBtn").addClass("hidden");
           }
         }
@@ -314,7 +301,6 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
         $("#myModal").modal("show");
 
         $("#selectRecipeBtn").on( "click", function () {
-            console.log("in display")
             window.location.href="search.html";
         });
         
@@ -328,8 +314,6 @@ function displayRecipeModal( selectedMeal, selectedEpoch, selectedYummlyID ) {
             if( scheduledMeal == "dinner" ) addSeconds = 18*60*60;
 
             rfc339Time = moment.unix(parseInt(selectedEpoch)+addSeconds).format("YYYY-MM-DDTHH:mm:ssZ");
-            console.log( " scheduleMealBtn selected " + scheduledMeal );
-            console.log( " scheduleMealBtn selected " + rfc339Time );
 
             // Updating my eventObj with meal info
             eventObj.summary = scheduledMeal;
@@ -353,9 +337,7 @@ function selectMeal( event ) {
    var selectedYummlyID = selected.attr("yummlyid");
 
    event.preventDefault();
-   console.log("selectMeal()");
 
-   console.log( selectedMeal + " " + selectedEpoch + " " + selectedYummlyID );
 
    var searchCriteria = {
         selectedEpoch,
@@ -381,7 +363,6 @@ function selectMeal( event ) {
 //-------------------------------------------------------------------------------------------
 function buildFavoriteMealArea( meal ) {
 
-    console.log("buildFavoriteMealArea() -> " + meal); 
 
     favorite.child( userID+"/"+meal ).on('value',function(snapshot) {
         var exists = (snapshot.val() !== null);
@@ -463,7 +444,6 @@ function buildFromRandomMeal( meal ) {
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 function removeActiveSearchDB () {
-    console.log("remove activeSearch key in DB");
     var ref = activeSearch.child(userID).once( 'value', function ( snapshot ) {
         snapshot.ref.remove();
     });
@@ -514,14 +494,10 @@ randomMeals();
 $(document).ready( function() {
     
     auth.onAuthStateChanged( function(user) {
-        console.log( "In onAuthStatChange() ");
     
         if (user) {
             // User is signed in.
-            console.log( " current UserID -> " + user.uid );
-            console.log( user );
             usersRef.child(user.uid).once( 'value', function(snapshot) {
-                console.log( 'usersRef userName -> ' + snapshot.val().userName );
                 userID = user.uid;
                 userName = snapshot.val().userName;
                 homepageControl();
