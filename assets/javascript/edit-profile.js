@@ -19,7 +19,6 @@ function selectDiet() {
 
     // check if there are selected checkboxes
     if (diets.length > 0) {
-        console.log("You have selected " + diets);
     } else {
         $('#no-diet').prop('checked', true);
         diets.push({
@@ -45,11 +44,8 @@ function selectRestrictions() {
         });
     });
 
-    console.log(restrictions);
-
     // check if there are selected checkboxes
     if (restrictions.length > 0) {
-        console.log("You have selected " + restrictions);
     } else {
         $('#no-restriction').prop('checked', true);
         restrictions.push({
@@ -93,7 +89,6 @@ $("#no-diet, #no-restriction").change(function () {
     var dietChoise = $(".disable");
 
     if (noDiet.is(':checked')) {
-        console.log(noDiet.is(':checked'));
         dietChoise.prop('checked', false);
         dietChoise.prop('disabled', true);
     } else {
@@ -104,7 +99,6 @@ $("#no-diet, #no-restriction").change(function () {
     var restrictionChise = $(".restriction")
 
     if (noRestriction.is(':checked')) {
-        console.log(noRestriction.is(':checked'));
         restrictionChise.prop('checked', false);
         restrictionChise.prop('disabled', true);
     } else {
@@ -114,23 +108,18 @@ $("#no-diet, #no-restriction").change(function () {
 
 //======================================================
 auth.onAuthStateChanged(function (user) {
-    console.log("In onAuthStatChange() ");
 
     if (user) {
         // User is signed in.
         userId = user.uid;
-        console.log(" current UserID -> " + user.uid);
-        console.log(user);
         usersRef.child(userId).once('value', function (snapshot) {
             userName = snapshot.val().userName;
-            console.log('usersRef userName -> ' + userName);
             $("#username").text(userName);
             $("#u-name").text(userName);
             $("#welcome").text(userName);
         });
     } else {
         // No user is signed in.
-        console.log(" no current User ");
     }
 });
 //=======================================================
@@ -144,7 +133,7 @@ $("#save").on("click", function () {
     // Saves INPUT FROM USER in variables
     var avatar = $("#image_uploads").prop("files")[0];
     var bio = $("#bio").val().trim();
-    console.log(bio);
+
 
     var userDiets = selectDiet();
     var userAllergies = selectRestrictions();
@@ -168,7 +157,6 @@ $("#save").on("click", function () {
 
     if (avatar) {
         fileRef.put(avatar).then(function (result) {
-            console.log('hello', result);
             var userPic = result.metadata.downloadURLs[0]
             usersRef.child(userId).update({
                 profilePicture: userPic
@@ -183,7 +171,6 @@ $("#save").on("click", function () {
 auth.onAuthStateChanged(user => {
     if (user) {
         if (user.photoURL) {
-            console.log(user.photoURL);
             $("#pic-placeholder").attr("src", user.photoURL)
 
             usersRef.child(userId).update({
